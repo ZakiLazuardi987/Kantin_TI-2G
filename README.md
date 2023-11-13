@@ -1,9 +1,10 @@
 # Kantin_TI-2G
-Project Akhir 
+
+Project Akhir
 Anggota Kelompok :
 Cindy
 Febby
 Putra
-Tirta
+Tirta Nurrochman BP
 Wulan
 Zaki
