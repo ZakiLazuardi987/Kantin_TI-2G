@@ -1,73 +1,76 @@
 <?php
 require_once 'Transaction.php';
 
-$transaction = new Transaction();
+class Receipt {
+    private $transaksi;
 
-// Contoh transaksi pembelian
-$userId = 1;
-$productId = 2;
-$quantity = 3;
-
-// Lakukan transaksi pembelian
-$transaction->transaksi($userId, $productId, $quantity);
-
-// Mengambil ID pesanan terakhir
-$lastOrderId = $transaction->getInsertId();
-
-// Mengambil data struk
-$receiptData = $transaction->receipt($lastOrderId);
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .receipt {
-            width: 300px;
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-    </style>
-</head>
-<body>
-
-<div class="receipt">
-    <h2>Receipt</h2>
-    <p>Date: <?php echo date('Y-m-d H:i:s'); ?></p>
-    <p>Order ID: <?php echo $lastOrderId; ?></p>
-    <p>Customer: <?php echo $receiptData[0]['nama_user']; ?></p>
-
-    <table>
-        <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total</th>
-        </tr>
-        <?php foreach ($receiptData as $item) : ?>
-            <tr>
-                <td><?php echo $item['nama_produk']; ?></td>
-                <td><?php echo $item['qty']; ?></td>
-                <td><?php echo number_format($item['harga'] * $item['qty'], 2); ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <p>Total Amount: <?php echo number_format(array_sum(array_column($receiptData, 'harga')), 2); ?></p>
-</div>
-
-<script>
-    // JavaScript untuk memicu pencetakan
-    window.onload = function() {
-        window.print();
+    public function __construct() {
+        $this->transaksi = new Transaction();
     }
-</script>
 
-</body>
-</html>
+    public function formSubmission() {
+        if (isset($_POST['product_id'], $_POST['qty_input'])) {
+            $productId = $_POST['product_id'];
+            $qty = $_POST['qty_input'];
+
+            // Proses struk pembelian
+            $transaction = new Transaction();
+            $receiptData = $transaction->receipt($productId, $qty);
+
+            // Masukkan data ke dalam database
+            $transaction->transaksi($userId, $productId, $qty);
+
+            // Proses struk pembelian, misalnya menggunakan kelas Receipt
+            $receipt = new Receipt();
+            $receipt->tampilkanStruk($productId, $qty);
+        } else {
+            echo "Data tidak lengkap";
+        }
+    }
+
+    public function tampilkanStruk($product_id, $qty) {
+        // Memanggil fungsi receipt untuk membuat transaksi
+        $transactionData = $this->transaksi->receipt($product_id, $qty);
+
+        if ($transactionData) {
+            // Menampilkan data struk
+            echo "<h2>Struk Pembelian</h2>";
+            echo "<p><strong>ID Pesanan:</strong> " . $transactionData['id_pesanan'] . "</p>";
+            echo "<p><strong>Tanggal:</strong> " . $transactionData['tgl_order'] . "</p>";
+            echo "<p><strong>Pelanggan:</strong> " . $transactionData['nama_user'] . "</p>";
+            echo "<table border='1'>
+                    <tr>
+                        <th>Produk</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>Total</th>
+                    </tr>";
+
+            $total = 0;
+
+            // Menampilkan detail produk dalam struk
+            echo "<tr>
+                    <td>" . $transactionData['detail_pesanan']['nama_produk'] . "</td>
+                    <td>" . $transactionData['detail_pesanan']['qty'] . "</td>
+                    <td>" . $transactionData['detail_pesanan']['harga'] . "</td>
+                    <td>" . ($transactionData['detail_pesanan']['harga'] * $transactionData['detail_pesanan']['qty']) . "</td>
+                </tr>";
+
+            $total += $transactionData['detail_pesanan']['harga'] * $transactionData['detail_pesanan']['qty'];
+
+            echo "<tr>
+                    <td colspan='3'><strong>Total:</strong></td>
+                    <td><strong>" . $total . "</strong></td>
+                </tr>";
+
+            echo "</table>";
+        } else {
+            echo "Produk tidak ditemukan. Struk tidak dapat ditampilkan.";
+        }
+    }
+}
+
+// Contoh penggunaan
+$receipt = new Receipt();
+$receipt->formSubmission();
+?>
