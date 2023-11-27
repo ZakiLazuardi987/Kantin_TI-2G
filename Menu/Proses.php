@@ -26,15 +26,15 @@ $menu = new Menu($db);
                 if (move_uploaded_file($gambar_produk['tmp_name'], $uploadFile)) {
                     // Jika upload berhasil, lanjutkan dengan operasi di database
                     if ($menu->addProduct($id_kategori, $nama_produk, $harga, $stok, $nama_gambar_baru)) {
-                        $_SESSION['message'] = "Menu berhasil ditambahkan!";
+                        $_SESSION['success_message'] = "Menu berhasil ditambahkan!";
                     } else {
-                        $_SESSION['message'] = "Gagal menambahkan menu.";
+                        $_SESSION['error_message'] = "Gagal menambahkan menu.";
                     }
                 } else {
-                    $_SESSION['message'] = "Gagal mengunggah gambar.";
+                    $_SESSION['error_message'] = "Gagal mengunggah gambar.";
                 }
             } else {
-            $_SESSION['message'] = "Harap pilih gambar.";
+            $_SESSION['error_message'] = "Harap pilih gambar.";
             }
             header("Location: index.php");
             exit();
@@ -55,15 +55,15 @@ $menu = new Menu($db);
                 $uploadFile = $uploadDir . $nama_gambar_baru;
 
                 if($menu->updateProduct($id_produk, $id_kategori, $nama_produk, $harga, $stok, $nama_gambar_baru)){
-                    $_SESSION['message'] = "Menu berhasil diedit!";
+                    $_SESSION['success_message'] = "Menu berhasil diedit!";
                 } else {
-                    $_SESSION['message'] = "Gagal mengedit menu.";
+                    $_SESSION['error_message'] = "Gagal mengedit menu.";
                 }
             } else{
                 if($menu->updateNoPict($id_produk, $id_kategori, $nama_produk, $harga, $stok)){
-                    $_SESSION['message'] = "Menu berhasil diedit!";
+                    $_SESSION['success_message'] = "Menu berhasil diedit!";
                 } else {
-                    $_SESSION['message'] = "Gagal mengedit menu.";
+                    $_SESSION['error_message'] = "Gagal mengedit menu.";
                 }
             }
 
@@ -80,7 +80,7 @@ $menu = new Menu($db);
         $id_produk = $_GET['id_produk'];
         
         if($menu->deleteProduct($id_produk)){
-            $_SESSION['message'] = "Menu berhasil dihapus!";
+            $_SESSION['success_message'] = "Menu berhasil dihapus!";
         } else {
             $_SESSION['message'] = "Gagal menghapus menu.";
         }
