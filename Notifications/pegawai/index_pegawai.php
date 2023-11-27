@@ -13,10 +13,10 @@ function displayWelcomeMessage() {
     }
 }
 
-// Fungsi untuk menampilkan form pengajuan pegawai jika level adalah pegawai
+// Fungsi untuk menampilkan form pengajuan pegawai atau menu sesuai level
 function displayPengajuanForm() {
     if (isset($_SESSION['level']) && $_SESSION['level'] == 'pegawai') {
-        return "<p><a href='form_pengajuan.php'>Isi Form Pengajuan Pegawai</a></p>";
+        return "<p><a href='form_pengajuan.php'>Isi Form Pengajuan Pegawai</a> | <a href='form_menu_pengajuan.php'>Isi Form Pengajuan Menu</a></p>";
     } else {
         return "";
     }
