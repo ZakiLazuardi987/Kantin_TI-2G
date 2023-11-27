@@ -51,12 +51,12 @@ if (isset($_SESSION['error_message'])) {
                         echo "<tr>";
                         //echo "<td>" . $row['nama_kategori'] . "</td>";
                         echo "<td>" . $row['nama_produk'] . "</td>";
-                        echo "<td>" . $row['harga'] . "</td>";
+                        echo "<td>Rp " . number_format($row['harga'],0,',','.') . "</td>";
                         echo "<td>" . $row['stok'] . "</td>";
                         echo "<td><img style='width: 50px;' src='gambar_produk/" . $row['gambar_produk'] . "'></td>";
                         echo "<td>";
                         echo "<a href='Edit.php?id_produk=" . $row['id_produk'] . "' class='btn btn-primary btn-sm'>Edit</a> ";
-                        echo "<a href='proses_tambah_menu.php?action=delete&id_produk=" . $row['id_produk'] . "' class='btn btn-danger btn-sm'>Delete</a> ";
+                        echo "<a href='Proses.php?action=delete&id_produk=" . $row['id_produk'] . "' class='btn btn-danger btn-sm'>Delete</a> ";
                         echo "</td>";
                         echo "</tr>";
                     }
