@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "koneksi.php";
+    include "../../Notifications/config/koneksi.php";
 
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Setelah berhasil login, arahkan pengguna ke halaman sesuai level
         if ($row["level"] == 'admin') {
-            header("Location: index_admin.php");
+            header("Location: ../admin/index_admin.php");
         } elseif ($row["level"] == 'pegawai') {
-            header("Location: index_pegawai.php");
+            header("Location: ../pegawai/index_pegawai.php");
         }
     } else {
         $error_message = "Username atau Password salah.";

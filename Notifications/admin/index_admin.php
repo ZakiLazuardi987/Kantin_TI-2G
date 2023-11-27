@@ -1,21 +1,20 @@
 <?php
 session_start();
 
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 // Fungsi untuk menampilkan pesan selamat datang dan tautan logout
 function displayWelcomeMessage() {
     if (isset($_SESSION['username'])) {
         $welcome_message = "Selamat datang, " . $_SESSION['username'] . "!";
-        $level_message = "(Level: " . $_SESSION['level'] . ")";
-        $logout_link = "<a href='logout.php'>Logout</a>";
+        $level_message = isset($_SESSION['LEVEL']) ? "(Level: " . $_SESSION['level'] . ")" : "";
+        $logout_link = "<a href='../public/logout.php'>Logout</a>";
         return "<p>$welcome_message $level_message $logout_link</p>";
     } else {
         return "";
     }
 }
 
-// Fungsi untuk menampilkan inbox pesan jika level adalah admin
 // Fungsi untuk menampilkan inbox pesan jika level adalah admin
 function displayInboxPesan() {
     global $conn;
@@ -24,6 +23,12 @@ function displayInboxPesan() {
         // Jika login sebagai admin, tampilkan pengajuan
         $sql = "SELECT * FROM pengajuan ORDER BY tanggal DESC";
         $result = $conn->query($sql);
+
+        if ($result === false) {
+            // Tampilkan pesan kesalahan jika query gagal
+            echo "Error executing query: " . $conn->error;
+            return;
+        }
 
         if ($result->num_rows > 0) {
             echo "<table>
@@ -38,14 +43,19 @@ function displayInboxPesan() {
                     </tr>";
 
             while ($row = $result->fetch_assoc()) {
+                // Memastikan kunci "level" dan "status" sudah di-set sebelum mengaksesnya
+                $level = isset($row['LEVEL']) ? $row['LEVEL'] : "";
+                $status = isset($row['STATUS']) ? $row['STATUS'] : "";
+                $actionText = ($status == 'Dibaca') ? 'Dibaca' : (($status == 'Disetujui' || $status == 'Tidak Disetujui') ? $status : "<a href='proses_inbox.php?id={$row['id']}&action=setuju'>Setuju</a> | <a href='proses_inbox.php?id={$row['id']}&action=tidak_setuju'>Tidak Setuju</a>");
+
                 echo "<tr>
                         <td>{$row['id']}</td>
                         <td>{$row['username']}</td>
-                        <td>{$row['level']}</td>
+                        <td>{$level}</td>
                         <td>{$row['alasan']}</td>
                         <td>{$row['tanggal']}</td>
-                        <td>{$row['status']}</td>
-                        <td><a href='proses_inbox.php?id={$row['id']}&action=setuju'>Setuju</a> | <a href='proses_inbox.php?id={$row['id']}&action=tidak_setuju'>Tidak Setuju</a></td>
+                        <td>{$status}</td>
+                        <td>{$actionText}</td>
                       </tr>";
             }
 
@@ -58,7 +68,9 @@ function displayInboxPesan() {
     }
 }
 
-$conn->close();
+
+// Tidak perlu menutup koneksi di sini
+
 ?>
 
 <!DOCTYPE html>
@@ -84,6 +96,9 @@ $conn->close();
     <?php
     echo displayWelcomeMessage();
     echo displayInboxPesan();
+
+    // Tutup koneksi setelah menggunakan di dalam fungsi
+    $conn->close();
     ?>
 
 </body>

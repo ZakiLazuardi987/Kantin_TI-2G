@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 // Menampilkan pengajuan
 $sql = "SELECT * FROM pengajuan ORDER BY tanggal DESC";

@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-include "koneksi.php";
+include "../Notifications/config/koneksi.php";
 
 // Fungsi untuk menampilkan pesan selamat datang dan tautan logout
 function displayWelcomeMessage() {
     if (isset($_SESSION['username'])) {
         $welcome_message = "Selamat datang, " . $_SESSION['username'] . "!";
         $level_message = "(Level: " . $_SESSION['level'] . ")";
-        $logout_link = "<a href='logout.php'>Logout</a>";
+        $logout_link = "<a href='public/logout.php'>Logout</a>";
         return "<p>$welcome_message $level_message $logout_link</p>";
     } else {
         return "";
@@ -92,6 +92,12 @@ $conn->close();
 
     <?php
     echo displayWelcomeMessage();
+    
+    // Tambahkan opsi login dan register jika pengguna belum masuk
+    if (!isset($_SESSION['username'])) {
+        echo "<p><a href='public/login.php'>Login</a> | <a href='public/register.php'>Register</a></p>";
+    }
+    
     echo displayPengajuanForm();
     echo displayInboxPesan();
     ?>
