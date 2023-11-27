@@ -92,6 +92,12 @@ $conn->close();
 
     <?php
     echo displayWelcomeMessage();
+    
+    // Tambahkan opsi login dan register jika pengguna belum masuk
+    if (!isset($_SESSION['username'])) {
+        echo "<p><a href='login.php'>Login</a> | <a href='register.php'>Register</a></p>";
+    }
+    
     echo displayPengajuanForm();
     echo displayInboxPesan();
     ?>

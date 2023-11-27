@@ -23,10 +23,10 @@ if ($_SESSION['level'] == 'admin') {
             echo "<tr>
                     <td>{$row['id']}</td>
                     <td>{$row['username']}</td>
-                    <td>{$row['level']}</td>
+                    <td>{$row['LEVEL']}</td>
                     <td>{$row['alasan']}</td>
                     <td>{$row['tanggal']}</td>
-                    <td>{$row['status']}</td>
+                    <td>{$row['STATUS']}</td>
                     <td><a href='proses_inbox.php?id={$row['id']}&action=setuju'>Setuju</a> | <a href='proses_inbox.php?id={$row['id']}&action=tidak_setuju'>Tidak Setuju</a></td>
                   </tr>";
         }

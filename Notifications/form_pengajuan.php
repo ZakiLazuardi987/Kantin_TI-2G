@@ -3,10 +3,14 @@ session_start();
 include "koneksi.php";
 
 if (isset($_POST['submit_pengajuan'])) {
-    $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
-    $level = $_SESSION['level'];
+    // Mengambil data dari formulir
+    $username = $_POST['username']; // Menambahkan input username
+    $password = $_POST['password']; // Menambahkan input password
+    $level = $_POST['level'];       // Menambahkan input level
     $alasan = $_POST['alasan'];
+
+    // Perhatikan bahwa disini kita mengambil username, password, dan level dari formulir,
+    // bukan dari session seperti sebelumnya.
 
     $sql_pengajuan = "INSERT INTO pengajuan (username, password, level, alasan) VALUES ('$username', '$password', '$level', '$alasan')";
     
@@ -30,6 +34,16 @@ $conn->close();
 <body>
     <h2>Form Pengajuan Pegawai</h2>
     <form action="form_pengajuan.php" method="post">
+        <!-- Menambahkan input untuk username, password, dan level -->
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+
+        <label for="level">Level:</label>
+        <input type="text" name="level" required><br>
+
         <label for="alasan">Alasan:</label>
         <textarea name="alasan" required></textarea><br>
 
