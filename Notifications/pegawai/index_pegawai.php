@@ -6,7 +6,7 @@ function displayWelcomeMessage() {
     if (isset($_SESSION['username'])) {
         $welcome_message = "Selamat datang, " . $_SESSION['username'] . "!";
         $level_message = "(Level: " . $_SESSION['level'] . ")";
-        $logout_link = "<a href='logout.php'>Logout</a>";
+        $logout_link = "<a href='../public/logout.php'>Logout</a>";
         return "<p>$welcome_message $level_message $logout_link</p>";
     } else {
         return "";

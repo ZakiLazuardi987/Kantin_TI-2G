@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];

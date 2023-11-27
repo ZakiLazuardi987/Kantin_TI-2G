@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 if ($_SESSION['level'] == 'admin' && isset($_GET['id']) && isset($_GET['action'])) {
     $id_pengajuan = $_GET['id'];
@@ -16,7 +16,6 @@ if ($_SESSION['level'] == 'admin' && isset($_GET['id']) && isset($_GET['action']
     } elseif ($action == 'tidak_setuju') {
         // Perbarui status menjadi 'Tidak Disetujui'
         $sql_update = "UPDATE pengajuan SET STATUS='Tidak Disetujui' WHERE id = $id_pengajuan";
-        $conn->query($sql_tidak_setuju);
         $conn->query($sql_update);
     }
 }

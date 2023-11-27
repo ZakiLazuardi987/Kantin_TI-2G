@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 if (isset($_POST['submit_pengajuan'])) {
     // Mengambil data dari formulir

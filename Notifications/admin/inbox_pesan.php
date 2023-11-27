@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "koneksi.php";
+include "../../Notifications/config/koneksi.php";
 
 if ($_SESSION['level'] == 'admin') {
     // Jika login sebagai admin, tampilkan pengajuan
