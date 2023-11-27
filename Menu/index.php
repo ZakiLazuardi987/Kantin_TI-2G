@@ -51,7 +51,7 @@ if (isset($_SESSION['message'])) {
                         echo "<td>" . $row['stok'] . "</td>";
                         echo "<td><img style='width: 50px;' src='gambar_produk/" . $row['gambar_produk'] . "'></td>";
                         echo "<td>";
-                        echo "<a href='edit.php?id_produk=" . $row['id_produk'] . "' class='btn btn-primary btn-sm'>Edit</a> ";
+                        echo "<a href='Edit.php?id_produk=" . $row['id_produk'] . "' class='btn btn-primary btn-sm'>Edit</a> ";
                         echo "<a href='proses_tambah_menu.php?action=delete&id_produk=" . $row['id_produk'] . "' class='btn btn-danger btn-sm'>Delete</a> ";
                         echo "</td>";
                         echo "</tr>";
@@ -73,7 +73,7 @@ if (isset($_SESSION['message'])) {
 
                     </div>
                     <div class="modal-body">
-                    <form action="proses_tambah_menu.php" method="POST" enctype="multipart/form-data">
+                    <form action="Proses.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
                 <select name="kategori" id="kategori" class="form-control">
