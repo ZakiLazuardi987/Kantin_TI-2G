@@ -15,13 +15,28 @@ function displayWelcomeMessage() {
     }
 }
 
-// Fungsi untuk menampilkan inbox pesan jika level adalah admin
+// Fungsi untuk menampilkan inbox pesan berdasarkan opsi yang dipilih
 function displayInboxPesan() {
     global $conn;
 
     if (isset($_SESSION['level']) && $_SESSION['level'] == 'admin') {
+        // Ambil opsi dari query parameter
+        $option = isset($_GET['option']) ? $_GET['option'] : 'pegawai';
+
+        // Tentukan tabel dan kolom yang sesuai dengan opsi
+        $table = ($option == 'pegawai') ? 'pengajuan' : 'menu_pengajuan';
+        $columnLevel = ($option == 'pegawai') ? 'LEVEL' : 'LEVEL_MENU';
+        $columnStatus = ($option == 'pegawai') ? 'STATUS' : 'STATUS_MENU';
+
+        // Kolom tambahan untuk pengajuan menu
+        $extraColumns = ($option == 'menu') ? "<th>ID Kategori</th>
+                                              <th>Nama Menu</th>
+                                              <th>Harga</th>
+                                              <th>Stok</th>
+                                              <th>Gambar Menu</th>" : "";
+
         // Jika login sebagai admin, tampilkan pengajuan
-        $sql = "SELECT * FROM pengajuan ORDER BY tanggal DESC";
+        $sql = "SELECT * FROM $table ORDER BY tanggal DESC";
         $result = $conn->query($sql);
 
         if ($result === false) {
@@ -35,28 +50,49 @@ function displayInboxPesan() {
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
-                        <th>Level</th>
-                        <th>Alasan</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>";
+                        <th>Level</th>";
+
+            // Tampilkan kolom tambahan hanya jika opsi = 'menu'
+            if ($option == 'menu') {
+                echo "<th>ID Kategori</th>
+                      <th>Nama Menu</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Gambar Menu</th>";
+            }
+
+            echo "<th>Alasan</th>
+                  <th>Tanggal</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>";
 
             while ($row = $result->fetch_assoc()) {
-                // Memastikan kunci "level" dan "status" sudah di-set sebelum mengaksesnya
-                $level = isset($row['LEVEL']) ? $row['LEVEL'] : "";
-                $status = isset($row['STATUS']) ? $row['STATUS'] : "";
-                $actionText = ($status == 'Dibaca') ? 'Dibaca' : (($status == 'Disetujui' || $status == 'Tidak Disetujui') ? $status : "<a href='proses_inbox.php?id={$row['id']}&action=setuju'>Setuju</a> | <a href='proses_inbox.php?id={$row['id']}&action=tidak_setuju'>Tidak Setuju</a>");
+                // Memastikan kunci "id", "level", dan "status" sudah di-set sebelum mengaksesnya
+                $id = isset($row['id']) ? $row['id'] : "";
+                $level = isset($row[$columnLevel]) ? $row[$columnLevel] : "";
+                $status = isset($row[$columnStatus]) ? $row[$columnStatus] : "";
+                $actionText = ($status == 'Dibaca') ? 'Dibaca' : (($status == 'Disetujui' || $status == 'Tidak Disetujui') ? $status : "<a href='proses_inbox.php?id={$id}&action=setuju&option={$option}'>Setuju</a> | <a href='proses_inbox.php?id={$id}&action=tidak_setuju&option={$option}'>Tidak Setuju</a>");
 
                 echo "<tr>
-                        <td>{$row['id']}</td>
+                        <td>{$id}</td>
                         <td>{$row['username']}</td>
-                        <td>{$level}</td>
-                        <td>{$row['alasan']}</td>
-                        <td>{$row['tanggal']}</td>
-                        <td>{$status}</td>
-                        <td>{$actionText}</td>
-                      </tr>";
+                        <td>{$level}</td>";
+
+                // Tampilkan kolom tambahan hanya jika opsi = 'menu'
+                if ($option == 'menu') {
+                    echo "<td>{$row['id_kategori']}</td>
+                          <td>{$row['nama_menu']}</td>
+                          <td>{$row['harga']}</td>
+                          <td>{$row['stok']}</td>
+                          <td>{$row['gambar_menu']}</td>";
+                }
+
+                echo "<td>{$row['alasan']}</td>
+                      <td>{$row['tanggal']}</td>
+                      <td>{$status}</td>
+                      <td>{$actionText}</td>
+                    </tr>";
             }
 
             echo "</table>";
@@ -67,7 +103,6 @@ function displayInboxPesan() {
         echo "<p>Anda belum login atau tidak memiliki hak akses.</p>";
     }
 }
-
 
 // Tidak perlu menutup koneksi di sini
 
@@ -95,6 +130,7 @@ function displayInboxPesan() {
 
     <?php
     echo displayWelcomeMessage();
+    echo "<p><a href='index_admin.php?option=pegawai'>Pegawai</a> | <a href='index_admin.php?option=menu'>Menu</a></p>";
     echo displayInboxPesan();
 
     // Tutup koneksi setelah menggunakan di dalam fungsi
