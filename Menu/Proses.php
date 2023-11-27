@@ -26,7 +26,9 @@ $menu = new Menu($db);
                 if (move_uploaded_file($gambar_produk['tmp_name'], $uploadFile)) {
                     // Jika upload berhasil, lanjutkan dengan operasi di database
                     if ($menu->addProduct($id_kategori, $nama_produk, $harga, $stok, $nama_gambar_baru)) {
+                        
                         $_SESSION['success_message'] = "Menu berhasil ditambahkan!";
+                        
                     } else {
                         $_SESSION['error_message'] = "Gagal menambahkan menu.";
                     }

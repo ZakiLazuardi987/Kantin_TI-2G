@@ -80,8 +80,8 @@ if (isset($_SESSION['error_message'])) {
                     <form action="Proses.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
-                <select name="kategori" id="kategori" class="form-control">
-                    <option>- Pilih -</option>
+                <select name="kategori" id="kategori" class="form-control" required>
+                    <option></option>
                     <?php
                     include_once '../Database.php';
                     include_once 'Kategori.php';
@@ -100,19 +100,19 @@ if (isset($_SESSION['error_message'])) {
             </div>
             <div class="form-group">
                 <label for="nama_produk">Nama Produk:</label>
-                <input type="text" name="nama_produk" id="nama_produk" class="form-control">
+                <input type="text" name="nama_produk" id="nama_produk" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="harga">Harga:</label>
-                <input type="text" name="harga" id="harga" class="form-control">
+                <input type="text" name="harga" id="harga" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="stok">Stok:</label>
-                <input type="text" name="stok" id="stok" class="form-control">
+                <input type="text" name="stok" id="stok" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="gambar_produk">Gambar Produk:</label>
-                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control">
+                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" required>
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Tambah Menu</button>
                         </form>
