@@ -95,7 +95,7 @@
     <br>
     <menu>
         <h1>Menu</h1>
-        <form action="produk.php" method="post">
+        <form action="Produk/menu_admin/index.php" method="post">
             <button type="submit" class="menu-btn">Produk</button>
         </form>
         <form action="register.php" method="post">
