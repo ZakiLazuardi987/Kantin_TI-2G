@@ -124,6 +124,9 @@
         <form action="transaksi.php" method="post">
             <button type="submit" class="menu-btn">Transaksi</button>
         </form>
+        <form action="Produk/menu_pegawai/index.php" method="post">
+            <button type="submit" class="menu-btn">Tambah Stok</button>
+        </form>
         <form action="pengajuan_produk.php" method="post">
             <button type="submit" class="menu-btn">Pengajuan Produk</button>
         </form>
