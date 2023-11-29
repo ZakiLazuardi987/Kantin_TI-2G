@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../Database.php';
+include_once '../../Database.php';
 include_once 'Menu.php';
 
 $database = new Database();
@@ -20,7 +20,7 @@ $menu = new Menu($db);
                 $gambar_produk = $_FILES['gambar_produk'];
                 $nama_gambar_baru = generateRandomName($gambar_produk['name']); // Mendapatkan nama acak untuk gambar baru
 
-                $uploadDir = 'gambar_produk/';
+                $uploadDir = '../gambar_produk/';
                 $uploadFile = $uploadDir . $nama_gambar_baru;
 
                 if (move_uploaded_file($gambar_produk['tmp_name'], $uploadFile)) {
@@ -38,7 +38,7 @@ $menu = new Menu($db);
             } else {
             $_SESSION['error_message'] = "Harap pilih gambar.";
             }
-            header("Location: menu_admin/index.php");
+            header("Location: ../menu_admin/index.php");
             exit();
 
         } else if(isset($_POST['update'])){
@@ -71,7 +71,7 @@ $menu = new Menu($db);
 
             
 
-            header("Location: menu_admin/index.php");
+            header("Location: ../menu_admin/index.php");
             exit();
         }
 
@@ -87,7 +87,7 @@ $menu = new Menu($db);
             $_SESSION['message'] = "Gagal menghapus menu.";
         }
 
-        header("Location: menu_admin/index.php");
+        header("Location: ../menu_admin/index.php");
         exit();
     }
 
