@@ -78,14 +78,14 @@ $menu = new Menu($db);
             $id_produk = $_POST['id_produk'];
             $jumlah_tambah = $_POST['qty'];
 
-            $result = $menu->addStok($id_produk, $jumlah_tambah);
-
-            if ($result) {
-                header("Location: ../menu_pegawai/index.php");
-                exit();
+            if($menu->addStok($id_produk, $jumlah_tambah)){
+                $_SESSION['success_message'] = "Stok berhasil ditambahkan!";
             } else {
-                echo "Gagal menambah stok.";
+                $_SESSION['error_message'] = "Gagal menambah Stok.";
             }
+            
+            header("Location: ../menu_pegawai/index.php");
+            exit();
         }
 
         
