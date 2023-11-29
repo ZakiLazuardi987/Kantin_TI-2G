@@ -73,6 +73,19 @@ $menu = new Menu($db);
 
             header("Location: ../menu_admin/index.php");
             exit();
+
+        } else if(isset($_POST['addStok'])){
+            $id_produk = $_POST['id_produk'];
+            $jumlah_tambah = $_POST['qty'];
+
+            $result = $menu->addStok($id_produk, $jumlah_tambah);
+
+            if ($result) {
+                header("Location: ../menu_pegawai/index.php");
+                exit();
+            } else {
+                echo "Gagal menambah stok.";
+            }
         }
 
         
