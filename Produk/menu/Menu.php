@@ -50,5 +50,11 @@ class Menu {
 
         return $result;
     }
+
+    public function addStok($id_produk, $qty){
+        $query = "UPDATE produk SET stok = stok + '$qty' WHERE id_produk = '$id_produk'";
+        $result = mysqli_query($this->conn, $query);
+        return $result;
+    }
 }
 ?>
