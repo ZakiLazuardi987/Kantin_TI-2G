@@ -65,7 +65,6 @@ $row = $menu->getProductById($id_produk);
                 </div>
                 <div class="form-group">
                     <label for="../gambar_produk">Gambar Produk:</label>
-                    <img style="width: 50px;" src="">
                     <input type="file" name="gambar_produk" id="gambar_produk" class="form-control">
 
                 </div>
