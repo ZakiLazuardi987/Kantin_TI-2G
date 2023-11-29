@@ -38,8 +38,8 @@ if (isset($_SESSION['error_message'])) {
                 </thead>
                 <tbody>
                 <?php
-                    include_once '../Database.php';
-                    include_once 'menu/Menu.php';
+                    include_once(__DIR__ . '/../../Database.php');
+                    include_once (__DIR__ . '/../menu/Menu.php'); 
 
                     $database = new Database();
                     $db = $database->getConnection();
@@ -53,10 +53,10 @@ if (isset($_SESSION['error_message'])) {
                         echo "<td>" . $row['nama_produk'] . "</td>";
                         echo "<td>Rp " . number_format($row['harga'],0,',','.') . "</td>";
                         echo "<td>" . $row['stok'] . "</td>";
-                        echo "<td><img style='width: 50px;' src='gambar_produk/" . $row['gambar_produk'] . "'></td>";
+                        echo "<td><img style='width: 50px;' src='../gambar_produk/" . $row['gambar_produk'] . "'></td>";
                         echo "<td>";
                         echo "<a href='Edit.php?id_produk=" . $row['id_produk'] . "' class='btn btn-primary btn-sm'>Edit</a> ";
-                        echo "<a href='menu/Proses.php?action=delete&id_produk=" . $row['id_produk'] . "' class='btn btn-danger btn-sm'>Delete</a> ";
+                        echo "<a href='../menu/Proses.php?action=delete&id_produk=" . $row['id_produk'] . "' class='btn btn-danger btn-sm'>Delete</a> ";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -77,14 +77,14 @@ if (isset($_SESSION['error_message'])) {
 
                     </div>
                     <div class="modal-body">
-                    <form action="menu/Proses.php" method="POST" enctype="multipart/form-data">
+                    <form action="../menu/Proses.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
                 <select name="kategori" id="kategori" class="form-control" required>
                     <option></option>
                     <?php
-                    include_once '../Database.php';
-                    include_once 'menu/Kategori.php';
+                    include_once (__DIR__ . '/../../Database.php');
+                    include_once (__DIR__ . '/../menu/Kategori.php'); 
 
                     $database = new Database();
                     $db = $database->getConnection();
