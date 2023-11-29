@@ -1,6 +1,6 @@
 <?php
-include_once '../Database.php';
-include_once 'menu/Menu.php';
+include_once(__DIR__ . '/../../Database.php');
+include_once (__DIR__ . '/../menu/Menu.php'); 
 $database = new Database();
 $db = $database->getConnection();
 
@@ -21,15 +21,15 @@ $row = $menu->getProductById($id_produk);
     <body>
         <div class="container mt-5">
             <h2>Edit Menu</h2>
-            <form method="post" action="menu/Proses.php" enctype="multipart/form-data">
+            <form method="post" action="../menu/Proses.php" enctype="multipart/form-data">
                 <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
                 <select name="kategori" id="kategori" class="form-control">
                     
                     <?php
                     
-                    include_once '../Database.php';
-                    include_once 'menu/Kategori.php';
+                    include_once (__DIR__ . '/../../Database.php');
+                    include_once (__DIR__ . '/../menu/Kategori.php'); 
             
                     $database = new Database();
                     $db = $database->getConnection();
@@ -64,7 +64,7 @@ $row = $menu->getProductById($id_produk);
 
                 </div>
                 <div class="form-group">
-                    <label for="gambar_produk">Gambar Produk:</label>
+                    <label for="../gambar_produk">Gambar Produk:</label>
                     <img style="width: 50px;" src="">
                     <input type="file" name="gambar_produk" id="gambar_produk" class="form-control">
 
