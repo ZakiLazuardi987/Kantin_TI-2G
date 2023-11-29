@@ -38,7 +38,7 @@ $menu = new Menu($db);
             } else {
             $_SESSION['error_message'] = "Harap pilih gambar.";
             }
-            header("Location: index.php");
+            header("Location: menu_admin/index.php");
             exit();
 
         } else if(isset($_POST['update'])){
@@ -71,7 +71,7 @@ $menu = new Menu($db);
 
             
 
-            header("Location: index.php");
+            header("Location: menu_admin/index.php");
             exit();
         }
 
@@ -87,7 +87,7 @@ $menu = new Menu($db);
             $_SESSION['message'] = "Gagal menghapus menu.";
         }
 
-        header("Location: index.php");
+        header("Location: menu_admin/index.php");
         exit();
     }
 
