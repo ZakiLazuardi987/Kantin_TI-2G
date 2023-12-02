@@ -121,7 +121,7 @@
     <br>
     <menu>
         <h1>Menu</h1>
-        <form action="transaksi.php" method="post">
+        <form action="Transaction/index.php" method="post">
             <button type="submit" class="menu-btn">Transaksi</button>
         </form>
         <form action="Produk/menu_pegawai/index.php" method="post">
