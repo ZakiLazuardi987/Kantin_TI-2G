@@ -1,6 +1,4 @@
 <?php
-require_once 'Transaction.php';
-
 class Receipt {
     private $transaksi;
 
@@ -28,27 +26,30 @@ class Receipt {
         }
     }
 
-    public function tampilkanStruk($product_id, $qty) {
-        // Memanggil fungsi receipt untuk membuat transaksi
-        $transactionData = $this->transaksi->receipt($product_id, $qty);
+    public function displayReceipt() {
+        $productId = $_POST['product_id'];
+        $qty = $_POST['qty_input'];
+
+        // Generate receipt data
+        $transactionData = $this->transaksi->receipt($productId, $qty);
 
         if ($transactionData) {
-            // Menampilkan data struk
-            echo "<h2>Struk Pembelian</h2>";
-            echo "<p><strong>ID Pesanan:</strong> " . $transactionData['id_pesanan'] . "</p>";
-            echo "<p><strong>Tanggal:</strong> " . $transactionData['tgl_order'] . "</p>";
-            echo "<p><strong>Pelanggan:</strong> " . $transactionData['nama_user'] . "</p>";
+            // Display receipt data (HTML format)
+            echo "<h2>Receipt</h2>";
+            echo "<p><strong>Order ID:</strong> " . $transactionData['id_pesanan'] . "</p>";
+            echo "<p><strong>Date:</strong> " . $transactionData['tgl_order'] . "</p>";
+            echo "<p><strong>Customer:</strong> " . $transactionData['nama_user'] . "</p>";
             echo "<table border='1'>
                     <tr>
-                        <th>Produk</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
                         <th>Total</th>
                     </tr>";
 
             $total = 0;
 
-            // Menampilkan detail produk dalam struk
+            // Display product details in the receipt
             echo "<tr>
                     <td>" . $transactionData['detail_pesanan']['nama_produk'] . "</td>
                     <td>" . $transactionData['detail_pesanan']['qty'] . "</td>
@@ -65,12 +66,7 @@ class Receipt {
 
             echo "</table>";
         } else {
-            echo "Produk tidak ditemukan. Struk tidak dapat ditampilkan.";
+            echo "Product not found. Receipt cannot be displayed.";
         }
     }
 }
-
-// Contoh penggunaan
-$receipt = new Receipt();
-$receipt->formSubmission();
-?>
