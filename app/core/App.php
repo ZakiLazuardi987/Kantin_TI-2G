@@ -2,7 +2,7 @@
 
 class App {
 
-    protected $controller = 'Home';
+    protected $controller = 'Home_Admin';
     protected $method = 'index'; 
     protected $params = [];
 
@@ -13,7 +13,7 @@ class App {
         
         if(empty($url[0])){
             // controller devault
-            if(file_exists('Home.php')) {
+            if(file_exists('Home_Admin.php')) {
                 $this->controller = $url[0];
                 unset($url[0]);
                 // var_dump($url);
