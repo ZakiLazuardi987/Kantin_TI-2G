@@ -77,11 +77,11 @@
             </select>
             </div>
             <div class="form-group">
-                <label for="nama_pegawai">Alamat:</label>
+                <label for="alamat">Alamat:</label>
                 <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="harga">Nomor Telepon:</label>
+                <label for="no_telepon">Nomor Telepon:</label>
                 <input type="text" name="harga" id="harga" class="form-control" required>
             </div>
             <div class="form-group">
@@ -93,11 +93,11 @@
             </select>
             </div>
             <div class="form-group">
-                <label for="nama_pegawai">Username:</label>
+                <label for="username">Username:</label>
                 <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="harga">Password:</label>
+                <label for="password">Password:</label>
                 <input type="text" name="harga" id="harga" class="form-control" required>
             </div>
             <button type="submit" name="submit" class="btn btn-primary" style="font-size: 15px; padding: 8px 10px;">Tambah Pegawai</button>
