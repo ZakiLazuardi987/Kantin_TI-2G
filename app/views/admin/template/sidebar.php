@@ -17,40 +17,41 @@
     
       </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item mb-3">
-            <a href="Produk_Admin" class="nav-link active">
-              <i class="nav-icon fas fa-plus"></i>
-              <p>
-                Tambah Produk
-                <!-- <i class="right fas fa-angle-left"></i> -->
-              </p>
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item mb-3">
+            <a href="<?= BASEURL ?>/Produk_Admin/formTambah" class="nav-link active">
+                <i class="nav-icon fas fa-plus"></i>
+                <p>
+                    Produk
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
             </a>
-          </li>
-          <li class="nav-item mb-3">
+        </li>
+        <li class="nav-item mb-3">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-plus"></i>
-              <p>
-                Tambah Pegawai
-                <!-- <i class="right fas fa-angle-left"></i> -->
-              </p>
+                <i class="nav-icon fas fa-plus"></i>
+                <p>
+                    Tambah Pegawai
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
             </a>
-          </li>
-          <li class="nav-item mb-3">
+        </li>
+        <li class="nav-item mb-3">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Log Out
-                <!-- <i class="right fas fa-angle-left"></i> -->
-              </p>
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                    Log Out
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
             </a>
-          </li>
-      </nav>
-      <!-- /.sidebar-menu -->
+        </li>
+    </ul>
+</nav>
+<!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>

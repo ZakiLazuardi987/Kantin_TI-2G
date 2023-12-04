@@ -1,29 +1,57 @@
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand" style="background-color: #e3f2fd;">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: #3D72AA"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-      <a class="navbar-brand" href="#" style="color: #3D72AA">
-        <img src="<?= BASEURL?>/assets/brand/polinema.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-            Kantin JTI Polinema
-          </a>
-      </li>
-    </ul>
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-light-info elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="<?= BASEURL?>/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Admin Kantin</span>
+    </a>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="navbar-brand" href="#" style="color: #3D72AA">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <a class="navbar-brand ml-3" href="#">
         <i class="nav-icon fas fa-user"></i>
-                Hello Admin!
+                Nama Admin
+            </a>
+    
+      </div>
+
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item mb-3">
+            <a href="<?= BASEURL ?>/Produk_Admin/formTambah" class="nav-link active">
+                <i class="nav-icon fas fa-plus"></i>
+                <p>
+                    Produk
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-plus"></i>
+                <p>
+                    Tambah Pegawai
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                    Log Out
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                </p>
             </a>
         </li>
     </ul>
-  </nav>
-  <!-- /.navbar -->
+</nav>
+<!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

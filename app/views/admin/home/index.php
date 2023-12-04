@@ -2,65 +2,39 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Menu Produk</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <div class="dropdown ml-auto">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" style="padding: 5px 7px; font-size: 12px; background: #3D72AA">
-                        Kategori
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-                <ol class="breadcrumb ml-3">
-                    <li class="breadcrumb-item active">Admin</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
-
-
-    <!-- /.content-header -->
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <?php if ($data['title'] !== 'Menu Produk') : ?>
+                        <h1 class="m-0">Menu Produk</h1>
+                    <?php endif; ?>
+                </div><!-- /.col -->
+                <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb ml-3">
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
 
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
-        
-        <div class="row">
-          <?php
-          foreach($data['data'] as $produk) { ?>
-          <div class="card card-spacing">
-            <img src="<?= BASEURL?>/img/produk/<?php echo $produk['gambar_produk']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><strong><?php echo $produk['nama_produk']; ?></strong></h5>
-                <p class="card-text" style="margin-bottom: 5px;">Rp. <?php echo $produk['harga']; ?></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="card-text">Stok: <?php echo $produk['stok']; ?></p>
-                  <div>
-                  <!-- <a href="<?= BASEURL?>/Produk_Admin/formUbah/<?php echo $produk['id_produk']; ?>" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a> -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-edit"></i>Edit</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-trash"></i>Hapus</button>
-                    <!-- <a href="Produk_Admin/prosesHapus?action=delete&id_produk=<?php echo $produk['id_produk']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i>Hapus</a> -->
-
-                  </div>
+        <div class="container-fluid">
+            <?php if ($data['title'] === 'Menu Produk') : ?>
+                <div class="row">
+                    <?php foreach ($data['data'] as $produk) : ?>
+                        <div class="card card-spacing">
+                            <!-- ... (rest of your card content) -->
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            </div>
-                            
-          </div>
-          <?php } ?>
+            <?php endif; ?>
         </div>
-      </div>
-    <!-- /.content -->
     </div>
+    <!-- /.content -->
 </div>
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 <!-- Modal -->
 <
 

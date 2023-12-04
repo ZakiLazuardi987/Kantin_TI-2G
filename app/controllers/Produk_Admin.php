@@ -3,13 +3,13 @@
 class Produk_Admin extends Controller {
     public function index()
     {
-        $data['title'] = 'Tambah Produk';
-        $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+        $data['title'] = 'Daftar Produk';
+        $data['data'] = $this->model('Produk_Model')->getAllProducts();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');
         $this->view('admin/template/sidebar');
-        $this->view('admin/produk/tambah_produk', $data);
+        $this->view('admin/produk/daftar_produk', $data); // Create a new view file for displaying the list of products
         $this->view('admin/template/footer');
     }
 
@@ -70,6 +70,7 @@ class Produk_Admin extends Controller {
             exit;
         }
     }
+    
 
     public function prosesUbah()
     {
