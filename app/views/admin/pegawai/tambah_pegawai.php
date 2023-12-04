@@ -64,24 +64,43 @@
                     }
                     ?>
                 </select>
+                <div class="form-group">
+                <label for="nama_pegawai">Nama Pegawai:</label>
+                <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="nama_produk">Nama Produk:</label>
-                <input type="text" name="nama_produk" id="nama_produk" class="form-control" required>
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+            <option></option>
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
             </div>
             <div class="form-group">
-                <label for="harga">Harga:</label>
+                <label for="nama_pegawai">Alamat:</label>
+                <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="harga">Nomor Telepon:</label>
                 <input type="text" name="harga" id="harga" class="form-control" required>
             </div>
-            <!-- <div class="form-group">
-                <label for="stok">Stok:</label>
-                <input type="text" name="stok" id="stok" class="form-control" required>
-            </div> -->
             <div class="form-group">
-                <label for="gambar_produk">Gambar Produk:</label>
-                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" required>
+                <label for="level">Level:</label>
+                <select name="level" id="level" class="form-control" required>
+            <option></option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary" style="font-size: 15px; padding: 8px 10px;">Tambah Menu</button>
+            <div class="form-group">
+                <label for="nama_pegawai">Username:</label>
+                <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="harga">Password:</label>
+                <input type="text" name="harga" id="harga" class="form-control" required>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary" style="font-size: 15px; padding: 8px 10px;">Tambah Pegawai</button>
                         </form>
 
                     </div>
