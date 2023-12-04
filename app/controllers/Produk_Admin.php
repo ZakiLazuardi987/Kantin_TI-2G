@@ -1,7 +1,7 @@
 <?php
 
 class Produk_Admin extends Controller {
-    public function formTambah()
+    public function index()
     {
         $data['title'] = 'Tambah Produk';
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
