@@ -120,7 +120,7 @@ class Produk_Admin extends Controller {
         
             if ($this->model('Produk_Model')->delete($id_produk)) {
                 Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             }
         
