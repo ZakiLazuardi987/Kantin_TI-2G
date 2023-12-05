@@ -57,7 +57,7 @@ class Produk_Admin extends Controller {
     
             if ($this->model('Produk_Model')->add($data) > 0) {
                 Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             } else {
                 Flasher::setFlash('gagal', 'ditambahkan', 'danger');
@@ -104,13 +104,13 @@ class Produk_Admin extends Controller {
 
             if ($produkModel->update($data) > 0) {
                 Flasher::setFlash('berhasil', 'diperbarui', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
                 exit;
             }
         }
 
         Flasher::setFlash('gagal', 'diperbarui', 'danger');
-        header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan jika gagal memperbarui data
+        header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan jika gagal memperbarui data
         exit;
     }
 
