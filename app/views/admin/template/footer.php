@@ -5,7 +5,7 @@
       <div class="modal-header" style="background: #DCE4EE; color:#10365F">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-        <span aria-hidden="true">&times;</span>
+        <!-- <span aria-hidden="true">&times;</span> -->
       </div>
       <div class="modal-body">
         <p>Modal body text goes here.</p>
