@@ -4,7 +4,7 @@ class Home_Admin extends Controller {
     public function index()
     {
         $data['title'] = 'Home Admin';
-        $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        //$data['data'] = $this->model('Produk_Model')->getAllProducts();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');

@@ -3,28 +3,24 @@
 class Produk_Admin extends Controller {
     public function index()
     {
-        $data['title'] = 'Tambah Produk';
-        $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+        $data['title'] = 'Daftar Produk';
+        $data['data'] = $this->model('Produk_Model')->getAllProducts();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');
         $this->view('admin/template/sidebar');
-        $this->view('admin/produk/tambah_produk', $data);
+        $this->view('admin/produk/index', $data); // Create a new view file for displaying the list of products
         $this->view('admin/template/footer');
     }
 
-    // public function formUbah($id_produk)
-    // {
-    //     $data['title'] = 'Ubah Data Produk';
-    //     $data['ubahdata'] = $this->model('Produk_Model')->getProductById($id_produk);
-    //     $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+    public function formTambah(){
+        // $data['title'] = 'Tambah Produk';
+    $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
 
-    //     $this->view('admin/template/header', $data);
-    //     $this->view('admin/template/navbar');
-    //     $this->view('admin/template/sidebar');
-    //     $this->view('admin/produk/edit_produk', $data);
-    //     $this->view('admin/template/footer');
-    // }
+    
+    $this->view('admin/produk/tambah_produk', $data);
+    
+    }
 
     public function formUbah()
     {
@@ -57,7 +53,7 @@ class Produk_Admin extends Controller {
     
             if ($this->model('Produk_Model')->add($data) > 0) {
                 Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             } else {
                 Flasher::setFlash('gagal', 'ditambahkan', 'danger');
@@ -70,6 +66,7 @@ class Produk_Admin extends Controller {
             exit;
         }
     }
+    
 
     public function prosesUbah()
     {
@@ -103,13 +100,13 @@ class Produk_Admin extends Controller {
 
             if ($produkModel->update($data) > 0) {
                 Flasher::setFlash('berhasil', 'diperbarui', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
                 exit;
             }
         }
 
         Flasher::setFlash('gagal', 'diperbarui', 'danger');
-        header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan jika gagal memperbarui data
+        header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan jika gagal memperbarui data
         exit;
     }
 
@@ -119,7 +116,7 @@ class Produk_Admin extends Controller {
         
             if ($this->model('Produk_Model')->delete($id_produk)) {
                 Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/Home_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             }
         
