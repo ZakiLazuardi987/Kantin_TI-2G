@@ -14,6 +14,7 @@
             background-size: cover;
             background-position: center;
             color: #fff;
+            font-family: 'Open Sans', sans-serif;
         }
         .overlay {
             background: rgba(0, 0, 0, 0.75);
@@ -30,9 +31,11 @@
             border-radius: 20px;
             background-color: #3e3e3e;
             color: #fff;
+            max-width: 600px;
         }
         .btn-login,
-        .btn-about {
+        .btn-about,
+        .btn-back {
             color: #fff !important;
             margin-top: 20px;
             transition: transform 0.3s ease-in-out;
@@ -42,11 +45,16 @@
             margin-right: 5px;
         }
         .btn-about {
-            background-color: #17a2b8 !important;
+            background-color: #17a2b8 !important; 
+            margin-left: 5px;
+        }
+        .btn-back {
+            background-color: #DC143C !important; 
             margin-left: 5px;
         }
         .btn-login:hover,
-        .btn-about:hover {
+        .btn-about:hover,
+        .btn-back:hover {
             transform: scale(1.2);
         }
     </style>
@@ -60,10 +68,29 @@
             <h1 class="display-4">Kantin JTI Polinema</h1>
             <!-- Button -->
             <a href="#" class="btn btn-success btn-lg btn-login">Login</a>
-            <a href="#" class="btn btn-info btn-lg btn-about">About Us</a>
+            <a href="#about-us" class="btn btn-info btn-lg btn-about">About Us</a>
         </div>
     </div>
-
+    <!-- About Us Section -->
+    <div id="about-us" class="overlay">
+        <div class="overlay-info">
+            <h1 class="display-4">About Us</h1>
+            <p><br>
+                Selamat datang di Kantin Teknologi Informasi Politeknik Negeri Malang! 
+                Kami adalah tempat yang menghadirkan beragam pilihan makanan dan minuman 
+                untuk mendukung energi dan kreativitas mahasiswa Jurusan Teknologi Informasi. 
+                Dengan suasana yang hangat dan ramah, kami berkomitmen untuk 
+                menyajikan hidangan berkualitas tinggi yang memenuhi selera dan kebutuhan nutrisi Anda. 
+                Segera kunjungi kami dan nikmati pengalaman kuliner yang tak terlupakan 
+                di tengah kesibukan perkuliahan dan aktivitas kampus. 
+                <br><br>
+            </p>
+            <p>Terima kasih atas dukungan dan kepercayaan Anda kepada kami.</p>
+            <p>Kantin JTI POLINEMA, tempat di mana rasa dan teknologi bersatu!</p>
+            <!-- Back button -->
+            <a href="javascript:history.back()" class="btn btn-secondary btn-lg btn-back">Kembali</a>
+        </div>
+    </div>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
