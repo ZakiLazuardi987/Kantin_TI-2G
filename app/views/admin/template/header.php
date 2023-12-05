@@ -36,6 +36,11 @@
         .card {
         width: 210px;
         height: 280px; /* Atur ukuran card */
+        } 
+
+        #card-dashboard {
+          width: 300px;
+          height: 150px;
         }
 
         /* Memberikan jarak antara card */
@@ -44,6 +49,12 @@
         margin-left: 15px; /* Jarak kiri antara card */
         margin-top: 10px;
         margin-bottom: 10px;
+        }
+
+        .btn-success {
+          margin-left: 15px;
+          padding: 10px 10px; /* Ubah padding tombol */
+            font-size: 15px;
         }
 
         .btn-primary, .btn-danger {
@@ -58,5 +69,15 @@
         .btn-danger:last-child {
             margin-right: 0; /* Menghapus margin di tombol terakhir */
         }
+
+        .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
   </style>
 </head>
