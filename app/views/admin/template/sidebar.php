@@ -32,10 +32,10 @@
             </a>
         </li>
         <li class="nav-item mb-3">
-            <a href="#" class="nav-link active">
+            <a href="<?= BASEURL ?>/Pegawai_Admin/formTambah" class="nav-link active">
                 <i class="nav-icon fas fa-plus"></i>
                 <p>
-                    Tambah Pegawai
+                    Pegawai
                     <!-- <i class="right fas fa-angle-left"></i> -->
                 </p>
             </a>
