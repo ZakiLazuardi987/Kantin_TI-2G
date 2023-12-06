@@ -59,15 +59,15 @@
         }
     </style>
   </head>
-  <body>
-    <script src="<?= BASEURL?>/assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <body> <script src="<?= BASEURL?>/assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+   
     <!-- Overlay -->
     <div class="overlay" id="welcome">
         <div class="overlay-info">
             <h1 class="display-4">Welcome to</h1>
             <h1 class="display-4">Kantin JTI Polinema</h1>
             <!-- Button -->
-            <a href="#" class="btn btn-success btn-lg btn-login">Login</a>
+            <a href="<?= BASEURL?>/Login" class="btn btn-success btn-lg btn-login">Login</a>
             <a href="#about-us" class="btn btn-info btn-lg btn-about">About Us</a>
         </div>
     </div>
