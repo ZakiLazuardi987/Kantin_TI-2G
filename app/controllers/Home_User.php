@@ -13,4 +13,15 @@ class Home_User extends Controller {
         $this->view('admin/template/footer');
     }
 
+    public function formTransaksi(){
+        // $data['title'] = 'Tambah Produk';
+    //$data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+
+    
+    $this->view('user/transaksi/index');
+    
+    }
+
+    
+
 }
