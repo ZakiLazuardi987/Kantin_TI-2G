@@ -23,7 +23,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item mb-3">
-            <a href="<?= BASEURL?>/Produk_User" class="nav-link active">
+            <a href="<?= BASEURL?>/Stok_User" class="nav-link active">
               <i class="nav-icon fas fa-box"></i>
               <p>
                 Stok
