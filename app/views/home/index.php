@@ -62,7 +62,7 @@
   <body>
     <script src="<?= BASEURL?>/assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Overlay -->
-    <div class="overlay">
+    <div class="overlay" id="welcome">
         <div class="overlay-info">
             <h1 class="display-4">Welcome to</h1>
             <h1 class="display-4">Kantin JTI Polinema</h1>
@@ -88,7 +88,7 @@
             <p>Terima kasih atas dukungan dan kepercayaan Anda kepada kami.</p>
             <p>Kantin JTI POLINEMA, tempat di mana rasa dan teknologi bersatu!</p>
             <!-- Back button -->
-            <a href="javascript:history.back()" class="btn btn-secondary btn-lg btn-back">Kembali</a>
+            <a href="#welcome" class="btn btn-secondary btn-lg btn-back">Kembali</a>
         </div>
     </div>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
