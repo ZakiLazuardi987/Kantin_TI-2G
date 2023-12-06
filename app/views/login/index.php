@@ -10,7 +10,7 @@
 </head>
 <style>
     body {
-        background-color: #00FFCC;
+        background-color: #2D8F95;
         color: #333;
         text-align: center;
         padding: 50px;
@@ -27,6 +27,7 @@
     label {
         display: block;
         margin-bottom: 5px;
+        color: black;
     }
 
 
@@ -47,14 +48,14 @@
     }
 
     .form-group {
-        background-color: #00FFCC;
+        background-color: #C9E3E3;
         text-align: left;
         color: white;
         font-weight: bold;
     }
 
     .card-body {
-        background-color: #00FFCC;
+        background-color: #C9E3E3;
     }
 
     .my-button {
@@ -67,6 +68,11 @@
         color: white;
         font-weight: bold;
     }
+
+    .card {
+        border-radius: 100px; /* Mengatur radius sudut */
+        overflow: hidden; /* Memastikan konten di dalam card mengikuti tepi yang melengkung */
+    }
 </style>
 
 <body>
@@ -74,12 +80,12 @@
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card rounded">
                     <div class="bg">
                         <from>
-                            <class="banner">
+                            <div class="text-center mt-2">
                                 <p style="font-weight: bold;">Login Disini!</p>
-                                </class>
+</div>
                         </from>
                     </div>
                     <div class="card-body">
@@ -90,7 +96,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Password</p></label>
-                                <input type="text" name="Password" class="form-control" placeholder="Masukkan Password">
+                                <input type="password" name="Password" class="form-control" placeholder="Masukkan Password">
                             </div>
 
                             <button type="submit" class="my-button">Login</button>
@@ -99,9 +105,9 @@
                         <div class="text-center">
                             <a class="small" href="forgot-password.html">Lupa Password?</a>
                         </div>
-                        <div class="text-center">
+                        <!-- <div class="text-center">
                             <a class="small" href="">Daftar Disini!</a>
-                        </div>
+                        </div> -->
                         </form>
                     </div>
                 </div>
@@ -111,8 +117,8 @@
     <footer>
         <br>
         <br>
-        <br>
-        <p> &copy;Kantin Polinema 2023</p>
+        
+        <p> &copy;<strong>Kantin JTI Polinema 2023</strong></p>
     </footer>
 
 
