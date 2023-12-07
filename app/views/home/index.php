@@ -29,7 +29,7 @@
             border: 2px solid;
             padding: 40px;
             border-radius: 20px;
-            background-color: #3e3e3e;
+            background-color: #2D8F95;
             color: #fff;
             max-width: 600px;
         }
@@ -41,11 +41,11 @@
             transition: transform 0.3s ease-in-out;
         }
         .btn-login {
-            background-color: #28a745 !important;
+            background-color: #117E6C !important;
             margin-right: 5px;
         }
         .btn-about {
-            background-color: #17a2b8 !important; 
+            background-color: #052157 !important; 
             margin-left: 5px;
         }
         .btn-back {
