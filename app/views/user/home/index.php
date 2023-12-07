@@ -41,6 +41,11 @@
         </div>
         </div> -->
         <div class="row mb-2">
+            <div class="col-sm-2">
+                <input class="form-control me-2" type="date" id="tanggal" placeholder="Tanggal" aria-label="Tanggal">
+            </div>
+        </div>
+        <div class="row mb-2">
            
         <table class="table table-light table-bordered">
                     <thead class="table-primary">
@@ -85,7 +90,15 @@
         $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #A52222">Reset</a>');
     }
 
-  
-</script>
+    
+    // Mendapatkan elemen input tanggal
+    const inputTanggal = document.getElementById('tanggal');
+
+    // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+
+    // Mengatur nilai input tanggal menjadi tanggal hari ini
+    inputTanggal.value = today;
 
 </script>
+
