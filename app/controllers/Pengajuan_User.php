@@ -12,7 +12,7 @@ class Pengajuan_User extends Controller
         $this->view('user/template/navbar');
         $this->view('user/template/sidebar');
         $this->view('user/pengajuan/index', $data);
-        $this->view('user/template/footer');
+        $this->view('admin/template/footer');
     }
 
     public function formTambah()
@@ -68,8 +68,6 @@ class Pengajuan_User extends Controller
 
     public function prosesUbah()
     {
-        // Process updating employee data
-        // ...
 
         if ($this->model('Pengajuan_Model')->update($data) > 0) {
             Flasher::setFlash('berhasil', 'diperbarui', 'success');
