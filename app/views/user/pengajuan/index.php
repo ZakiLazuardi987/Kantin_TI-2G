@@ -80,7 +80,7 @@
 
 <script>
     function tambahdata() {
-        $('.modal-title').html('pengajuan');
+        $('.modal-title').html('Pengajuan');
         let url = '<?=BASEURL?>/Pengajuan_User/formTambah';
         $.post(url, function (data, success) {
             $('.modal-body').html(data);
