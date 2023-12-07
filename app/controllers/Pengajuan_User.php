@@ -27,18 +27,18 @@ class Pengajuan_User extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['gambar_produk']['name'])) {
             $gambar_produk = $_FILES['gambar_produk']['name'];
             $tmp_gambar_produk = $_FILES['gambar_produk']['tmp_name'];
-            $dir = BASEURL . 'img/pengajuan/';
+            $dir = BASEURL . '/img/pengajuan/';
 
     
             // Memindahkan file yang diunggah ke direktori tujuan
             move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
     
             $data = [
-                'id_pengajuan' => $_POST['id_pengajuan'],
+                'id_pengajuan' => isset($_POST['id_pengajuan']) ? $_POST['id_pengajuan'] : null,
                 'nama_produk' => $_POST['nama_produk'],
                 'harga' => $_POST['harga'],
-                'gambar_produk' => $gambar_produk, // Menyimpan nama file gambar dalam basis data
-                'status_pengajuan' => $_POST['status']
+                'gambar_produk' => $gambar_produk,
+                'status_pengajuan' => isset($_POST['status']) ? $_POST['status'] : null,
             ];
     
             if ($this->model('Pengajuan_Model')->add($data) > 0) {
