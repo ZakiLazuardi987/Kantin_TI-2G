@@ -10,7 +10,7 @@
 </head>
 <style>
     body {
-        background-color: #2D8F95;
+        background-color: #e3f2fd;
         color: #333;
         text-align: center;
         padding: 50px;
@@ -103,11 +103,11 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            <a class="small" href="#">Lupa Password?</a>
                         </div>
-                        <!-- <div class="text-center">
-                            <a class="small" href="">Daftar Disini!</a>
-                        </div> -->
+                        <div class="text-center">
+                            <a class="small" href="<?= BASEURL?>/Home">Home</a>
+                        </div>
                         </form>
                     </div>
                 </div>
