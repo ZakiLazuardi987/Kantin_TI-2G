@@ -1,8 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Main content -->
     <div class="content">
-    <div class="container d-flex align-items-center justify-content-center">
+    <div class="container-fluid">
         
       <div class="row">
       <div class="modal-body">
@@ -51,5 +50,4 @@
             </div>
     <!-- /.content -->
         </div>
-    </div>
   <!-- /.content-wrapper -->
