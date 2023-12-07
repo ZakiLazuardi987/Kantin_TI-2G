@@ -11,15 +11,15 @@ class Pegawai_Model
 
     public function add($data)
     {
-        $query = "INSERT INTO pegawai (id_pegawai, nama_pegawai, jenis_kelamin, no_telp_pegawai, alamat_pegawai) VALUES(:id_pegawai, :nama_pegawai, :jenis_kelamin, :no_telp_pegawai, :alamat_pegawai)";
+        $query = "INSERT INTO user (id_user, nama_user, jenis_kelamin, alamat, no_telp) VALUES(:id_pegawai, :nama_pegawai, :jenis_kelamin, :alamat :no_telp)";
 
         $this->db->query($query);
-        $this->db->bind('id_pegawai', $data['id_pegawai']);
-        $this->db->bind('nama_pegawai', $data['nama_pegawai']);
+        $this->db->bind('id_user', $data['id_user']);
+        $this->db->bind('nama_user', $data['nama_user']);
         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
-        $this->db->bind('no_telp_pegawai', $data['no_telp_pegawai']);
-        $this->db->bind('alamat_pegawai', $data['alamat_pegawai']);
-
+        $this->db->bind('alamat_pegawai', $data['alamat']);
+        $this->db->bind('no_telp_pegawai', $data['no_telp']);
+        
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -27,7 +27,7 @@ class Pegawai_Model
 
     public function getAllPegawai()
     {
-        $this->db->query("SELECT * FROM pegawai ORDER BY id_pegawai DESC");
+        $this->db->query("SELECT * FROM user ORDER BY id_user DESC");
         return $this->db->resultSet();
     }
 
@@ -37,12 +37,12 @@ class Pegawai_Model
         return $this->db->resultSet();
     }
 
-    public function getPegawaiById($id_pegawai)
+    public function getPegawaiById($id_user)
     {
-        $query = "SELECT * FROM pegawai p, akun a WHERE p.id_akun = a.id_akun AND p.id_pegawai = :id_pegawai";
+        $query = "SELECT * FROM user u, akun a WHERE u.id_akun = a.id_akun AND u.id_user = :id_user";
 
         $this->db->query($query);
-        $this->db->bind('id_pegawai', $id_pegawai);
+        $this->db->bind('id_user', $id_user);
 
         $this->db->execute();
 
@@ -51,27 +51,26 @@ class Pegawai_Model
 
     public function update($data)
     {
-        $query = "UPDATE pegawai SET id_akun = :id_akun, nama_pegawai = :nama_pegawai, jenis_kelamin = :jenis_kelamin, no_telp_pegawai = no_telp_pegawai, alamat_pegawai = :alamat_pegawai WHERE id_pegawai = :id_pegawai";
+        $query = "UPDATE user SET nama_user = :nama_user, jenis_kelamin = :jenis_kelamin, alamat = :alamat, no_telp = :no_telp WHERE id_user = :id_user";
 
         $this->db->query($query);
-        $this->db->bind('id_akun', $data['id_akun']);
-        $this->db->bind('nama_pegawai', $data['nama_pegawai']);
+        $this->db->bind('nama_user', $data['nama_user']);
         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
-        $this->db->bind('no_telp_pegawai', $data['no_telp_pegawai']);
-        $this->db->bind('alamat_pegawai', $data['alamat_pegawai']);
-        $this->db->bind('id_pegawai', $data['id_pegawai']);
+        $this->db->bind('alamat', $data['alamat']);
+        $this->db->bind('no_telp', $data['no_telp']);
+        $this->db->bind('id_user', $data['id_user']);
 
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function delete($id_produk)
+    public function delete($id_user)
     {
-        $query = "DELETE FROM pegawai WHERE id_pegawai =:id_pegawai";
+        $query = "DELETE FROM user WHERE id_user =:id_user";
 
         $this->db->query($query);
-        $this->db->bind('id_pegawai', $id_pegawai);
+        $this->db->bind('id_user', $id_user);
 
         $this->db->execute();
         return $this->db->rowCount();
