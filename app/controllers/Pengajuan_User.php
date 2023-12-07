@@ -8,7 +8,6 @@ class Pengajuan_User extends Controller
 
         // Fetch data from the employee table
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
-
         $this->view('user/template/header', $data);
         $this->view('user/template/navbar');
         $this->view('user/template/sidebar');
@@ -96,3 +95,5 @@ class Pengajuan_User extends Controller
         }
     }
 }
+
+
