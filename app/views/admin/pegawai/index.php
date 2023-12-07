@@ -7,9 +7,13 @@
                     <h1 class="m-0">Data Pegawai</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                    <ol class="breadcrumb ml-4 mr-3">
+                <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+                    <!-- <ol class="breadcrumb ml-4 mr-3">
                         <li class="breadcrumb-item active">Admin</li>
-                    </ol>
+                    </ol> -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -38,6 +42,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Nama Pegawai</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Alamat</th>
                             <th>No Telp</th>
                             <th>Username</th>
                             <th>Level</th>
@@ -45,13 +51,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($dataPegawai as $pegawai) : ?>
+                        <!-- <?php foreach ($dataPegawai as $pegawai) : ?> -->
                             <tr>
-                                <td><?= $pegawai['id_user']; ?></td>
-                                <td><?= $pegawai['nama_user']; ?></td>
-                                <td><?= $pegawai['no_telp']; ?></td>
-                                <td><?= $pegawai['username']; ?></td>
-                                <td><?= $pegawai['level']; ?></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pegawai['id_user']; ?>)">
                                         Edit
@@ -61,7 +69,7 @@
                                     </button>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <!-- <?php endforeach; ?> -->
                     </tbody>
                 </table>
             </div>

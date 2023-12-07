@@ -18,6 +18,7 @@
     .sidebar {
           height: 100vh; /* 100% tinggi viewport */
           overflow-y: auto; /* Biarkan ada scrollbar jika konten melebihi tinggi */
+          position: fixed; 
         }
         .nav-item {
         margin-bottom: 100px; /* Sesuaikan jarak antar menu sesuai kebutuhan */
