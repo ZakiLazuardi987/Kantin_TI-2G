@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a href="#" class="nav-link active">
+            <a href="<?= BASEURL?>/Laporan_Admin" class="nav-link active">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Laporan Penjualan
