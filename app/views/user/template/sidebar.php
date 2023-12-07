@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a href="#" class="nav-link active">
+            <a href="<?= BASEURL?>/History_User" class="nav-link active">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 History Penjualan
