@@ -5,17 +5,16 @@
       <img src="<?= BASEURL?>/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">User Kantin</span>
     </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <a class="navbar-brand ml-3" href="#">
+    <div class="user-panel ml-4 mt-3 pb-3 mb-3 d-flex">
+      <a class="navbar-brand ml-3" href="#" style="color: black;">
         <i class="nav-icon fas fa-user"></i>
                 Nama Pegawai
             </a>
     
       </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
