@@ -65,7 +65,6 @@ class App {
             return $url;
 
         }
-
     }
 
 }
