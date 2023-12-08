@@ -10,14 +10,13 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-image: url('https://siprokmrk.polinema.ac.id/assets/img/gedung-sipil.jpg');
+            background-image: url("<?= BASEURL?>/img/landingPage/landing_page8.png");
             background-size: cover;
             background-position: center;
             color: #fff;
             font-family: 'Open Sans', sans-serif;
         }
         .overlay {
-            background: rgba(0, 0, 0, 0.75);
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,30 +25,33 @@
         }
         .overlay-info {
             text-align: center;
-            border: 2px solid;
             padding: 40px;
             border-radius: 20px;
-            background-color: #2D8F95;
-            color: #fff;
+            color: #1B2B49;
             max-width: 600px;
         }
+        #about-us .overlay-info {
+            color: #EEF0EF;
+        }
         .btn-login,
-        .btn-about,
-        .btn-back {
+        .btn-about{
             color: #fff !important;
             margin-top: 20px;
             transition: transform 0.3s ease-in-out;
         }
         .btn-login {
-            background-color: #117E6C !important;
+            background-color: #333F57 !important;
             margin-right: 5px;
         }
         .btn-about {
-            background-color: #052157 !important; 
+            background-color: #596575 !important; 
             margin-left: 5px;
         }
         .btn-back {
-            background-color: #DC143C !important; 
+            color: #1B2B49 !important;
+            margin-top: 20px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #F4A623 !important; 
             margin-left: 5px;
         }
         .btn-login:hover,
@@ -57,7 +59,8 @@
         .btn-back:hover {
             transform: scale(1.2);
         }
-    </style>
+</style>
+
   </head>
   <body> <script src="<?= BASEURL?>/assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
    
@@ -67,8 +70,8 @@
             <h1 class="display-4">Welcome to</h1>
             <h1 class="display-4">Kantin JTI Polinema</h1>
             <!-- Button -->
-            <a href="<?= BASEURL?>/Login" class="btn btn-success btn-lg btn-login">Login</a>
-            <a href="#about-us" class="btn btn-info btn-lg btn-about">About Us</a>
+            <a href="<?= BASEURL?>/Login" class="btn btn-secondary btn-lg btn-login">Login</a>
+            <a href="#about-us" class="btn btn-secondaryo btn-lg btn-about">About Us</a>
         </div>
     </div>
     <!-- About Us Section -->
