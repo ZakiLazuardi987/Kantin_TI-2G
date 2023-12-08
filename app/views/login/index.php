@@ -10,37 +10,40 @@
 </head>
 <style>
     body {
-        background-color: #e3f2fd;
-        color: #333;
+        background-image: url("<?= BASEURL?>/img/login/login7.png");
+        background-size: cover;
+        background-position: center;
+        color: #EEF0EF;
         text-align: center;
         padding: 50px;
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
     }
 
     .login-container {
-        background-color: #00FFCC;
+        background-color: #333F57;
         max-width: 400px;
         margin: auto;
         margin-top: 100px;
-
+        border-radius: 20px;
     }
 
     label {
         display: block;
         margin-bottom: 5px;
-        color: black;
+        color: #1A2A46;
     }
 
-
     .login-form .btn {
-        background-color: #000;
-        color: #fff;
+        background-color: #F4A623;
+        color: #EEF0EF;
         text-align: white;
     }
 
     .bg {
-        background-color: #000066;
-        color: white;
-
+        background-color: #333F57;
+        color: #8B929C;
+        padding: 10px;
     }
 
     .banner {
@@ -48,30 +51,49 @@
     }
 
     .form-group {
-        background-color: #C9E3E3;
+        background-color: #F4A623;
         text-align: left;
-        color: white;
+        color: #EEF0EF;
         font-weight: bold;
+        border-radius: 10px 10px 10px 10px;
+        padding: 15px;
+        margin-top: -1px;
     }
 
     .card-body {
-        background-color: #C9E3E3;
+        background-color: #343539;
     }
 
-    .my-button {
-        background-color: #000066;
+    .btn-login {
+        background-color: #8B929C;
         font-weight: bold;
-        color: #fff;
+        color: #EEF0EF;
+        border: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .btn-login:hover {
+        background-color: #8B929C;
+        transition: transform 0.3s ease-in-out;
+        transform: scale(1.1);
     }
 
     .text-center {
-        color: white;
+        color: #F4A623;
         font-weight: bold;
     }
 
     .card {
-        border-radius: 100px; /* Mengatur radius sudut */
+        border-radius: 20px; /* Mengatur radius sudut */
         overflow: hidden; /* Memastikan konten di dalam card mengikuti tepi yang melengkung */
+    }
+
+    .small {
+        color: #F4A623; 
+    }
+
+    .small:hover{
+        color: #EEF0EF; 
     }
 </style>
 
@@ -82,33 +104,29 @@
             <div class="col-md-4">
                 <div class="card rounded">
                     <div class="bg">
-                        <from>
+                        <form>
                             <div class="text-center mt-2">
                                 <p style="font-weight: bold;">Login Disini!</p>
-</div>
-                        </from>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <form action="">
                             <div class="form-group">
-                                <label for="">Username</p></label>
+                                <label for="Username">Username</label>
                                 <input type="text" name="Username" class="form-control" placeholder="Masukkan Username">
                             </div>
                             <div class="form-group">
-                                <label for="">Password</p></label>
+                                <label for="Password">Password</label>
                                 <input type="password" name="Password" class="form-control" placeholder="Masukkan Password">
                             </div>
 
-                            <button type="submit" class="my-button">Login</button>
+                            <button type="submit" class="btn btn-secondary btn-lg btn-login">Login</button>
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="#">Lupa Password?</a>
-                        </div>
-                        <div class="text-center">
                             <a class="small" href="<?= BASEURL?>/Home">Home</a>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -117,11 +135,9 @@
     <footer>
         <br>
         <br>
-        
-        <p> &copy;<strong>Kantin JTI Polinema 2023</strong></p>
+
+        <p>&copy;<strong>Kantin JTI Polinema 2023</strong></p>
     </footer>
-
-
 
     <!-- Sertakan file Bootstrap JS dan Popper.js (diperlukan untuk beberapa fungsi Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
