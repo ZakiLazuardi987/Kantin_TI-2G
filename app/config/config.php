@@ -3,7 +3,7 @@
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $url = explode("/", $url);
 
-$baseurl = 'http://' . $url[2] . '/kantin_TI-2G';
+$baseurl = 'http://' . $url[2] . '/Kantin_TI-2G';
 
 define('BASEURL', $baseurl);
 
