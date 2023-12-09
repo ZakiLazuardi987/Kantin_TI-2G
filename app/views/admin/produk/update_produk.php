@@ -33,12 +33,12 @@
                 <label for="stok">Stok:</label>
                 <input type="text" name="stok" id="stok" class="form-control" required>
             </div> -->
+            <input type="hidden" name="gambar_produk_sebelumnya" value="<?php echo $ubah['gambar_produk']; ?>">
             <div class="form-group">
                 <label for="gambar_produk">Gambar Produk:</label>
                 <img src="<?php echo BASEURL ?>/img/produk/<?php echo $ubah['gambar_produk']; ?>" alt="Gambar Produk" class="img-fluid" style="max-width: 100px; max-height: 100px;">
-                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control">
+                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" value="<?php echo $ubah['gambar_produk']; ?>">
             </div>
-
             <?php } ?>
             <button type="submit" name="submit" class="btn btn-primary" style="font-size: 15px; padding: 8px 10px;">Edit Menu</button>
             
