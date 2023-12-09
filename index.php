@@ -19,5 +19,5 @@ error_reporting(error_reporting() & ~E_NOTICE);
         require_once 'app/config/config.php';
         require_once 'app/init.php';
 
-        $app = new App('Home_User'); 
+        $app = new App('Home_Admin'); 
     // }

@@ -7,8 +7,10 @@ class Pegawai_Admin extends Controller
         $data['title'] = 'Data Pegawai';
 
         // Fetch data from the employee table
-        $data['dataPegawai'] = $this->model('Pegawai_Model')->getAllPegawai();
+        $data['data'] = $this->model('Pegawai_Model')->getAllPegawaiWithAkun();
+    
 
+        // Tampilkan view dengan data pegawai
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');
         $this->view('admin/template/sidebar');
@@ -27,41 +29,74 @@ class Pegawai_Admin extends Controller
     public function prosesTambah()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = [
-                'id_akun' => $_POST['id_akun'],
-                'nama_pegawai' => $_POST['nama_pegawai'],
-                'jenis_kelamin' => $_POST['jenis_kelamin'],
-                'no_telp_pegawai' => $_POST['no_telp_pegawai'],
-                'alamat_pegawai' => $_POST['alamat_pegawai'],
+            // Mengumpulkan data dari formulir
+            $nama_user = $_POST['nama_user'];
+            $jenis_kelamin = $_POST['jenis_kelamin'];
+            $alamat = $_POST['alamat_pegawai'];
+            $no_telp = $_POST['no_telp_pegawai'];
+            $username = $_POST['username'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Enkripsi password
+            $level = $_POST['level'];
+    
+            // Data untuk tabel 'user'
+            $data_user = [
+                'nama_user' => $nama_user,
+                'jenis_kelamin' => $jenis_kelamin,
+                'alamat' => $alamat,
+                'no_telp' => $no_telp
             ];
-
-            if ($this->model('Pegawai_Model')->add($data) > 0) {
-                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect to the employee data page
-                exit;
-            } else {
-                Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect if failed to add data
-                exit;
+    
+            // Data untuk tabel 'akun'
+            $data_akun = [
+                'username' => $username,
+                'password' => $password,
+                'level' => $level
+            ];
+    
+            // Memanggil model Pegawai_Model untuk menambahkan data ke tabel 'user' dan 'akun'
+            $pegawai_model = $this->model('Pegawai_Model');
+    
+            // Menambahkan data ke tabel 'user' dan mendapatkan id_user yang baru ditambahkan
+            $id_user = $pegawai_model->addUser($data_user);
+    
+            if ($id_user) {
+                // Menambahkan data ke tabel 'akun' dengan id_user yang baru ditambahkan
+                $data_akun['id_user'] = $id_user;
+                if ($pegawai_model->addAkun($data_akun) > 0) {
+                    Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                    header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                    exit;
+                }
             }
+    
+            // Jika ada kesalahan, atau gagal menambahkan data
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan jika gagal menambahkan data
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'Form tidak valid', 'danger');
+            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan jika form tidak valid
+            exit;
         }
     }
 
     public function formUbah()
     {
-        $id_pegawai = $_POST['id_pegawai'];
+        $id_pegawai = $_POST['id_user'];
         $data['ubahdata'] = $this->model('Pegawai_Model')->getPegawaiById($id_pegawai);
         $data['akun'] = $this->model('Pegawai_Model')->getAllAkun();
 
         $this->view('admin/pegawai/update_pegawai', $data);
     }
 
-    public function prosesUbah()
+    public function prosesUbah($id_user)
     {
+        $data = []; // Inisialisasi $data
+    
         // Process updating employee data
         // ...
-
-        if ($this->model('Pegawai_Model')->update($data) > 0) {
+    
+        if ($this->model('Pegawai_Model')->update($id_user) > 0) {
             Flasher::setFlash('berhasil', 'diperbarui', 'success');
             header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect after successfully updating data
             exit;
@@ -71,17 +106,16 @@ class Pegawai_Admin extends Controller
             exit;
         }
     }
+    
 
-    public function prosesHapus($id_pegawai)
+    public function prosesHapus($id_user)
     {
-        if ($this->model('Pegawai_Model')->delete($id_pegawai)) {
-            Flasher::setFlash('berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect after successfully deleting data
-            exit;
-        } else {
-            Flasher::setFlash('gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect if failed to delete data
-            exit;
-        }
-    }
+        
+            if ($this->model('pegawai_model')->delete($id_user)) {
+                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
+            }
+        
+    }  
 }

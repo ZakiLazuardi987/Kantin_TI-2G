@@ -51,25 +51,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php foreach ($dataPegawai as $pegawai) : ?> -->
+                        <?php foreach ($data['data'] as $pegawai) { ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?php echo $pegawai['id_user']; ?></td>
+                                <td><?php echo $pegawai['nama_user']; ?></td>
+                                <td><?php echo $pegawai['jenis_kelamin']; ?></td>
+                                <td><?php echo $pegawai['alamat']; ?></td>
+                                <td><?php echo $pegawai['no_telp']; ?></td>
+                                <td><?php echo $pegawai['username']; ?></td>
+                                <td><?php echo $pegawai['level']; ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pegawai['id_user']; ?>)">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-danger" onclick="hapusdata(<?= $pegawai['id_user']; ?>)">
-                                        Hapus
-                                    </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-edit"></i> Edit</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-trash"></i> Hapus</button>
                                 </td>
                             </tr>
-                        <!-- <?php endforeach; ?> -->
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
