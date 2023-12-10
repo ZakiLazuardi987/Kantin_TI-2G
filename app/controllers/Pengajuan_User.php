@@ -8,6 +8,7 @@ class Pengajuan_User extends Controller
 
         // Fetch data from the employee table
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
+        $data['kategori'] = $this->model('Pengajuan_Model')->getAllCategories();
         $this->view('user/template/header', $data);
         $this->view('user/template/navbar');
         $this->view('user/template/sidebar');
@@ -38,6 +39,7 @@ class Pengajuan_User extends Controller
             if (move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk)) {
                 $data = [
                     'id_pengajuan' => isset($_POST['id_pengajuan']) ? $_POST['id_pengajuan'] : null,
+                    'id_kategori' => $_POST['id_kategori'],
                     'nama_produk' => $_POST['nama_produk'],
                     'harga' => $_POST['harga'],
                     'gambar_produk' => $gambar_produk,
