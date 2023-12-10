@@ -11,10 +11,10 @@ class Pengajuan_Model
 
     public function add($data)
     {
-        $query = "INSERT INTO pengajuan (id_pengajuan, nama_produk, harga, gambar_produk, status_pengajuan) VALUES(:id_pengajuan, :nama_produk, :harga, :gambar_produk, :status_pengajuan)";
+        $query = "INSERT INTO pengajuan (id_kategori, nama_produk, harga, gambar_produk, status_pengajuan) VALUES(:id_kategori, :nama_produk, :harga, :gambar_produk, :status_pengajuan)";
 
         $this->db->query($query);
-        $this->db->bind('id_pengajuan', $data['id_pengajuan']);
+        $this->db->bind('id_kategori', $data['id_kategori']);
         $this->db->bind('nama_produk', $data['nama_produk']);
         $this->db->bind('harga', $data['harga']);
         $this->db->bind('gambar_produk', $data['gambar_produk']);
@@ -31,9 +31,15 @@ class Pengajuan_Model
         return $this->db->resultSet();
     }
 
+    public function getAllCategories()
+    {
+        $this->db->query("SELECT * FROM kategori");
+        return $this->db->resultSet();
+    }
+
     public function getPengajuanById($id_pengajuan)
     {
-        $query = "SELECT * FROM pengajuan WHERE id_pengajuan = :id_pengajuan";
+        $query = "SELECT * FROM pengajuan p, kategori k WHERE p.id_kategori = k.id_kategori AND p.id_pengajuan = :id_pengajuan";
 
         $this->db->query($query);
         $this->db->bind('id_pengajuan', $id_pengajuan);
@@ -45,14 +51,15 @@ class Pengajuan_Model
 
     public function update($data)
     {
-        $query = "UPDATE pengajuan SET id_pengajuan = :id_pengajuan, nama_produk = :nama_produk, harga = :harga, gambar_produk = :gambar_produk, status_pengajuan = :status_pengajuan WHERE id_pengajuan = :id_pengajuan";
+        $query = "UPDATE pengajuan SET id_kategori = :id_kategori, nama_produk = :nama_produk, harga = :harga, gambar_produk = :gambar_produk, status_pengajuan = :status_pengajuan WHERE id_pengajuan = :id_pengajuan";
 
         $this->db->query($query);
-        $this->db->bind('id_pengajuan', $data['id_pengajuan']);
+        $this->db->bind('id_kategori', $data['id_kategori']);
         $this->db->bind('nama_produk', $data['nama_produk']);
         $this->db->bind('harga', $data['harga']);
         $this->db->bind('gambar_produk', $data['gambar_produk']);
         $this->db->bind('status_pengajuan', $data['status_pengajuan']);
+        $this->db->bind('id_pengajuan', $data['id_pengajuan']);
 
         $this->db->execute();
 
