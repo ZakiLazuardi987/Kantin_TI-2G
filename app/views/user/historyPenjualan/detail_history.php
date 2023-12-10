@@ -6,7 +6,7 @@
         <!-- <div class="col-md-6"> -->
         <div class="card mx-auto" style="width: 400px; height: auto;">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #C9E3E3;">
+            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h6 class="my-0"><strong>Tanggal Transaksi</strong></h6>
               <small class="text-body-secondary">Id: 1</small>
@@ -92,7 +92,7 @@
             
             </li>
 
-            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #DCE4EE;">
+            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h6 class="my-0 mb-2"><strong>Total Bayar</strong></h6>
               <h6 class="my-0 mb-2"><strong>Cash</strong></h6>
