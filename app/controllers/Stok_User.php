@@ -1,6 +1,7 @@
 <?php
 
-class Stok_User extends Controller {
+class Stok_User extends Controller
+{
     public function index()
     {
         $data['title'] = 'Home Stok';
@@ -11,17 +12,16 @@ class Stok_User extends Controller {
         $this->view('user/template/sidebar');
         $this->view('user/stok/index', $data);
         $this->view('admin/template/footer');
-        
     }
-    
+
     public function formStokTambah()
     {
         // Assuming you're using POST data, make sure to handle validation
         $id_produk = $_POST['id_produk'] ?? null;
-    
+        $data['id_produk'] = $_POST['id_produk'] ?? null;
         // Check if $id_produk is set before proceeding
         if ($id_produk !== null) {
-            $this->view('user/stok/form_tambah');
+            $this->view('user/stok/form_tambah', $data);
         } else {
             // Handle the case when $id_produk is not set
             echo "Gagal menampilkan form stok tambah. ID produk tidak valid.";
@@ -31,36 +31,37 @@ class Stok_User extends Controller {
     {
         // Assuming you're using POST data, make sure to handle validation
         $id_produk = $_POST['id_produk'] ?? null;
-    
+        $data['id_produk'] = $_POST['id_produk'] ?? null;
+
         // Check if $id_produk is set before proceeding
         if ($id_produk !== null) {
-            $this->view('user/stok/form_kurang');
+            $this->view('user/stok/form_kurang', $data);
         } else {
             // Handle the case when $id_produk is not set
             echo "Gagal menampilkan form stok kurang. ID produk tidak valid.";
         }
     }
-    
+
 
     public function prosesTambah()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id_produk = $_POST['id_produk'];
             $stok_Tambah = $_POST['stok_Tambah'];
-    
+
             $stokModel = $this->model('Stok_Model');
             $result = $stokModel->tambahStok($id_produk, $stok_Tambah);
-    
-            if ($result) {
+            if ($result > 0) {
                 // Insertion successful
                 echo "Stok berhasil ditambahkan!";
+                header('Location: ' . BASEURL . '/Stok_User');
             } else {
                 // Insertion failed
                 echo "Gagal menambahkan stok.";
             }
         }
     }
-    
+
     public function prosesKurang()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -73,9 +74,10 @@ class Stok_User extends Controller {
             $stokModel = $this->model('Stok_Model');
             $result = $stokModel->kurangiStok($id_produk, $stok_Kurang);
 
-            if ($result) {
+            if ($result > 0) {
                 // Berhasil mengurangkan stok
                 echo "Stok berhasil dikurangkan!";
+                header('Location: ' . BASEURL . '/Stok_User');
             } else {
                 // Gagal mengurangkan stok
                 echo "Gagal mengurangkan stok.";

@@ -6,7 +6,7 @@
                 <!-- Inside your form for stokTambah -->
                 <form action="<?= BASEURL ?>/Stok_User/prosesTambah" method="post">
                     <!-- ... other form elements ... -->
-                    <input type="hidden" name="id_produk" value="<?= $produk['id_produk'] ?>">
+                    <input type="hidden" name="id_produk" value="<?= $data['id_produk'] ?>">
                     <label for="stok_Tambah">Masukkan Jumlah Stok:</label>
                     <input type="text" name="stok_Tambah" id="stok_Tambah" class="form-control" required>
                     <button type="submit" name="submit" class="btn btn-primary" style="font-size: 15px; padding: 8px 10px;">Submit</button>
