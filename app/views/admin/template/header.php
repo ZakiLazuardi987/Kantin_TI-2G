@@ -73,6 +73,10 @@
         margin-bottom: 10px;
         transition: transform 0.3s ease-in-out;
         }
+
+        .card-spacing:hover {
+          transform: scale(1.05); /* Increasing size on hover */
+        }
         
 
         .btn-success {
