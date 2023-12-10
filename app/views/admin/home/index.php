@@ -17,28 +17,64 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div id="card-dashboard" class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>PRODUK</strong></h5>
-                                    <!-- <p class="card-text">Total anggota sejumlah <?= $row_anggota['jml'] ?> orang.</p> -->
-                                    
+                        <div class="info-box">
+                            <span class="info-box-icon elevation-1" style="background: #F6E8C1"><i class="fas fa-box"></i></span>
 
-                                </div>
-
+                            <div class="info-box-content">
+                                <span class="info-box-text"><strong>Produk</strong></span>
+                                <span class="info-box-number">
+                                
+                                <small>Total Produk sebanyak 10 produk.</small>
+                                </span>
                             </div>
+                                <!-- /.info-box-content -->
+                        </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                        <div class="info-box">
+                            <span class="info-box-icon elevation-1" style="background: #F6E8C1"><i class="fas fa-warehouse"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text"><strong>Stok</strong></span>
+                                <span class="info-box-number">
+                                
+                                <small>Total Stok Keseluruhan sebanyak 150 item.</small>
+                                </span>
+                            </div>
+                                <!-- /.info-box-content -->
+                        </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                        <div class="info-box">
+                            <span class="info-box-icon elevation-1" style="background: #F6E8C1"><i class="fas fa-cart-plus"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text"><strong>Penjualan</strong></span>
+                                <span class="info-box-number">
+        
+                                <small>Total Penjualan terakhir sebesar Rp. 200.000.</small>
+                                </span>
+                            </div>
+                                <!-- /.info-box-content -->
+                        </div>
 
                         </div>
+
                         <div class="col-sm-6">
-                            <div id="card-dashboard" class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>PENJUALAN</strong></h5>
-                                    <!-- <p class="card-text">Total jabatan sejumlah <?= $row_jabatan['jml'] ?> orang.</p> -->
-                                    
+                        <div class="info-box">
+                            <span class="info-box-icon elevation-1" style="background: #F6E8C1"><i class="fas fa-exchange-alt"></i></span>
 
-                                </div>
-
+                            <div class="info-box-content">
+                                <span class="info-box-text"><strong>Transaksi</strong></span>
+                                <span class="info-box-number">
+                                
+                                <small>Total Transaksi hari ini sebanyak 10 transaksi.</small>
+                                </span>
                             </div>
-
+                                <!-- /.info-box-content -->
+                        </div>
                         </div>
                     
                     </div>

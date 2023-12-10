@@ -7,9 +7,12 @@
                 <h1 class="m-0">Menu Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            
-                <div class="dropdown ml-4 mr-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 5px 7px; font-size: 12px; background: #3D72AA">
+            <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+                <div class="dropdown ml-4">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 5px 7px; font-size: 12px; background: #F9CC41; color: black;">
                         Kategori
                     </button>
                     <ul class="dropdown-menu">
@@ -18,13 +21,9 @@
                         <li><a class="dropdown-item" href="#">Minuman</a></li>
                     </ul>
                 </div>
-                <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-                <!-- <ol class="breadcrumb ml-4 mr-3">
+                <ol class="breadcrumb ml-4 mr-3">
                     <li class="breadcrumb-item active">Admin</li>
-                </ol> -->
+                </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -38,7 +37,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="tambahdata()"><i class="fa fa-plus"></i> Tambah Produk</button>
+        <button type="button" class="btn" style="background: #F6E8C1;" data-toggle="modal" data-target="#exampleModal" onclick="tambahdata()"><i class="fa fa-plus"></i> Tambah Produk</button>
         </div>
         </div>
         <div class="row">
@@ -53,8 +52,8 @@
                   <p class="card-text">Stok: <?php echo $produk['stok']; ?></p>
                   <div>
                   <!-- <a href="<?= BASEURL?>/Produk_Admin/formUbah/<?php echo $produk['id_produk']; ?>" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a> -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-edit"></i>Edit</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-trash"></i>Hapus</button>
+                  <button type="button" class="btn btn-primary" style="background: #1A2A46;" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-edit"></i></button>
+                  <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-trash"></i></button>
                     <!-- <a href="Produk_Admin/prosesHapus?action=delete&id_produk=<?php echo $produk['id_produk']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i>Hapus</a> -->
 
                   </div>
@@ -94,7 +93,7 @@
   function hapusdata(x){
     $('.modal-title').html('Hapus Data Produk');
     $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
-    $('.tombol').html('<a href="<?= BASEURL?>/Produk_Admin/prosesHapus/' + x + '" class="btn btn-secondary" style="background: #A52222">Hapus</a>');
+    $('.tombol').html('<a href="<?= BASEURL?>/Produk_Admin/prosesHapus/' + x + '" class="btn btn-secondary" style="background: #0595F7">Hapus</a>');
     $('#close').html('Batal');
   } 
 </script>

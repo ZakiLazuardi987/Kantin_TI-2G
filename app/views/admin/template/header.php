@@ -15,14 +15,35 @@
   <link rel="stylesheet" href="<?= BASEURL?>/assets/dist/css/adminlte.min.css">
 
   <style>
+    .content-wrapper{
+      background: white;
+    }
     .sidebar {
           height: 100vh; /* 100% tinggi viewport */
           overflow-y: auto; /* Biarkan ada scrollbar jika konten melebihi tinggi */
-          position: fixed; 
+          position: fixed;
+          background: #333f57;
         }
+        .main-sidebar.sidebar-light-info {
+          background-color: #333F57;
+        }
+
         .nav-item {
         margin-bottom: 100px; /* Sesuaikan jarak antar menu sesuai kebutuhan */
         }
+
+        #menusidebar{
+          background: #F6E8C1;
+        }
+
+        #iconsidebar{
+          color: #2F5972;
+        }
+
+        .namamenu{
+          color: #2F5972;
+        }
+
         /* Memberi ukuran gambar yang seragam */
         .card-img-top {
         height: 50%;
@@ -50,7 +71,9 @@
         margin-left: 15px; /* Jarak kiri antara card */
         margin-top: 10px;
         margin-bottom: 10px;
+        transition: transform 0.3s ease-in-out;
         }
+        
 
         .btn-success {
           margin-left: 15px;
@@ -71,6 +94,17 @@
             margin-right: 0; /* Menghapus margin di tombol terakhir */
         }
 
+        .table-bordered thead,
+        .table-bordered tbody {
+            border: 1px solid black; 
+        }
+
+        
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid black; 
+        }
+        
         .b-example-divider {
         width: 100%;
         height: 3rem;
