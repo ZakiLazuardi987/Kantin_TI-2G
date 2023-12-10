@@ -17,7 +17,7 @@ class Pengajuan_User extends Controller
 
     public function formTambah()
     {
-        $data['pengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
+        $data['kategori'] = $this->model('Pengajuan_Model')->getAllCategories();
 
         $this->view('user/pengajuan/tambah_pengajuan', $data);
     }
@@ -34,7 +34,7 @@ class Pengajuan_User extends Controller
             move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
     
             $data = [
-                'id_pengajuan' => isset($_POST['id_pengajuan']) ? $_POST['id_pengajuan'] : null,
+                'id_kategori' => isset($_POST['id_kategori']) ? $_POST['id_kategori'] : null,
                 'nama_produk' => $_POST['nama_produk'],
                 'harga' => $_POST['harga'],
                 'gambar_produk' => $gambar_produk,
@@ -61,23 +61,52 @@ class Pengajuan_User extends Controller
     {
         $id_pegawai = $_POST['id_pengajuan'];
         $data['ubahdata'] = $this->model('Pengajuan_Model')->getPengajuanById($id_pengajuan);
-        $data['pengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
+        $data['pengajuan'] = $this->model('Pengajuan_Model')->getAllCategories();
 
         $this->view('user/pengajuan/update_pengajuan', $data);
     }
 
     public function prosesUbah()
     {
-
-        if ($this->model('Pengajuan_Model')->update($data) > 0) {
-            Flasher::setFlash('berhasil', 'diperbarui', 'success');
-            header('Location: ' . BASEURL . '/Pengajuan_Model'); // Redirect after successfully updating data
-            exit;
-        } else {
-            Flasher::setFlash('gagal', 'diperbarui', 'danger');
-            header('Location: ' . BASEURL . '/Pengajuan_Model'); // Redirect if failed to update data
-            exit;
+        $pengajuanModel = $this->model('Pengajuan_Model');
+        $dataPengajuan = $pengajuanModel->getPengajuanById($_POST['id_pengajuan']); // Mendapatkan data produk yang ingin diubah
+    
+        // Jika data produk ditemukan
+        if ($dataPengajuan) {
+            // Ambil nama gambar sebelumnya dari input hidden
+            $gambar_produk_sebelumnya = $_POST['gambar_produk_sebelumnya'];
+    
+            $data = [
+                'id_pengajuan' => $_POST['id_pengajuan'],
+                'id_kategori' => $_POST['id_kategori'],
+                'nama_produk' => $_POST['nama_produk'],
+                'harga' => $_POST['harga'],
+                'gambar_produk' => $gambar_produk_sebelumnya // Menyimpan nama gambar produk yang sudah ada sebagai default
+            ];
+    
+            // Jika ada gambar yang dipilih untuk diunggah
+            if (!empty($_FILES['gambar_produk']['name'])) {
+                $gambar_produk = $_FILES['gambar_produk']['name'];
+                $tmp_gambar_produk = $_FILES['gambar_produk']['tmp_name'];
+                $dir = BASEURL . '/img/pengajuan/';
+    
+                // Memindahkan file yang diunggah ke direktori tujuan
+                move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
+    
+                $data['gambar_produk'] = $gambar_produk; // Mengupdate nama gambar jika ada perubahan gambar
+            }
+    
+            // Proses pembaruan data menggunakan $data
+            if ($pengajuanModel->update($data) > 0) {
+                Flasher::setFlash('berhasil', 'diperbarui', 'success');
+                header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
+                exit;
+            }
         }
+    
+        Flasher::setFlash('gagal', 'diperbarui', 'danger');
+        header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika gagal memperbarui data
+        exit;
     }
 
     public function prosesHapus($id_pengajuan)
