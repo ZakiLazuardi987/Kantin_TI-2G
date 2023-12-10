@@ -36,6 +36,8 @@
             <div class="mb-4"></div>
 
             <!-- Tabel -->
+            <!-- Tabel -->
+            <!-- Tabel -->
             <div class="container">
                 <table class="table table-bordered">
                     <thead>
@@ -48,28 +50,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php foreach ($dataPengajuan as $pengajuan) : ?> -->
+                        <?php if (isset($dataPengajuan) && is_array($dataPengajuan)) : ?>
+                            <?php foreach ($dataPengajuan as $pengajuan) : ?>
+                                <tr>
+                                    <td><?= $pengajuan['id_pengajuan']; ?></td>
+                                    <td><?= $pengajuan['nama_produk']; ?></td>
+                                    <td><?= $pengajuan['harga']; ?></td>
+                                    <td><?= $pengajuan['status_pengajuan']; ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="btn btn-danger" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-danger" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
-                                        Hapus
-                                    </button>
-                                </td>
+                                <td colspan="5">Tidak ada data pengajuan</td>
                             </tr>
-                        <!-- <?php endforeach; ?> -->
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
+
+
         </div>
         <!-- /.content -->
     </div>
