@@ -43,6 +43,7 @@
                     <thead style="background: #F6E8C1">
                         <tr>
                             <th>ID</th>
+                            <th>Nama Kategori</th>
                             <th>Nama Produk</th>
                             <th>Harga</th>
                             <th>Gambar</th>
@@ -50,16 +51,18 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
-                        <?php if (isset($dataPengajuan) && is_array($dataPengajuan)) : ?>
-                            <?php foreach ($dataPengajuan as $pengajuan) : ?>
+                            <?php foreach ($data['dataPengajuan'] as $pengajuan) { ?>
                                 <tr>
-                                    <td><?= $pengajuan['id_pengajuan']; ?></td>
-                                    <td><?= $pengajuan['nama_produk']; ?></td>
-                                    <td><?= $pengajuan['harga']; ?></td>
-                                    <td><?= $pengajuan['gambar_produk']; ?></td>
-                                    <td><?= $pengajuan['status_pengajuan']; ?></td>
+                                    <td><?php echo $pengajuan['id_pengajuan']; ?></td>
+                                    <td><?php echo $pengajuan['nama_kategori']; ?></td>
+                                    <td><?php echo $pengajuan['nama_produk']; ?></td>
+                                    <td><?php echo $pengajuan['harga']; ?></td>
+                                    <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
+                                    <td><?php echo $pengajuan['status_pengajuan']; ?></td>
                                     <td>
+                                    
                                         <button type="button" class="btn btn-primary" style="background: #1A2A46;" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Edit
                                         </button>
@@ -68,26 +71,10 @@
                                         </button>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                
-                                <td>
-                                    <button type="button" class="btn btn-primary" style="background: #1A2A46;" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
-                                        Hapus
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
+                        
+                        <?php } ?>
                     </tbody>
+                    
                 </table>
             </div>
 
