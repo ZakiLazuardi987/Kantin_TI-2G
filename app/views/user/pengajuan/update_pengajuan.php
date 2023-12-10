@@ -6,6 +6,19 @@
       <div class="modal-body">
                     <form action="<?= BASEURL?>/Pengajuan_User/prosesUbah" method="POST" enctype="multipart/form-data">
                     <?php foreach ($data['ubahdata'] as $ubah) { ?>
+                        <div class="form-group">
+                <label for="kategori">Pilih Kategori:</label>
+                <select name="id_kategori" id="id_kategori" class="form-control">
+                    <option></option>
+                    <?php
+                    foreach($data['kategori'] as $kategori) {
+                        ?>
+                    <option value="<?= $kategori['id_kategori'] ?>" <?= ($ubah['id_kategori'] == $kategori['id_kategori']) ? 'selected' : '' ?>><?= $kategori['nama_kategori'] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
             <div class="form-group">
             <input type="hidden" name="id_produk" value="<?php echo $ubah['id_pengajuan']; ?>">
                 <label for="nama_produk">Nama Produk:</label>
