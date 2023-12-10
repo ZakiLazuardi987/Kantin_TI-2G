@@ -57,12 +57,13 @@
                                     <td><?= $pengajuan['id_pengajuan']; ?></td>
                                     <td><?= $pengajuan['nama_produk']; ?></td>
                                     <td><?= $pengajuan['harga']; ?></td>
+                                    <td><?= $pengajuan['gambar_produk']; ?></td>
                                     <td><?= $pengajuan['status_pengajuan']; ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                        <button type="button" class="btn btn-primary" style="background: #1A2A46;" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Edit
                                         </button>
-                                        <button type="button" class="btn btn-danger" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                        <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Hapus
                                         </button>
                                     </td>
@@ -75,12 +76,12 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                
                                 <td>
-                                    <button type="button" class="btn btn-warning" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                    <button type="button" class="btn btn-primary" style="background: #1A2A46;" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                         Edit
                                     </button>
-                                    <button type="button" class="btn btn-danger" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                    <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                         Hapus
                                     </button>
                                 </td>
