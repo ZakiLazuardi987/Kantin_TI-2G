@@ -7,12 +7,9 @@
                     <h1 class="m-0">Data Laporan Penjualan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success mr-2" type="submit">Search</button>
-        <input class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal">
-        
-      </form>
+                <ol class="breadcrumb ml-2 mr-3">
+                    <li><input class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
+                </ol>
       <ol class="breadcrumb ml-2 mr-3">
                     <li><button type="button" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
                 </ol>
@@ -38,17 +35,16 @@
             </div> -->
 
             <!-- Tambahkan jarak antara tombol dan tabel -->
-            <div class="mb-4"></div>
 
             <!-- Tabel -->
             <div class="container">
                 <table class="table table-bordered">
-                    <thead class="table-primary">
+                    <thead style="background: #F6E8C1">
                         <tr>
                             <th>Tanggal</th>
                             <th>Jumlah Transaksi</th>
-                            <th>Total Penjualan</th>
                             <th>Total Produk Terjual</th>
+                            <th>Total Penjualan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,10 +53,10 @@
                             <tr>
                                 <td>23-12-2023</td>
                                 <td>5</td>
-                                <td>150.000</td>
-                                <td>20</td>
+                                <td>15</td>
+                                <td>20000</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="margin: auto;
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto;
           padding: 5px 6px;
             font-size: 12px;">
                                         Lihat Detail
