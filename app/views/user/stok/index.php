@@ -65,29 +65,27 @@
 
 <script>
     
-  function tambahstok(x){
-    
+    function tambahstok(x){
     $('.modal-title').html('Stok Masuk');
-    let url = '<?=BASEURL?>/Stok_User/formStok';
-    $.post(url,
-    {
-      id_produk : x
+    let url = '<?=BASEURL?>/Stok_User/formStokTambah';
+    $.post(url, {
+        id_produk: x
     }, function(data, success){
-      $('.modal-body').html(data);
+        $('.modal-body').html(data);
     });
-  }
+}
 
-  function kurangistok(x){
-    
-    $('.modal-title').html('Stok Keluar');
-    let url = '<?=BASEURL?>/Stok_User/formStok';
-    $.post(url,
-    {
-      id_produk : x
-    }, function(data, success){
-      $('.modal-body').html(data);
-    });
-  }
+
+function kurangistok(x) {
+  $('.modal-title').html('Stok Keluar');
+  let url = '<?=BASEURL?>/Stok_User/formStokKurang';
+  $.post(url, {
+    id_produk: x
+  }, function (data, success) {
+    $('.modal-body').html(data);
+  });
+}
+
 
   
 </script>
