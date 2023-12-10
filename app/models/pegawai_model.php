@@ -65,7 +65,7 @@ class Pegawai_Model
 
     public function getPegawaiById($id_user)
     {
-        $query = "SELECT * FROM user u, akun a WHERE u.id_user = a.id_user";
+        $query = "SELECT * FROM user u INNER JOIN akun a ON u.id_user = a.id_user WHERE u.id_user = :id_user";
 
         $this->db->query($query);
         $this->db->bind('id_user', $id_user);
