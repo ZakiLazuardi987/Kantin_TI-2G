@@ -6,7 +6,7 @@
         <!-- <div class="col-md-6"> -->
         <div class="card mx-auto" style="width: 400px; height: 400px; overflow: auto;">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #C9E3E3;">
+            <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h5 class="my-0"><strong>TOTAL PEMBAYARAN</strong></h5>
               <!-- <small class="text-body-secondary">Brief description</small> -->
@@ -56,6 +56,22 @@
             <span class="text-body-secondary">Rp 6.000</span>
             </li>
 
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">risol mayo</h6>
+              <span class="text-body-secondary"><input type="number" class="form-control form-control-sm" value="1" min="1"></span>
+            </div>
+            <span class="text-body-secondary">Rp 6.000</span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">risol mayo</h6>
+              <span class="text-body-secondary"><input type="number" class="form-control form-control-sm" value="1" min="1"></span>
+            </div>
+            <span class="text-body-secondary">Rp 6.000</span>
+            </li>
+
             
             
           </ul>
@@ -64,7 +80,7 @@
 
         <!-- <div class="col-md-6 ml-1"> -->
         <div class="card mx-auto" style="width: 400px; height: 150px; overflow: auto;">
-    <div class="card-header" style="background: #C9E3E3;"><strong>METODE PEMBAYARAN</strong></div>
+    <div class="card-header" style="background: #F6E8C1;"><strong>METODE PEMBAYARAN</strong></div>
     <div class="card-body">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="cash" id="cashCheck">
@@ -85,7 +101,7 @@
     </div>
 </div>
 </div>
-<button type="submit" name="submit" class="btn btn-success d-block mx-auto" style="font-size: 12px; padding: 7px 9px;" onclick="return validatePayment()"><strong>TRANSAKSI SELESAI</strong></button>       
+<button type="submit" name="submit" class="btn btn-warning d-block mx-auto" style="font-size: 12px; padding: 7px 9px;" onclick="return validatePayment()"><strong>TRANSAKSI SELESAI</strong></button>       
   </div>
 </div>
 </div>
