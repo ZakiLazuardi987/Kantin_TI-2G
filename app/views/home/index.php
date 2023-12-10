@@ -10,7 +10,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-image: url("<?= BASEURL?>/img/landingPage/landing_page10.png");
+            background-image: url("<?= BASEURL?>/img/landingPage/landing_page11.png");
             background-size: cover;
             background-position: center;
             color: #fff;
