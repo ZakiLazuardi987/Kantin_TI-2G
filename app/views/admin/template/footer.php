@@ -2,7 +2,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="background: #DCE4EE; color:#10365F">
+      <div class="modal-header" style="background: #1A2A46; color: #F9CC41">
         <h5 class="modal-title" style="text-transform: uppercase;" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
         <!-- <span aria-hidden="true">&times;</span> -->
@@ -25,8 +25,8 @@
   <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="#">Kantin JTI Polinema</a>.</strong>
+<footer class="main-footer" style="background: #333f57;">
+    <strong>Copyright &copy; 2023 <a href="#" style="color: white;">Kantin JTI Polinema</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
