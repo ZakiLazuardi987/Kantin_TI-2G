@@ -15,14 +15,35 @@
   <link rel="stylesheet" href="<?= BASEURL?>/assets/dist/css/adminlte.min.css">
 
   <style>
-    .sidebar {
-          height: 100vh; /* 100% tinggi viewport */
-          overflow-y: auto; /* Biarkan ada scrollbar jika konten melebihi tinggi */
-          position: fixed;
+        .content-wrapper{
+          background: white;
         }
+        .sidebar {
+              height: 100vh; /* 100% tinggi viewport */
+              overflow-y: auto; /* Biarkan ada scrollbar jika konten melebihi tinggi */
+              position: fixed;
+              background: #333f57;
+        }
+        .main-sidebar.sidebar-light-info {
+          background-color: #333F57;
+        }
+
         .nav-item {
         margin-bottom: 100px; /* Sesuaikan jarak antar menu sesuai kebutuhan */
         }
+
+        #menusidebar{
+          background: #F6E8C1;
+        }
+
+        #iconsidebar{
+          color: #2F5972;
+        }
+
+        .namamenu{
+          color: #2F5972;
+        }
+
         /* Memberi ukuran gambar yang seragam */
         .card-img-top {
         height: 50%;
@@ -50,8 +71,13 @@
         margin-left: 15px; /* Jarak kiri antara card */
         margin-top: 10px;
         margin-bottom: 10px;
+        transition: transform 0.3s ease-in-out;
         }
 
+        .card-spacing:hover {
+          transform: scale(1.05); /* Increasing size on hover */
+        }
+        
         .btn-success {
           margin-left: 15px;
           padding: 10px 10px; /* Ubah padding tombol */
@@ -71,14 +97,25 @@
             margin-right: 0; /* Menghapus margin di tombol terakhir */
         }
 
-        .b-example-divider {
+        .table-bordered thead,
+        .table-bordered tbody {
+            border: 1px solid black; /* Ganti dengan ketebalan yang diinginkan */
+        }
+
+        /* Juga pastikan untuk memberikan garis batas pada sel-sel di dalam tbody */
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid black; /* Ganti dengan ketebalan yang diinginkan */
+        }
+
+        /* .b-example-divider {
         width: 100%;
         height: 3rem;
         background-color: rgba(0, 0, 0, .1);
         border: solid rgba(0, 0, 0, .15);
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
+      } */
 
   </style>
 </head>
