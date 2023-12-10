@@ -27,7 +27,7 @@ class Pengajuan_Model
 
     public function getAllPengajuan()
     {
-        $this->db->query("SELECT * FROM pengajuan ORDER BY id_pengajuan DESC");
+        $this->db->query("SELECT p.id_pengajuan, k.nama_kategori, p.nama_produk, p.harga, p.gambar_produk, p.status_pengajuan FROM pengajuan p INNER JOIN kategori k ON p.id_kategori = k.id_kategori ORDER BY p.id_pengajuan DESC");
         return $this->db->resultSet();
     }
 
