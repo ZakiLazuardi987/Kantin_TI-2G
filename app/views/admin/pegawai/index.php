@@ -9,7 +9,7 @@
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
                     <!-- <ol class="breadcrumb ml-4 mr-3">
                         <li class="breadcrumb-item active">Admin</li>
@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
+                    <button type="button" class="btn" style="background: #F6E8C1;" data-toggle="modal" data-target="#exampleModal"
                         onclick="tambahdata()">
                         <i class="fa fa-plus mr-2"></i> Tambah Pegawai
                     </button>
@@ -38,7 +38,7 @@
             <!-- Tabel -->
             <div class="container">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="background: #F6E8C1;">
                         <tr>
                             <th>ID</th>
                             <th>Nama Pegawai</th>
