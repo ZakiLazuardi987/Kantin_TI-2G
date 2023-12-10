@@ -9,7 +9,8 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
       <a class="navbar-brand" href="#" style="color: #F9CC41">
-        <img src="<?= BASEURL?>/assets/brand/polinema.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      <img src="<?= BASEURL?>/assets/brand/polinema.png" alt="Logo" width="30" height="30" margin-right="2px" class="d-inline-block align-text-top">
+        <img src="<?= BASEURL?>/assets/brand/logo-jti.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
             Kantin JTI Polinema
           </a>
       </li>
