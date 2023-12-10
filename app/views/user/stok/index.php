@@ -7,11 +7,7 @@
                 <h1 class="m-0">Stok Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
-                <div class="dropdown ml-4">
+            <div class="dropdown mr-4">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 5px 7px; font-size: 12px; background: #F9CC41; color: black;">
                         Kategori
                     </button>
@@ -21,6 +17,11 @@
                         <li><a class="dropdown-item" href="#">Minuman</a></li>
                     </ul>
                 </div>
+
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
                 <ol class="breadcrumb ml-4 mr-3">
                     <li class="breadcrumb-item active"><a href="<?= BASEURL?>/Home_User">Home</a></li>
                 </ol>
@@ -72,7 +73,7 @@
   function tambahstok(x){
     
     $('.modal-title').html('Stok Masuk');
-    let url = '<?=BASEURL?>/Stok_User/formStok';
+    let url = '<?=BASEURL?>/Stok_User/formStokTambah';
     $.post(url,
     {
       id_produk : x
@@ -84,7 +85,7 @@
   function kurangistok(x){
     
     $('.modal-title').html('Stok Keluar');
-    let url = '<?=BASEURL?>/Stok_User/formStok';
+    let url = '<?=BASEURL?>/Stok_User/formStokKurang';
     $.post(url,
     {
       id_produk : x
