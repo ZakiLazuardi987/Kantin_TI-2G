@@ -88,26 +88,42 @@ class Pegawai_Admin extends Controller
 
         $this->view('admin/pegawai/update_pegawai', $data);
     }
-
-    public function prosesUbah($id_user)
+    public function prosesUbah()
     {
-        $data = []; // Inisialisasi $data
+        $produkModel = $this->model('pegawai_model');
+        $dataPegawai = $produkModel->getPegawaiById($_POST['id_user']); // Mendapatkan data produk yang ingin diubah
     
-        // Process updating employee data
-        // ...
+        // Jika data produk ditemukan
+        if ($dataPegawai) {
+            $data = [
+                'id_user' => $_POST['id_user'],
+                'nama_user' => $_POST['nama_user'],
+                'jenis_kelamin' => $_POST['jenis_kelamin'],
+                'alamat' => $_POST['alamat_pegawai'],
+                'no_telp' => $_POST['no_telp_pegawai'],
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                'level' => $_POST['level']
+            ];    
+            // Process updating employee data
+            // ...
     
-        if ($this->model('Pegawai_Model')->update($id_user) > 0) {
-            Flasher::setFlash('berhasil', 'diperbarui', 'success');
-            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect after successfully updating data
-            exit;
+            // Call the update method with the $data array as an argument
+            if ($this->model('Pegawai_Model')->update($data)) {
+                Flasher::setFlash('berhasil', 'diperbarui', 'success');
+                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect after successfully updating data
+                exit;
+            } else {
+                Flasher::setFlash('gagal', 'diperbarui', 'danger');
+                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect if failed to update data
+                exit;
+            }
         } else {
-            Flasher::setFlash('gagal', 'diperbarui', 'danger');
-            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect if failed to update data
+            Flasher::setFlash('gagal', 'Form tidak valid', 'danger');
+            header('Location: ' . BASEURL . '/Pegawai_Admin'); // Redirect if form is not valid
             exit;
         }
     }
-    
-
     public function prosesHapus($id_user)
     {
         
