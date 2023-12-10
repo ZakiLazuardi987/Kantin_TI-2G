@@ -99,10 +99,6 @@ class Pengajuan_User extends Controller
             header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect jika metode request tidak valid
             exit;
         }
-    
-        Flasher::setFlash('gagal', 'diperbarui', 'danger');
-        header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika gagal memperbarui data
-        exit;
     }
 
 
