@@ -25,48 +25,41 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <!-- <div class="row mb-2">
-                <div class="col-sm-6">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
-                        onclick="tambahdata()">
-                        <i class="fa fa-plus mr-2"></i> Tambah Pegawai
-                    </button>
-                </div>
-            </div> -->
-
-            <!-- Tambahkan jarak antara tombol dan tabel -->
-
             <!-- Tabel -->
             <div class="container">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead style="background: #F6E8C1">
                         <tr>
-                            <th>Tanggal</th>
-                            <th>Pesan Pengajuan</th>
+                            <th>ID</th>
+                            <th>Nama Kategori</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php foreach ($data['dataPengajuan'] as $pengajuan) : ?>
                             <tr>
-                                <td>23-12-2023</td>
-                                <td><h6 class="my-0"><strong>Pengajuan Produk Baru</strong></h6>
-                                    <small class="text-body-secondary">Kategori Produk:...</small></td>
+                                <td><?php echo $pengajuan['id_pengajuan']; ?></td>
+                                <td><?php echo $pengajuan['nama_kategori']; ?></td>
+                                <td><?php echo $pengajuan['nama_produk']; ?></td>
+                                <td><?php echo $pengajuan['harga']; ?></td>
+                                <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                <button id="statusButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail_notif()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                    Belum Dibaca
-                                </button>
-
-                                    
+                                    <button id="statusButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail_notif()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                        <?= $pengajuan['status_pengajuan'] == 'Belum Dibaca' ? 'Belum Dibaca' : 'Sudah Dibaca'; ?>
+                                    </button>
                                 </td>
                             </tr>
-                        
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- /.content -->
     </div>
+
 </div>
 <!-- /.content-wrapper -->
 
