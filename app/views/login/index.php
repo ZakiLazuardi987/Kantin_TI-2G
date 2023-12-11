@@ -10,7 +10,7 @@
 </head>
 <style>
     body {
-        background-image: url("<?= BASEURL?>/img/login/login9.png");
+        background-image: url("<?= BASEURL?>/img/login/login7.png");
         background-size: cover;
         background-position: center;
         color: #EEF0EF;
@@ -41,8 +41,8 @@
     }
 
     .bg {
-        background-color: #1A2A36;
-        color: #F4A623;
+        background-color: #333F57;
+        color: #8B929C;
         padding: 10px;
     }
 
@@ -61,7 +61,7 @@
     }
 
     .card-body {
-        background-color: #596575;
+        background-color: #343539;
     }
 
     .btn-login {
@@ -89,15 +89,11 @@
     }
 
     .small {
-        color: #EEF0EF; 
+        color: #F4A623; 
     }
 
     .small:hover{
-        color: #303134; 
-    }
-
-    footer {
-        color: #1A2A46;
+        color: #EEF0EF; 
     }
 </style>
 
@@ -115,14 +111,14 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="" method="POST">
                             <div class="form-group">
                                 <label for="Username">Username</label>
-                                <input type="text" name="Username" class="form-control" placeholder="Masukkan Username">
+                                <input type="text" name="username" class="form-control" placeholder="Masukkan Username">
                             </div>
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="password" name="Password" class="form-control" placeholder="Masukkan Password">
+                                <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                             </div>
 
                             <button type="submit" class="btn btn-secondary btn-lg btn-login">Login</button>
