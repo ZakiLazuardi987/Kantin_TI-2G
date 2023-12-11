@@ -48,6 +48,18 @@ class Produk_Model
         return $this->db->resultSet();
     }
 
+    public function getProductByCategory($id_kategori)
+    {
+        $query = "SELECT * FROM produk WHERE id_kategori = :id_kategori";
+
+        $this->db->query($query);
+        $this->db->bind('id_kategori', $id_kategori);
+
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function update($data)
     {
         $query = "UPDATE produk SET id_kategori = :id_kategori, nama_produk = :nama_produk, harga = :harga, stok = 0, gambar_produk = :gambar_produk WHERE id_produk = :id_produk";
