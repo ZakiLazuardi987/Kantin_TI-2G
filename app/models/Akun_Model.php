@@ -10,14 +10,16 @@ class Akun_Model {
 
     public function login($username, $password)
     {
-        $query = 'SELECT * FROM akun WHERE username = :username AND password = :password';
-        $this->db->query($query);
+
+        $user = 'SELECT * FROM akun WHERE username = :username';
+        $this->db->query($user);
 
         $this->db->bind(':username', $username);
-        $this->db->bind(':password', $password);
 
         $result = $this->db->single();
-
+        if (!password_verify($password,$result['password'])){
+            return null;
+        }    
         return $result;
     }
 }
