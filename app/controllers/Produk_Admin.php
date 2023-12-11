@@ -5,6 +5,7 @@ class Produk_Admin extends Controller {
     {
         $data['title'] = 'Daftar Produk';
         $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');
@@ -122,6 +123,21 @@ class Produk_Admin extends Controller {
                 exit;
             }
         
+    }
+
+    public function filterKategori($id_kategori)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($id_kategori === 'semua') {
+                // Ambil semua data produk
+                $produkByCategory = $this->model('Produk_Model')->getAllProducts();
+            } else {
+                // Ambil data produk berdasarkan kategori yang dipilih
+                $produkByCategory = $this->model('Produk_Model')->getProductByCategory($id_kategori);
+            }
+            echo json_encode($produkByCategory);
+            exit;
+        }
     }
 }
 
