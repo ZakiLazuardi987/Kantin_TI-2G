@@ -36,8 +36,6 @@
             <div class="mb-4"></div>
 
             <!-- Tabel -->
-            <!-- Tabel -->
-            <!-- Tabel -->
             <div class="container">
                 <table class="table table-bordered">
                     <thead style="background: #F6E8C1">
