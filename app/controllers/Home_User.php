@@ -5,6 +5,8 @@ class Home_User extends Controller {
     {
         $data['title'] = 'Home User';
         $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+
 
         $this->view('user/template/header', $data);
         $this->view('user/template/navbar');
