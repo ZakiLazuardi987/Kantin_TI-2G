@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a href="#" class="nav-link active" id="menusidebar">
+            <a href="<?= BASEURL?>/Home" class="nav-link active" id="menusidebar">
               <i class="nav-icon fas fa-sign-out-alt" id="iconsidebar"></i>
               <p class="namamenu">
                 Log Out
