@@ -7,7 +7,7 @@
                 <h1 class="m-0">Menu Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            <div class="dropdown ml-4">
+            <div class="dropdown mr-4">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 5px 7px; font-size: 12px; background: #F9CC41; color: black;">
                         Kategori
                     </button>
@@ -42,7 +42,7 @@
         <button type="button" class="btn" style="background: #F6E8C1;" data-toggle="modal" data-target="#exampleModal" onclick="tambahdata()"><i class="fa fa-plus"></i> Tambah Produk</button>
         </div>
         </div>
-        <div class="row">
+        <div class="row" id="produkContainer">
           <?php
           foreach($data['data'] as $produk) { ?>
           <div class="card card-spacing">
