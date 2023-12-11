@@ -46,10 +46,10 @@
                     <thead style="background: #F6E8C1;">
                         <tr>
                         <th>Pilih</th>
+                        <th>Gambar</th>
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
-                        <th>Gambar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,10 +57,10 @@
                     foreach($data['data'] as $row){
                         echo "<tr>";
                         echo "<td><input type='checkbox' name='id_produk'></td>";
+                        echo "<td><img style='width: 50px;' src='" . BASEURL . "/img/produk/" . $row['gambar_produk'] . "'></td>";
                         echo "<td>" . $row['nama_produk'] . "</td>";
                         echo "<td>" . $row['harga'] . "</td>";
                         echo "<td>" . $row['stok'] . "</td>";
-                        echo "<td><img style='width: 50px;' src='" . BASEURL . "/img/produk/" . $row['gambar_produk'] . "'></td>";
                         echo "</tr>";
                     }
                     ?>
