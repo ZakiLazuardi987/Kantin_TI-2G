@@ -3,13 +3,13 @@
 class Notifications_Admin extends Controller {
     public function index()
     {
-        //$data['title'] = 'Home Admin';
-        //$data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['title'] = 'Notifications Admin';
+        $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
 
-        $this->view('admin/template/header');
+        $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar');
         $this->view('admin/template/sidebar');
-        $this->view('admin/notifications/index');
+        $this->view('admin/notifications/index', $data);
         $this->view('admin/template/footer');
     }
 
