@@ -115,14 +115,14 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="" method="POST">
                             <div class="form-group">
-                                <label for="Username">Username</label>
-                                <input type="text" name="Username" class="form-control" placeholder="Masukkan Username">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control" placeholder="Masukkan Username">
                             </div>
                             <div class="form-group">
-                                <label for="Password">Password</label>
-                                <input type="password" name="Password" class="form-control" placeholder="Masukkan Password">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                             </div>
 
                             <button type="submit" class="btn btn-secondary btn-lg btn-login">Login</button>
