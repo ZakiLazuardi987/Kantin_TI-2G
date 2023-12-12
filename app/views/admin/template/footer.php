@@ -2,7 +2,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="background: #1A2A46; color: #F9CC41">
+      <div class="modal-header" style="background: #1A2A46; color: #F9CC41;">
         <h5 class="modal-title" style="text-transform: uppercase;" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
         <!-- <span aria-hidden="true">&times;</span> -->
