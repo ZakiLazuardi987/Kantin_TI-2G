@@ -110,6 +110,10 @@
             border: 1px solid black; /* Ganti dengan ketebalan yang diinginkan */
         }
 
+        #tabel-trans{
+          color: white;
+        }
+
         /* .b-example-divider {
         width: 100%;
         height: 3rem;
