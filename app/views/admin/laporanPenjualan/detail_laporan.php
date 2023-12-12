@@ -34,9 +34,9 @@
               
             </div>
             <div>
-              <span class="text-body-secondary mb-2"><h6>1</h6></span>
-              <span class="text-body-secondary mb-2"><h6>10</h6></span>
-              <span class="text-body-secondary">Rp. 20.000</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">1</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">10</h6></span>
+              <span class="text-body-secondary"><h6 align="right">Rp. 20.000</h6></span>
             </div>
             </li>
 
@@ -48,9 +48,9 @@
               
             </div>
             <div>
-              <span class="text-body-secondary mb-2"><h6>1</h6></span>
-              <span class="text-body-secondary mb-2"><h6>10</h6></span>
-              <span class="text-body-secondary">Rp. 20.000</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">1</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">10</h6></span>
+              <span class="text-body-secondary"><h6 align="right">Rp. 20.000</h6></span>
             </div>
             </li>
 
@@ -62,9 +62,9 @@
               
             </div>
             <div>
-              <span class="text-body-secondary mb-2"><h6>1</h6></span>
-              <span class="text-body-secondary mb-2"><h6>10</h6></span>
-              <span class="text-body-secondary">Rp. 20.000</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">1</h6></span>
+              <span class="text-body-secondary mb-2"><h6 align="right">10</h6></span>
+              <span class="text-body-secondary"><h6 align="right">Rp. 20.000</h6></span>
             </div>
             </li>
 
@@ -76,8 +76,8 @@
               
             </div>
             <div>
-              <span class="text-body-secondary mb-2"><strong><h6>100</strong></h6></span>
-              <span class="text-body-secondary"><strong>Rp. 150.000</h6></strong></span>
+              <span class="text-body-secondary mb-2"><strong><h6 align="right">100</strong></h6></span>
+              <span class="text-body-secondary"><strong><h6 align="right">Rp. 150.000</h6></strong></span>
             </div>
             
             
