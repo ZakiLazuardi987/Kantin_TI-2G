@@ -45,11 +45,14 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <select class="form-control" id="select2" name="state">
-                                        <option>-Pilih-</option>
-                                        <option value="WY">Le Mineral</option>
-                                        <option value="WY">Risol Mayo</option>
-                                        </select>
+                                    <select class="form-control" id="select2" name="state" required>
+                                        <option></option>
+                                        <?php
+                                        foreach($data['nama_produk'] as $nama_produk){
+                                            echo "<option value='" . $nama_produk['nama_produk'] . "'>" . $nama_produk['nama_produk'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
                                     </div>
                                 </td>
                             </tr>
