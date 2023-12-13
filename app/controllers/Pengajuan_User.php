@@ -86,7 +86,7 @@ class Pengajuan_User extends Controller
             if (!empty($_FILES['gambar_produk']['name'])) {
                 $gambar_produk = $_FILES['gambar_produk']['name'];
                 $tmp_gambar_produk = $_FILES['gambar_produk']['tmp_name'];
-                $dir = BASEURL . 'img/pengajuan/';
+                $dir = BASEURL . 'app/img/pengajuan/';
     
                 // Memindahkan file yang diunggah ke direktori tujuan
                 move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
