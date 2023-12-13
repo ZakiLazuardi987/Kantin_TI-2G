@@ -61,8 +61,8 @@
                                 <td><?php echo $pegawai['username']; ?></td>
                                 <td><?php echo $pegawai['level']; ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-edit"></i> Edit</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-trash"></i> Hapus</button>
+                                    <button type="button" class="btn btn-primary" style="background: #1A2A46; margin: auto;" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin: auto;" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata('<?= $pegawai['id_user']; ?>')"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
