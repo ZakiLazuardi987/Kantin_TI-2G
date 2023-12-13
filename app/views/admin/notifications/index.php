@@ -47,15 +47,8 @@
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                <button 
-                                    class="btn btn-success statusButton" 
-                                    data-toggle="modal" 
-                                    data-target="#exampleModal" 
-                                    data-id="<?= $pengajuan['id_pengajuan']; ?>" 
-                                    style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                    <?= $pengajuan['status_pengajuan'] == 'Belum Dibaca' ? 'ACC' : 'Tidak Diacc'; ?>
-                                </button>
-
+                                    <button class="statusButton btn btn-success me-2" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">ACC</button>
+                                    <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -78,14 +71,58 @@
 
         // Change the button text and send an AJAX request to update the status on the server
         if (newStatus === "ACC") {
-            button.innerText = "Tolak";
+            button.innerText = "TOLAK";
             button.style.background = "#8B929C";
-            // Add logic to handle when the status is changed to "ACC"
+            // AJAX request to update the status to "ACC" in the database
+            updateDatabaseStatus(idPengajuan, newStatus);
         } else {
             button.innerText = "ACC";
             button.style.background = "#1A2A46";
-            // Add logic to handle when the status is changed to "Tolak"
+            // AJAX request to update the status to "TOLAK" in the database
+            updateDatabaseStatus(idPengajuan, newStatus);
         }
+    }
+
+    function updateDatabaseStatus(idPengajuan, newStatus) {
+        // Make an AJAX request to update the status in the database
+        $.ajax({
+            url: 'Notifications_Admin.php',
+            type: 'POST',
+            data: {
+                id_pengajuan: idPengajuan,
+                status_pengajuan: newStatus
+            },
+            success: function(response) {
+                // Handle the response if needed
+                console.log(response);
+
+                // Add a check for "ACC" status and call the insertDataPengajuan function
+                if (newStatus === "ACC") {
+                    insertDataPengajuan(idPengajuan);
+                }
+            },
+            error: function(error) {
+                console.error("Error updating status:", error);
+            }
+        });
+    }
+    
+    function insertDataPengajuan(idPengajuan) {
+        // Make an AJAX request to insert data into the database
+        $.ajax({
+            url: 'Notifications_Admin.php', // Update with your actual script
+            type: 'POST',
+            data: {
+                id_pengajuan: idPengajuan
+            },
+            success: function(response) {
+                // Handle  the response if needed
+                console.log(response);
+            },
+            error: function(error) {
+                console.error("Error inserting data:", error);
+            }
+        });
     }
 
     document.addEventListener("DOMContentLoaded", function() {

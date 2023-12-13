@@ -43,7 +43,8 @@ class Notifications_Admin extends Controller {
         }
     }
     
-    public function updateStatus() {
+    public function updateStatus()
+    {
         // Logic to handle status update
         $pengajuanModel = $this->model('Pengajuan_Model');
     
@@ -60,9 +61,42 @@ class Notifications_Admin extends Controller {
         if ($result) {
             // Status updated successfully
             echo "Status pengajuan berhasil diperbarui!";
+            
+            // Check if the status is "ACC" and call the method to insert data into the database
+            if ($_POST['status_pengajuan'] == 'ACC') {
+                $this->insertDataPengajuan($data['id_pengajuan']);
+            }
         } else {
             // Failed to update status
             echo "Gagal memperbarui status pengajuan!";
+        }
+    }
+
+    // Add a new function to insert data into the database
+    private function insertDataPengajuan($idPengajuan)
+    {
+        // Logic to insert data into the database
+        $dataPengajuan = $this->model('Pengajuan_Model')->getPengajuanById($idPengajuan);
+
+        // You can modify the code below to match your database schema and insert logic
+        $produkModel = $this->model('Produk_Model');
+
+        $data = [
+            'id_kategori' => $dataPengajuan['id_kategori'],
+            'nama_produk' => $dataPengajuan['nama_produk'],
+            'harga' => $dataPengajuan['harga'],
+            'gambar_produk' => $dataPengajuan['gambar_produk'],
+        ];
+
+        $result = $produkModel->add($data);
+
+        // Handle the result as needed (display a message, redirect, or send a JSON response, etc.)
+        if ($result > 0) {
+            // Data successfully inserted
+            echo "Data pengajuan berhasil diinsert ke database!";
+        } else {
+            // Failed to insert data
+            echo "Gagal menginsert data pengajuan ke database!";
         }
     }
 }

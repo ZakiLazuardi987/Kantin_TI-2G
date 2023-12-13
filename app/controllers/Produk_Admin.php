@@ -20,7 +20,6 @@ class Produk_Admin extends Controller {
     }
 
     public function formTambah(){
-        // $data['title'] = 'Tambah Produk';
     $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
 
     
@@ -119,8 +118,7 @@ class Produk_Admin extends Controller {
 
 
     public function prosesHapus($id_produk)
-    {
-        
+    {  
             if ($this->model('Produk_Model')->delete($id_produk)) {
                 Flasher::setFlash('berhasil', 'dihapus', 'success');
                 header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data

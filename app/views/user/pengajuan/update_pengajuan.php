@@ -29,9 +29,10 @@
                 <label for="harga">Harga:</label>
                 <input type="text" name="harga" id="harga" class="form-control" value="<?php echo $ubah['harga']; ?>">
             </div>
+            <input type="hidden" name="gambar_produk_sebelumnya" value="<?php echo $ubah['gambar_produk']; ?>">
             <div class="form-group">
                 <label for="gambar_produk">Gambar Produk:</label>
-                <img src="<?php echo BASEURL ?>/img/pengajuan/<?php echo $ubah['gambar_produk']; ?>" alt="Gambar Produk" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                <img src="<?php echo BASEURL ?>/app/img/pengajuan/<?php echo $ubah['gambar_produk']; ?>" alt="Gambar Produk" class="img-fluid" style="max-width: 100px; max-height: 100px;">
                 <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" value="<?php echo $ubah['gambar_produk']; ?>">
             </div>
 
