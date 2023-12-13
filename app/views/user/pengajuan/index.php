@@ -114,7 +114,7 @@
     $('.modal-title').html('Hapus Data Pengajuan');
     $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
     $('.tombol').html('<a href="<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x +
-        '" class="btn btn-secondary" style="background: #A52222">Hapus</a>');
+        '" class="btn btn-secondary" style="background: #0595F7">Hapus</a>');
     $('#close').html('Batal');
 }
 </script>
