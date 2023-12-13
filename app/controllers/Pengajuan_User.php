@@ -114,32 +114,6 @@ class Pengajuan_User extends Controller
         header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika gagal memperbarui data
         exit;
     }
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //     $id_pengajuan = $_POST['id_pengajuan'];
-
-        //     $data = [
-        //         'id_pengajuan' => $id_pengajuan,
-        //         'nama_produk' => $_POST['nama_produk'],
-        //         'harga' => $_POST['harga'],
-        //         'status_pengajuan' => $_POST['status'],
-        //     ];
-
-        //     if ($this->model('Pengajuan_Model')->update($data) > 0) {
-        //         Flasher::setFlash('berhasil', 'diperbarui', 'success');
-        //         header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect after successfully updating data
-        //         exit;
-        //     } else {
-        //         Flasher::setFlash('gagal', 'diperbarui', 'danger');
-        //         header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect if failed to update data
-        //         exit;
-        //     }
-        // } else {
-        //     Flasher::setFlash('gagal', 'Metode request tidak valid', 'danger');
-        //     header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect jika metode request tidak valid
-        //     exit;
-        // }
-    // }
-
 
     public function prosesHapus($id_pengajuan)
     {
