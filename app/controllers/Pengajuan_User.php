@@ -70,8 +70,8 @@ class Pengajuan_User extends Controller
     public function prosesUbah()
     {
         $pengajuanModel = $this->model('Pengajuan_Model');
-        $dataPengajuan = $pengajuanModel->getPengajuanById($_POST['$id_pengajuan']);
-
+        $dataPengajuan = $pengajuanModel->getPengajuanById($_POST['id_pengajuan']);
+        
         if ($dataPengajuan) {
             $gambar_produk_sebelumnya = $_POST['gambar_produk_sebelumnya'];
     
