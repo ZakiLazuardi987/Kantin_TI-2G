@@ -7,10 +7,11 @@
                     <h1 class="m-0">Pengajuan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <form class="d-flex" role="search">
+                    
+                <!-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
+                </form> -->
                 <!-- <ol class="breadcrumb ml-4 mr-3">
                     <li class="breadcrumb-item active"><a href="<?= BASEURL?>/Home_User">Home</a></li>
                 </ol> -->
@@ -23,6 +24,11 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-lg-6">
+              <?php Flasher::flash(); ?>
+            </div>
+      </div>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <button type="button" class="btn" style="background: #F6E8C1;" data-toggle="modal" data-target="#exampleModal"
@@ -36,8 +42,8 @@
             <div class="mb-4"></div>
 
             <!-- Tabel -->
-            <div class="container">
-                <table class="table table-bordered">
+            <div class="container mb-2">
+                <table id="example" class="table table-bordered">
                     <thead style="background: #F6E8C1">
                         <tr>
                             <th>ID</th>
