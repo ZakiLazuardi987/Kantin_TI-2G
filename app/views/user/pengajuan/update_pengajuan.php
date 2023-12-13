@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="form-group">
-            <input type="hidden" name="id_produk" value="<?php echo $ubah['id_pengajuan']; ?>">
+            <input type="hidden" name="id_pengajuan" value="<?php echo $ubah['id_pengajuan']; ?>">
                 <label for="nama_produk">Nama Produk:</label>
                 <input type="text" name="nama_produk" id="nama_produk" class="form-control" value="<?php echo $ubah['nama_produk']; ?>">
             </div>
