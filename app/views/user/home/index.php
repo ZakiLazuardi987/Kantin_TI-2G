@@ -6,7 +6,11 @@
             <div class="col-sm-6">
                 <h1 class="m-0">Home</h1>
             </div><!-- /.col -->
-            
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb ml-4 mr-3">
+                        <li class="breadcrumb-item active"><i class="fa fa-shopping-cart"></i> Transaksi User</li>
+                    </ol>
+            </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
@@ -29,7 +33,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <input type="date" id="tanggal" class="form-control">
+                                    <input type="date" id="tanggal" class="form-control" style="width: 250px">
 
                                     </div>
                                 </td>
@@ -68,7 +72,7 @@
                                         <i class="fa fa-plus"> Tambah</i>
 
                                     </button>
-                                    <button type="button" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                    <button type="button" id="add-cart" class="btn" data-toggle="modal" data-target="#exampleModal" onclick="bayar()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
@@ -114,8 +118,8 @@
                                         <td>3000</td>
                                         <td>6000</td>
                                         <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                            Hapus
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="margin: auto; padding: 5px 6px; font-size: 12px;">
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                         </td>
                                     </tr>
@@ -168,13 +172,13 @@ $(document).ready(function() {
     $('#select2').select2();
 });
 
-    function transaksi(){
-        $('.modal-title').html('Transaksi');
-        let url = '<?=BASEURL?>/Home_User/formTransaksi';
+    function bayar(){
+        $('.modal-title').html('Pembayaran');
+        let url = '<?=BASEURL?>/Home_User/formBayar';
         $.post(url, function(data, success){
             $('.modal-body').html(data);
         });
-        $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #0595F7">Reset</a>');
+        // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #0595F7">Reset</a>');
     }
 
     
