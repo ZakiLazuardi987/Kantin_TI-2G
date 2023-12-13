@@ -20,9 +20,9 @@
                                 <?php } ?>
                                 </ul>
                 </div>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-primary" type="submit">Search</button>
+                <form action="<?= BASEURL?>/Stok_User" method="post" class="d-flex" role="search" id="searchForm">
+                  <input class="form-control" type="text" name="search" placeholder="Search" autocomplete="off">
+                  <button class="btn btn-outline-primary" type="submit" id="tombolCari">Search</button>
                 </form>
                 <!-- <ol class="breadcrumb ml-4 mr-3">
                     <li class="breadcrumb-item active"><a href="<?= BASEURL?>/Home_User">Home</a></li>
@@ -38,7 +38,11 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        
+      <div class="row mb-2">
+            <div class="col-lg-6">
+              <?php Flasher::flash(); ?>
+            </div>
+      </div>
         <div class="row" id="produkContainer">
           <?php
           foreach($data['data'] as $produk) { ?>
