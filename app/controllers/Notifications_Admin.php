@@ -42,5 +42,27 @@ class Notifications_Admin extends Controller {
             echo "Gagal menambahkan produk!";
         }
     }
-
+    
+    public function updateStatus() {
+        // Logic to handle status update
+        $pengajuanModel = $this->model('Pengajuan_Model');
+    
+        // Retrieve necessary data from POST or other sources
+        $data = [
+            'id_pengajuan' => $_POST['id_pengajuan'],
+            'status_pengajuan' => $_POST['status_pengajuan'],
+        ];
+    
+        // Call the update method in Pengajuan_Model
+        $result = $pengajuanModel->updateStatus($data);
+    
+        // Handle the update result (display a message, redirect, or send a JSON response, etc.)
+        if ($result) {
+            // Status updated successfully
+            echo "Status pengajuan berhasil diperbarui!";
+        } else {
+            // Failed to update status
+            echo "Gagal memperbarui status pengajuan!";
+        }
+    }
 }
