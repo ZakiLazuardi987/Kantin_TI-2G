@@ -65,11 +65,9 @@
 <!-- select2 -->
 <script src="<?= BASEURL?>/select2/dist/js/select2.min.js"></script>
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="<?= BASEURL?>/assets/plugins/chart.js/Chart.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= BASEURL?>/assets/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= BASEURL?>/assets/dist/js/pages/dashboard3.js"></script>
+<script src="<?= BASEURL?>/assets/datatables/datatables.min.js"></script>
+<script src="<?= BASEURL?>/assets/datatables/DataTables-1.13.8/js/dataTables.bootstrap5.min.js"></script>
+<script>new DataTable('#example');</script>
+
 </body>
 </html>

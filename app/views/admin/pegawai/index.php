@@ -37,7 +37,7 @@
 
             <!-- Tabel -->
             <div class="container">
-                <table class="table table-bordered">
+                <table id="example" class="table table-bordered">
                     <thead style="background: #F6E8C1;">
                         <tr>
                             <th>ID</th>
@@ -78,6 +78,7 @@
 <!-- Modal -->
 
 <script>
+    
     function tambahdata() {
         $('.modal-title').html('Tambah Data Pegawai');
         let url = '<?=BASEURL?>/Pegawai_Admin/formTambah';
