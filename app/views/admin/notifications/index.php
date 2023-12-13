@@ -47,9 +47,15 @@
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                    <button id="statusButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail_notif()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                        <?= $pengajuan['status_pengajuan'] == 'Belum Dibaca' ? 'Belum Dibaca' : 'Sudah Dibaca'; ?>
-                                    </button>
+                                <button 
+                                    class="btn btn-success statusButton" 
+                                    data-toggle="modal" 
+                                    data-target="#exampleModal" 
+                                    data-id="<?= $pengajuan['id_pengajuan']; ?>" 
+                                    style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                    <?= $pengajuan['status_pengajuan'] == 'Belum Dibaca' ? 'ACC' : 'Tidak Diacc'; ?>
+                                </button>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -66,35 +72,32 @@
 <!-- Modal -->
 
 <script>
+    function updateStatus(idPengajuan, newStatus) {
+        var button = document.querySelector('.statusButton[data-id="' + idPengajuan + '"]');
+        var buttonText = button.innerText;
 
-    function detail_notif() {
-        $('.modal-title').html('Detail Data Pengajuan');
-        let url = '<?=BASEURL?>/Notifications_Admin/notifications';
-        $.post(url, function(data, success){
-            $('.modal-body').html(data);
-        });
-
-    var button = document.getElementById('statusButton');
-    var buttonText = button.innerText;
-
-    if (buttonText === "Belum Dibaca") {
-        button.innerText = "Sudah Dibaca";
-        button.style.background = "#8B929C"; // Change to your desired color for 'Sudah Dibaca'
-    } else {
-        button.innerText = "Belum Dibaca";
-        button.style.background = "#1A2A46"; // Change to your desired color for 'Belum Dibaca'
+        // Change the button text and send an AJAX request to update the status on the server
+        if (newStatus === "ACC") {
+            button.innerText = "Tolak";
+            button.style.background = "#8B929C";
+            // Add logic to handle when the status is changed to "ACC"
+        } else {
+            button.innerText = "ACC";
+            button.style.background = "#1A2A46";
+            // Add logic to handle when the status is changed to "Tolak"
+        }
     }
-    // Additional actions or logic as needed...
 
     document.addEventListener("DOMContentLoaded", function() {
-    var status = localStorage.getItem('status');
-    if (status === 'sudah dibaca') {
-        var button = document.getElementById('statusButton');
-        button.innerText = "sudah dibaca";
-        button.style.background = "#8B929C"; // Change to your desired color for 'sudah dibaca'
-    }
-});
-}
-
+        // Add event listener for the status buttons
+        document.querySelectorAll('.statusButton').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var idPengajuan = this.getAttribute('data-id');
+                var newStatus = this.innerText === 'ACC' ? 'Tolak' : 'ACC';
+                updateStatus(idPengajuan, newStatus);
+            });
+        });
+    });
 
 </script>
+
