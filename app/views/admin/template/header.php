@@ -46,6 +46,11 @@
           color: #2F5972;
         }
 
+        .info-box{
+          border-radius: 10px; 
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
         /* Memberi ukuran gambar yang seragam */
         .card-img-top {
         height: 50%;
