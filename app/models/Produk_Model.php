@@ -86,4 +86,15 @@ class Produk_Model
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function dataSearching()
+    {
+        $keyword = $_POST['search'];
+        $query = "SELECT * FROM produk WHERE nama_produk LIKE :keyword";
+
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+
+        return $this->db->resultSet();
+    }
 }
