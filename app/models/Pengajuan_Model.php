@@ -60,7 +60,7 @@ class Pengajuan_Model
         $this->db->bind('gambar_produk', $data['gambar_produk']);
         $this->db->bind('status_pengajuan', $data['status_pengajuan']);
         $this->db->bind('id_pengajuan', $data['id_pengajuan']);
-
+                                                        
         $this->db->execute();
 
         return $this->db->rowCount();
