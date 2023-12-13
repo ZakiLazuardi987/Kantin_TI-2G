@@ -128,10 +128,14 @@ class Pegawai_Admin extends Controller
     {
         
             if ($this->model('pegawai_model')->delete($id_user)) {
-                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                Flasher::setFlash('berhasil', 'dihapus', 'success');
                 header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             }
+
+            Flasher::setFlash('gagal', 'dihapus', 'success');
+                header('Location: ' . BASEURL . '/Pegawai_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
         
     }  
 }
