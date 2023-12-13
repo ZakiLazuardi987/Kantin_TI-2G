@@ -1,20 +1,27 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    
-
+    <div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb ml-4 mr-3">
+                        <li class="breadcrumb-item active">Dashboard Admin</li>
+                    </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 
     <!-- /.content-header -->
 
     <!-- Main content -->
     
       <div class="container-fluid">
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div class=
-                    "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-                    <h1 class="h2">Dashboard</h1>
-
-                    </div>
+      <main class="col-md-9 ms-sm-auto col-lg-12 px-md-4">
                     <div class="row">
                         <div class="col-sm-6">
                         <div class="info-box">
