@@ -17,6 +17,10 @@
   <script src="<?= BASEURL?>/select2/jquery.min.js"></script>
   <link rel="stylesheet" href="<?= BASEURL?>/select2/dist/css/select2.min.css">
   
+  <script src="<?= BASEURL?>/assets/datatables/jQuery-3.7.0/jquery-3.7.0.js"></script>
+  <script src="<?= BASEURL?>/assets/datatables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+  <link rel="stylesheet" href="<?= BASEURL?>/assets/datatables/datatables.min.css">
+  <link rel="stylesheet" href="<?= BASEURL?>/assets/datatables/DataTables-1.13.8/css/dataTables.bootstrap5.min.css">
 
   <style>
         .content-wrapper{
