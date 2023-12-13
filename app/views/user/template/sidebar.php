@@ -22,6 +22,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item mb-3">
+            <a href="<?= BASEURL?>/Home_User" class="nav-link active" id="menusidebar">
+              <i class="nav-icon fas fa-home" id="iconsidebar"></i>
+              <p class="namamenu">
+                Home
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item mb-3">
             <a href="<?= BASEURL?>/Stok_User" class="nav-link active" id="menusidebar">
               <i class="nav-icon fas fa-box" id="iconsidebar"></i>
               <p class="namamenu">
