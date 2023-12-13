@@ -6,7 +6,8 @@
       <div class="modal-body">
                     <form action="<?= BASEURL?>/Pengajuan_User/prosesUbah" method="POST" enctype="multipart/form-data">
                     <?php foreach ($data['ubahdata'] as $ubah) { ?>
-                        <div class="form-group">
+                        
+            <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
                 <select name="id_kategori" id="id_kategori" class="form-control">
                     <option></option>
@@ -31,7 +32,7 @@
             <div class="form-group">
                 <label for="gambar_produk">Gambar Produk:</label>
                 <img src="<?php echo BASEURL ?>/img/pengajuan/<?php echo $ubah['gambar_produk']; ?>" alt="Gambar Produk" class="img-fluid" style="max-width: 100px; max-height: 100px;">
-                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control">
+                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" value="<?php echo $ubah['gambar_produk']; ?>">
             </div>
 
             <?php } ?>

@@ -77,31 +77,68 @@ class Pengajuan_User extends Controller
 
     public function prosesUbah()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id_pengajuan = $_POST['id_pengajuan'];
+        $pengajuanModel = $this->model('Pengajuan_Model');
+        $dataPengajuan = $pengajuanModel->getPengajuanById($_POST['$id_pengajuan']);
 
+        if ($dataPengajuan) {
+            $gambar_produk_sebelumnya = $_POST['gambar_produk_sebelumnya'];
+    
             $data = [
-                'id_pengajuan' => $id_pengajuan,
+                'id_pengajuan' => $_POST['id_pengajuan'],
+                'id_kategori' => $_POST['id_kategori'],
                 'nama_produk' => $_POST['nama_produk'],
                 'harga' => $_POST['harga'],
-                'status_pengajuan' => $_POST['status'],
+                'gambar_produk' => $gambar_produk_sebelumnya // Menyimpan nama gambar produk yang sudah ada sebagai default
             ];
 
-            if ($this->model('Pengajuan_Model')->update($data) > 0) {
+            if (!empty($_FILES['gambar_produk']['name'])) {
+                $gambar_produk = $_FILES['gambar_produk']['name'];
+                $tmp_gambar_produk = $_FILES['gambar_produk']['tmp_name'];
+                $dir = BASEURL . 'img/pengajuan/';
+    
+                // Memindahkan file yang diunggah ke direktori tujuan
+                move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
+    
+                $data['gambar_produk'] = $gambar_produk; // Mengupdate nama gambar jika ada perubahan gambar
+            }
+    
+            // Proses pembaruan data menggunakan $data
+            if ($pengajuanModel->update($data) > 0) {
                 Flasher::setFlash('berhasil', 'diperbarui', 'success');
-                header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect after successfully updating data
-                exit;
-            } else {
-                Flasher::setFlash('gagal', 'diperbarui', 'danger');
-                header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect if failed to update data
+                header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
                 exit;
             }
-        } else {
-            Flasher::setFlash('gagal', 'Metode request tidak valid', 'danger');
-            header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect jika metode request tidak valid
-            exit;
         }
+    
+        Flasher::setFlash('gagal', 'diperbarui', 'danger');
+        header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika gagal memperbarui data
+        exit;
     }
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //     $id_pengajuan = $_POST['id_pengajuan'];
+
+        //     $data = [
+        //         'id_pengajuan' => $id_pengajuan,
+        //         'nama_produk' => $_POST['nama_produk'],
+        //         'harga' => $_POST['harga'],
+        //         'status_pengajuan' => $_POST['status'],
+        //     ];
+
+        //     if ($this->model('Pengajuan_Model')->update($data) > 0) {
+        //         Flasher::setFlash('berhasil', 'diperbarui', 'success');
+        //         header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect after successfully updating data
+        //         exit;
+        //     } else {
+        //         Flasher::setFlash('gagal', 'diperbarui', 'danger');
+        //         header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect if failed to update data
+        //         exit;
+        //     }
+        // } else {
+        //     Flasher::setFlash('gagal', 'Metode request tidak valid', 'danger');
+        //     header('Location: ' . BASEURL . '/Pengajuan_User'); // Redirect jika metode request tidak valid
+        //     exit;
+        // }
+    // }
 
 
     public function prosesHapus($id_pengajuan)
