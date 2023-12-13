@@ -25,43 +25,35 @@ class Pengajuan_User extends Controller
 
     public function prosesTambah()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['gambar_produk']) && $_FILES['gambar_produk']['error'] == UPLOAD_ERR_OK) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['gambar_produk']['name'])) {
             $gambar_produk = $_FILES['gambar_produk']['name'];
             $tmp_gambar_produk = $_FILES['gambar_produk']['tmp_name'];
-            $dir = __DIR__ . '/../img/pengajuan/';
-
-            // Pastikan direktori tujuan ada
-            if (!file_exists($dir)) {
-                mkdir($dir, 0777, true);
-            }
-
+            $dir = 'img/pengajuan/'; // Ganti dengan direktori tujuan relatif terhadap direktori skrip PHP Anda
+    
             // Memindahkan file yang diunggah ke direktori tujuan
-            if (move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk)) {
-                $data = [
-                    'id_pengajuan' => isset($_POST['id_pengajuan']) ? $_POST['id_pengajuan'] : null,
-                    'id_kategori' => $_POST['id_kategori'],
-                    'nama_produk' => $_POST['nama_produk'],
-                    'harga' => $_POST['harga'],
-                    'gambar_produk' => $gambar_produk,
-                    'status_pengajuan' => isset($_POST['status']) ? $_POST['status'] : null,
-                ];
+            move_uploaded_file($tmp_gambar_produk, $dir . $gambar_produk);
 
-                if ($this->model('Pengajuan_Model')->add($data) > 0) {
-                    Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                    header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
-                    exit;
-                } else {
-                    Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                }
+            $data = [
+                'id_kategori' => $_POST['id_kategori'],
+                'nama_produk' => $_POST['nama_produk'],
+                'harga' => $_POST['harga'],
+                'gambar_produk' => $gambar_produk,
+            ];
+
+            if ($this->model('Pengajuan_Model')->add($data) > 0) {
+                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             } else {
-                Flasher::setFlash('gagal', 'gambar gagal diunggah', 'danger');
+                Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+                header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             }
         } else {
-            Flasher::setFlash('gagal', 'gambar gagal diunggah atau tidak ada file yang diunggah', 'danger');
-        }
-
-        header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika terjadi kesalahan
-        exit;
+            Flasher::setFlash('gagal', 'gambar gagal diunggah', 'danger');
+            header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika terjadi kesalahan
+            exit;
+        }                    
     }
 
 
@@ -70,7 +62,7 @@ class Pengajuan_User extends Controller
     {
         $id_pengajuan = $_POST['id_pengajuan'];
         $data['ubahdata'] = $this->model('Pengajuan_Model')->getPengajuanById($id_pengajuan);
-        $data['pengajuan'] = $this->model('Pengajuan_Model')->getAllCategories();
+        $data['kategori'] = $this->model('Pengajuan_Model')->getAllCategories();
 
         $this->view('user/pengajuan/update_pengajuan', $data);
     }
