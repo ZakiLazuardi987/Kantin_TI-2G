@@ -24,6 +24,11 @@ class Produk_Model
         return $this->db->rowCount();
     }
 
+    public function getProductByName(){
+        $this->db->query("SELECT nama_produk FROM produk");
+        return $this->db->resultSet();
+    }
+
     public function getAllProducts()
     {
         $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
