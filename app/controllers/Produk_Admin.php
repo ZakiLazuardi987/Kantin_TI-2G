@@ -3,8 +3,13 @@
 class Produk_Admin extends Controller {
     public function index()
     {
+        if(!empty($_POST['search'])){
+            $data['data'] = $this->model('Produk_Model')->dataSearching();
+        } else{
+            $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        }
         $data['title'] = 'Daftar Produk';
-        $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        // $data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
 
         $this->view('admin/template/header', $data);
@@ -117,10 +122,13 @@ class Produk_Admin extends Controller {
     {
         
             if ($this->model('Produk_Model')->delete($id_produk)) {
-                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                Flasher::setFlash('berhasil', 'dihapus', 'success');
                 header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                 exit;
             }
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/Produk_Admin'); // Ganti dengan alamat tujuan jika gagal memperbarui data
+            exit;
         
     }
 
@@ -138,5 +146,6 @@ class Produk_Admin extends Controller {
             exit;
         }
     }
+
 }
 
