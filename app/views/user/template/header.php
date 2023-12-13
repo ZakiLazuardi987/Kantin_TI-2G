@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= BASEURL?>/assets/dist/css/adminlte.min.css">
+  <!-- select2 -->
+  <script src="<?= BASEURL?>/select2/jquery.min.js"></script>
+  <link rel="stylesheet" href="<?= BASEURL?>/select2/dist/css/select2.min.css">
+  
 
   <style>
         .content-wrapper{
@@ -113,6 +117,10 @@
         #tabel-trans{
           color: white;
         }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+        line-height: 100%;
+      }
 
         /* .b-example-divider {
         width: 100%;

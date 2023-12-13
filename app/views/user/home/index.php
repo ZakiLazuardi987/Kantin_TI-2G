@@ -41,20 +41,11 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <select class="form-control">
-                                        <option selected="selected">orange</option>
-                                        <option>white</option>
-                                        <option>purple</option>
+                                    <select class="form-control" id="select2" name="state">
+                                        <option>-Pilih-</option>
+                                        <option value="WY">Le Mineral</option>
+                                        <option value="WY">Risol Mayo</option>
                                         </select>
-                                        <!-- <input type="hidden" id="id_produk">
-                                        <input type="text" id="barcode" class="form-control" autofocus>
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
-                                                <i class="fa fa-search"></i>
-
-                                            </button> -->
-
-                                        </span>
                                     </div>
                                 </td>
                             </tr>
@@ -65,7 +56,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="qty" value="1" min="1" class="form-control">
+                                        <input type="number" id="qty" value="1" min="1">
 
                                     </div>
                                 </td>
@@ -172,6 +163,11 @@
   <!-- /.content-wrapper -->
 <!-- Modal -->
 <script>
+    // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('#select2').select2();
+});
+
     function transaksi(){
         $('.modal-title').html('Transaksi');
         let url = '<?=BASEURL?>/Home_User/formTransaksi';

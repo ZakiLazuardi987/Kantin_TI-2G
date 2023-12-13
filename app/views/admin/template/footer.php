@@ -18,6 +18,24 @@
   </div>
 </div>
 
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button> -->
+
  <!-- Control Sidebar -->
  <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -43,6 +61,9 @@
 <script src="<?= BASEURL?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="<?= BASEURL?>/assets/dist/js/adminlte.js"></script>
+<script src="<?= BASEURL?>/assets/plugins/jquery/jquery.min.js"></script>
+<!-- select2 -->
+<script src="<?= BASEURL?>/select2/dist/js/select2.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?= BASEURL?>/assets/plugins/chart.js/Chart.min.js"></script>
