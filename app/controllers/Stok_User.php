@@ -4,8 +4,12 @@ class Stok_User extends Controller
 {
     public function index()
     {
+        if(!empty($_POST['search'])){
+            $data['data'] = $this->model('Produk_Model')->dataSearching();
+        } else{
+            $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        }
         $data['title'] = 'Home Stok';
-        $data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
 
         $this->view('user/template/header', $data);
@@ -23,6 +27,7 @@ class Stok_User extends Controller
         // Check if $id_produk is set before proceeding
         if ($id_produk !== null) {
             $this->view('user/stok/form_tambah', $data);
+            
         } else {
             // Handle the case when $id_produk is not set
             echo "Gagal menampilkan form stok tambah. ID produk tidak valid.";
@@ -54,11 +59,14 @@ class Stok_User extends Controller
             $result = $stokModel->tambahStok($id_produk, $stok_Tambah);
             if ($result > 0) {
                 // Insertion successful
-                echo "Stok berhasil ditambahkan!";
-                header('Location: ' . BASEURL . '/Stok_User');
+                Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Stok_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             } else {
                 // Insertion failed
-                echo "Gagal menambahkan stok.";
+                Flasher::setFlash('gagal', 'ditambahkan', 'success');
+                header('Location: ' . BASEURL . '/Stok_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             }
         }
     }
@@ -77,11 +85,14 @@ class Stok_User extends Controller
 
             if ($result > 0) {
                 // Berhasil mengurangkan stok
-                echo "Stok berhasil dikurangkan!";
-                header('Location: ' . BASEURL . '/Stok_User');
+                Flasher::setFlash('berhasil', 'dikurangi', 'success');
+                header('Location: ' . BASEURL . '/Stok_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             } else {
                 // Gagal mengurangkan stok
-                echo "Gagal mengurangkan stok.";
+                Flasher::setFlash('gagal', 'dikurangi', 'success');
+                header('Location: ' . BASEURL . '/Stok_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             }
         }
     }
