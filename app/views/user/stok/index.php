@@ -24,9 +24,9 @@
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
-                <ol class="breadcrumb ml-4 mr-3">
+                <!-- <ol class="breadcrumb ml-4 mr-3">
                     <li class="breadcrumb-item active"><a href="<?= BASEURL?>/Home_User">Home</a></li>
-                </ol>
+                </ol> -->
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
