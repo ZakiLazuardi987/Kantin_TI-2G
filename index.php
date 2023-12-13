@@ -16,6 +16,8 @@ error_reporting(error_reporting() & ~E_NOTICE);
 //         $id = $_SESSION['id'];
 //         $nama = $_SESSION['nama'];
 
+if( !session_id() ) session_start();
+
         require_once 'app/config/config.php';
         require_once 'app/init.php';
 
