@@ -61,10 +61,10 @@
                                     <td><?php echo $pengajuan['status_pengajuan']; ?></td>
                                     <td>
                                     
-                                        <button type="button" class="btn btn-primary" style="background: #1A2A46;" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                        <button type="button" class="btn btn-primary" style="background: #1A2A46;" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Edit
                                         </button>
-                                        <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
+                                        <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Hapus
                                         </button>
                                     </td>
@@ -98,17 +98,17 @@
         $('.modal-title').html('Ubah Data Pengajuan');
         let url = '<?=BASEURL?>/Pengajuan_User/formUbah';
         $.post(url, {
-            id_user: x
+            id_pengajuan: x
         }, function (data, success) {
             $('.modal-body').html(data);
         });
     }
 
     function hapusdata(x) {
-        $('.modal-title').html('Hapus Data Pengajuan');
-        $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
-        $('.tombol').html('<a href="<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x +
-            '" class="btn btn-secondary" style="background: #A52222">Hapus</a>');
-        $('#close').html('Batal');
-    }
+    $('.modal-title').html('Hapus Data Pengajuan');
+    $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
+    $('.tombol').html('<a href="<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x +
+        '" class="btn btn-secondary" style="background: #A52222">Hapus</a>');
+    $('#close').html('Batal');
+}
 </script>
