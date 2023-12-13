@@ -47,17 +47,23 @@ class Pengajuan_User extends Controller
                 ];
 
                 if ($this->model('Pengajuan_Model')->add($data) > 0) {
-                    Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                    Flasher::setFlash('berhasil', 'dikirimkan', 'success');
                     header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
                     exit;
                 } else {
-                    Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+                    Flasher::setFlash('gagal', 'dikirimkan', 'danger');
+                    header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                    exit;
                 }
             } else {
                 Flasher::setFlash('gagal', 'gambar gagal diunggah', 'danger');
+                header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
             }
         } else {
             Flasher::setFlash('gagal', 'gambar gagal diunggah atau tidak ada file yang diunggah', 'danger');
+            header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+            exit;
         }
 
         header('Location: ' . BASEURL . '/Pengajuan_User'); // Ganti dengan alamat tujuan jika terjadi kesalahan
