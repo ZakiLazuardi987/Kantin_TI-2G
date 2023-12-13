@@ -41,6 +41,12 @@ class Produk_Model
         return $this->db->resultSet();
     }
 
+    public function getHargaProduk(){
+        $this->db->query("SELECT harga, nama_produk FROM produk");
+        return $this->db->resultSet();
+        $harga = "harga";
+    }
+
     public function getProductById($id_produk)
     {
         $query = "SELECT * FROM produk p, kategori k WHERE p.id_kategori = k.id_kategori AND p.id_produk = :id_produk";

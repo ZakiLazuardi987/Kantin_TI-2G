@@ -7,6 +7,7 @@ class Home_User extends Controller {
         $data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
         $data['nama_produk'] = $this->model('Produk_Model')->getProductByName();
+        $data['harga'] = $this->model('Produk_Model')->getHargaProduk();
 
 
         $this->view('user/template/header', $data);

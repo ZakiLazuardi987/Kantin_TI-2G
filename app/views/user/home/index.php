@@ -71,7 +71,7 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <button type="button" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
+                                    <button onclick="tambahProdukKeList()" type="button" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
                                         <i class="fa fa-plus"> Tambah</i>
 
                                     </button>
@@ -115,19 +115,8 @@
                                 </thead>
                                 <tbody id="cart-table" style="background: white">
                                     <tr>
-                                        <!-- <td colspan="9" class="text-center">Tidak ada item</td> -->
-                                        <td>risol</td>
-                                        <td>2</td>
-                                        <td>3000</td>
-                                        <td>6000</td>
-                                        <td>
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="margin: auto; padding: 5px 6px; font-size: 12px;">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        </td>
-                                    </tr>
-
-                                    
+                                        
+                                    </tr>                                    
                                 </tbody>
                             </table>
                         </div>
@@ -170,6 +159,41 @@
   <!-- /.content-wrapper -->
 <!-- Modal -->
 <script>
+    function tambahProdukKeList() {
+        // Mendapatkan nilai produk yang dipilih dan kuantitasnya
+        const selectedProduct = document.getElementById('select2').value;
+        const quantity = document.getElementById('qty').value;
+
+        // Mendapatkan tabel untuk menambahkan baris baru
+        const cartTable = document.getElementById('cart-table');
+
+        // Membuat baris baru dengan nilai yang dipilih
+        const newRow = `
+            <tr>
+                <td>${selectedProduct}</td>
+                <td>${quantity}</td>
+                <!-- Menambahkan kolom lain sesuai kebutuhan -->
+                <td>harga</td>
+                <td>sub</td>
+                <td>
+                    <button type="button" class="btn btn-secondary" onclick="hapusItemDariList(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        // Menambahkan baris baru ke dalam tabel
+        cartTable.innerHTML += newRow;
+    }
+
+    function hapusItemDariList(button) {
+        // Hapus baris yang sesuai saat tombol hapus ditekan
+        const row = button.closest('tr');
+        row.remove();
+    }
+
+
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
     $('#select2').select2();
