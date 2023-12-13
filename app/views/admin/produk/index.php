@@ -21,10 +21,10 @@
                     </ul>
                 </div>
 
-                <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
+                <form action="<?= BASEURL?>/Produk_Admin" method="post" class="d-flex" role="search" id="searchForm">
+                  <input class="form-control" type="text" name="search" placeholder="Search" autocomplete="off">
+                  <button class="btn btn-outline-primary" type="submit" id="tombolCari">Search</button>
+                </form>
                 
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,6 +37,11 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+      <div class="row mb-2">
+            <div class="col-lg-6">
+              <?php Flasher::flash(); ?>
+            </div>
+      </div>
         <div class="row mb-2">
             <div class="col-sm-6">
         <button type="button" class="btn" style="background: #F6E8C1;" data-toggle="modal" data-target="#exampleModal" onclick="tambahdata()"><i class="fa fa-plus"></i> Tambah Produk</button>
@@ -136,4 +141,6 @@ function setDropdownText(text) {
         });
     });
   }
+
+
 </script>
