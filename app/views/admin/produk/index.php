@@ -99,9 +99,13 @@
 
   function hapusdata(x){
     $('.modal-title').html('Hapus Data Produk');
-    $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
-    $('.tombol').html('<a href="<?= BASEURL?>/Produk_Admin/prosesHapus/' + x + '" class="btn btn-secondary" style="background: #0595F7">Hapus</a>');
-    $('#close').html('Batal');
+        let url = '<?= BASEURL?>/Produk_Admin/formHapus';
+        $.post(url, {
+            id_produk: x
+        }, function (data, success) {
+            $('.modal-body').html(data);
+            $('#hapusForm').attr('action', '<?= BASEURL?>/Produk_Admin/prosesHapus/' + x);
+        });
   }
   
   // Memperbarui teks pada tombol dropdown saat item dipilih
