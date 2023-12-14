@@ -6,7 +6,7 @@
         <!-- <div class="col-md-6"> -->
 
         <!-- <div class="col-md-6 ml-1"> -->
-        <div class="card mx-auto" style="width: 400px; height: 180px; background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+        <div class="card mx-auto" style="width: 400px; height: 200px; background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
     <!-- <div class="card-header" style="background: #F6E8C1;"><strong>METODE PEMBAYARAN</strong></div> -->
     <div class="card-body">
     <label for="cashAmount" class="mr-2">Jumlah Nominal:</label>
@@ -25,7 +25,7 @@
     </div>
 </div>
 </div>
-<button type="submit" name="submit" class="btn btn-warning d-block mx-auto" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;" onclick="return validatePayment()"><strong>TRANSAKSI SELESAI</strong></button>       
+<button type="submit" name="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;" onclick="return validatePayment()"><strong>TRANSAKSI SELESAI</strong></button>       
   </div>
 </div>
 </div>
