@@ -111,10 +111,13 @@
     }
 
     function hapusdata(x) {
-    $('.modal-title').html('Hapus Data Pengajuan');
-    $('.modal-body').html('Apakah Anda Yakin Akan Menghapus Data ini?');
-    $('.tombol').html('<a href="<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x +
-        '" class="btn btn-secondary" style="background: #0595F7">Hapus</a>');
-    $('#close').html('Batal');
-}
+        $('.modal-title').html('Hapus Data Pengajuan');
+        let url = '<?= BASEURL?>/Pengajuan_User/formHapus';
+        $.post(url, {
+            id_pengajuan: x
+        }, function (data, success) {
+            $('.modal-body').html(data);
+            $('#hapusForm').attr('action', '<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x);
+        });
+    }
 </script>
