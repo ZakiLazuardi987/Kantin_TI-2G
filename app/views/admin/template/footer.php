@@ -5,15 +5,15 @@
       <div class="modal-header" style="background: #1A2A46; color: #F9CC41;">
         <h5 class="modal-title" style="text-transform: uppercase;" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-        <!-- <span aria-hidden="true">&times;</span> -->
+        <span aria-hidden="true">&times;</span>
       </div>
       <div class="modal-body">
         <p>Modal body text goes here.</p>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <span class="tombol"></span><button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
+        
+      </div> -->
     </div>
   </div>
 </div>
