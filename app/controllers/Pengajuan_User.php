@@ -67,6 +67,11 @@ class Pengajuan_User extends Controller
         $this->view('user/pengajuan/update_pengajuan', $data);
     }
 
+    public function formHapus()
+    {
+        $this->view('user/pengajuan/hapus_pengajuan');
+    }
+
     public function prosesUbah()
     {
         $pengajuanModel = $this->model('Pengajuan_Model');
