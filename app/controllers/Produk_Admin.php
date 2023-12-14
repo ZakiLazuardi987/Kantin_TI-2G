@@ -38,6 +38,11 @@ class Produk_Admin extends Controller {
         
     }
 
+    public function formHapus()
+    {
+        $this->view('admin/produk/hapus_produk');
+    }
+
     public function prosesTambah()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['gambar_produk']['name'])) {
