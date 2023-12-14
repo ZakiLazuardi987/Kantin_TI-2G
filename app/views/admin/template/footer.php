@@ -62,12 +62,13 @@
 <!-- AdminLTE -->
 <script src="<?= BASEURL?>/assets/dist/js/adminlte.js"></script>
 <script src="<?= BASEURL?>/assets/plugins/jquery/jquery.min.js"></script>
-<!-- select2 -->
-<script src="<?= BASEURL?>/select2/dist/js/select2.min.js"></script>
 
 <script src="<?= BASEURL?>/assets/datatables/datatables.min.js"></script>
 <script src="<?= BASEURL?>/assets/datatables/DataTables-1.13.8/js/dataTables.bootstrap5.min.js"></script>
 <script>new DataTable('#example');</script>
+
+<!-- select2 -->
+<script src="<?= BASEURL?>/select2/dist/js/select2.min.js"></script>
 
 </body>
 </html>
