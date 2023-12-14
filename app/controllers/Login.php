@@ -21,7 +21,9 @@ class Login extends Controller {
                     exit;
                 }
             } else {
-                $data['error_message'] = 'Invalid username or password.';
+                Flasher::setFlash('username or password', 'invalid', 'danger');
+                header('Location: ' . BASEURL . '/Login'); // Ganti dengan alamat tujuan setelah berhasil memperbarui data
+                exit;
             }
         }
 
