@@ -92,7 +92,10 @@
                     <div class="box-body">
                         <div align="right">
                             <h4><strong>Total Pembayaran</strong></h4>
-                            <h3><span id="total" style="font-size: 40pt; color: #1A2A46;">Rp 10.000</span></h3>
+                            <h3><span id="total" style="font-size: 40pt; color: #1A2A46;">
+                            Rp 10.000
+                                </span>
+                            </h3>
 
                         </div>
                     </div>
@@ -159,6 +162,10 @@
   <!-- /.content-wrapper -->
 <!-- Modal -->
 <script>
+    $(document).ready(function() {
+        $('#select2').select2();
+    });
+
     function tambahProdukKeList() {
         // Mendapatkan nilai produk yang dipilih dan kuantitasnya
         const selectedProduct = document.getElementById('select2').value;
@@ -167,6 +174,10 @@
         // Mendapatkan tabel untuk menambahkan baris baru
         const cartTable = document.getElementById('cart-table');
 
+        if (!selectedProduct) {
+            alert("Harap pilih produk sebelum menambahkannya ke daftar.");
+            return; // Menghentikan penambahan produk jika tidak ada produk yang dipilih
+        }
         // Membuat baris baru dengan nilai yang dipilih
         const newRow = `
             <tr>
@@ -195,9 +206,7 @@
 
 
     // In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('#select2').select2();
-});
+    
 
     function bayar(){
         $('.modal-title').html('Pembayaran');
