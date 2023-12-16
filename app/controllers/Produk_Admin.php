@@ -11,10 +11,11 @@ class Produk_Admin extends Controller {
         $data['title'] = 'Daftar Produk';
         // $data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('admin/template/header', $data);
-        $this->view('admin/template/navbar');
-        $this->view('admin/template/sidebar');
+        $this->view('admin/template/navbar', $data);
+        $this->view('admin/template/sidebar', $data);
         $this->view('admin/produk/index', $data); // Create a new view file for displaying the list of products
         $this->view('admin/template/footer');
     }

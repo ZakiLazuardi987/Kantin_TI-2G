@@ -5,10 +5,11 @@ class Home_Admin extends Controller {
     {
         $data['title'] = 'Home Admin';
         //$data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('admin/template/header', $data);
-        $this->view('admin/template/navbar');
-        $this->view('admin/template/sidebar');
+        $this->view('admin/template/navbar', $data);
+        $this->view('admin/template/sidebar', $data);
         $this->view('admin/home/index', $data);
         $this->view('admin/template/footer');
     }

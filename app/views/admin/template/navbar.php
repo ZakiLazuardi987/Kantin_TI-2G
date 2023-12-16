@@ -8,7 +8,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: #F9CC41"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-      <a class="navbar-brand" href="#" style="color: #F9CC41">
+      <a class="navbar-brand" style="color: #F9CC41">
       <img src="<?= BASEURL?>/assets/brand/polinema.png" alt="Logo" width="30" height="30" margin-right="2px" class="d-inline-block align-text-top">
         <img src="<?= BASEURL?>/assets/brand/logo-jti.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
             Kantin JTI Polinema
@@ -21,7 +21,7 @@
       <li class="nav-item mr-2">
         <a class="navbar-brand" style="color: white">
         <i class="nav-icon fas fa-user"></i>
-                Hello Admin!
+                Hello <?php echo $data['nama_user']; ?> !
             </a>
         </li>
         <li class="nav-item mr-2">

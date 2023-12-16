@@ -7,7 +7,7 @@
       <div class="modal-body">
                     <form action="<?= BASEURL?>/Pegawai_Admin/prosesTambah" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                <label for="nama_user">Nama Pegawai:</label>
+                <label for="nama_user">Nama:</label>
                 <input type="text" name="nama_user" id="nama_user" class="form-control" required>
             </div>
             <div class="form-group">

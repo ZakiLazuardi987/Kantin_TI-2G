@@ -50,7 +50,7 @@
         <div class="row" id="produkContainer">
           <?php
           foreach($data['data'] as $produk) { ?>
-          <div class="card card-spacing">
+          <div class="card card-spacing" style="border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
             <img src="<?= BASEURL?>/img/produk/<?php echo $produk['gambar_produk']; ?>" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title" style="text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><strong><?php echo $produk['nama_produk']; ?></strong></h5>

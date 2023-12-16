@@ -9,9 +9,11 @@ class Pengajuan_User extends Controller
         // Fetch data from the employee table
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
         $data['kategori'] = $this->model('Pengajuan_Model')->getAllCategories();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
+
         $this->view('user/template/header', $data);
-        $this->view('user/template/navbar');
-        $this->view('user/template/sidebar');
+        $this->view('user/template/navbar', $data);
+        $this->view('user/template/sidebar', $data);
         $this->view('user/pengajuan/index', $data);
         $this->view('admin/template/footer');
     }
@@ -63,6 +65,7 @@ class Pengajuan_User extends Controller
         $id_pengajuan = $_POST['id_pengajuan'];
         $data['ubahdata'] = $this->model('Pengajuan_Model')->getPengajuanById($id_pengajuan);
         $data['kategori'] = $this->model('Pengajuan_Model')->getAllCategories();
+        
 
         $this->view('user/pengajuan/update_pengajuan', $data);
     }

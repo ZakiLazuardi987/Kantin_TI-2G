@@ -14,9 +14,11 @@ class Login extends Controller {
 
             if ($user) {
                 if ($user['level'] == 'admin') {
+                    $_SESSION['username'] = $user['username'];
                     header('Location: ' . BASEURL . '/Home_Admin');
                     exit;
                 } elseif ($user['level'] == 'user') {
+                    $_SESSION['username'] = $user['username'];
                     header('Location: ' . BASEURL . '/Home_User');
                     exit;
                 }

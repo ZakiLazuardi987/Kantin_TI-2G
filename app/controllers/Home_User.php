@@ -8,11 +8,11 @@ class Home_User extends Controller {
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
         $data['nama_produk'] = $this->model('Produk_Model')->getProductByName();
         $data['harga'] = $this->model('Produk_Model')->getHargaProduk();
-
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('user/template/header', $data);
-        $this->view('user/template/navbar');
-        $this->view('user/template/sidebar');
+        $this->view('user/template/navbar', $data);
+        $this->view('user/template/sidebar', $data);
         $this->view('user/home/index', $data);
         $this->view('admin/template/footer');
     }

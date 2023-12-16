@@ -8,12 +8,12 @@ class Pegawai_Admin extends Controller
 
         // Fetch data from the employee table
         $data['data'] = $this->model('Pegawai_Model')->getAllPegawaiWithAkun();
-    
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         // Tampilkan view dengan data pegawai
         $this->view('admin/template/header', $data);
-        $this->view('admin/template/navbar');
-        $this->view('admin/template/sidebar');
+        $this->view('admin/template/navbar', $data);
+        $this->view('admin/template/sidebar', $data);
         $this->view('admin/pegawai/index', $data);
         $this->view('admin/template/footer');
     }

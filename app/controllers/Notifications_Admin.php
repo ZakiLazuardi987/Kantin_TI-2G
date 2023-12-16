@@ -5,10 +5,11 @@ class Notifications_Admin extends Controller {
     {
         $data['title'] = 'Notifications Admin';
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('admin/template/header', $data);
-        $this->view('admin/template/navbar');
-        $this->view('admin/template/sidebar');
+        $this->view('admin/template/navbar', $data);
+        $this->view('admin/template/sidebar', $data);
         $this->view('admin/notifications/index', $data);
         $this->view('admin/template/footer');
     }

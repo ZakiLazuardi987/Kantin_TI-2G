@@ -7,7 +7,7 @@
                     <?php foreach ($data['ubahdata'] as $ubah) { ?>
                         <div class="form-group">
                             <input type="hidden" name="id_user" value="<?php echo $ubah['id_user']; ?>">
-                            <label for="nama_user">Nama Pegawai:</label>
+                            <label for="nama_user">Nama:</label>
                             <input type="text" name="nama_user" id="nama_user" class="form-control" value="<?php echo $ubah['nama_user']; ?>">
                         </div>
                         <div class="form-group">

@@ -46,7 +46,7 @@
                     <thead style="background: #F6E8C1;">
                         <tr>
                             <th>ID</th>
-                            <th>Nama Pegawai</th>
+                            <th>Nama</th>
                             <th>Jenis Kelamin</th>
                             <th>Alamat</th>
                             <th>No Telp</th>

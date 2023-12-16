@@ -8,7 +8,7 @@
     <div class="user-panel ml-4 mt-3 pb-3 mb-3 d-flex">
       <a class="navbar-brand ml-3" style="color: white">
         <i class="nav-icon fas fa-user mr-3"></i>
-                Nama Admin
+        <?php echo $data['nama_user']; ?>
             </a>
     
       </div>

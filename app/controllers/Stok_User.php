@@ -11,10 +11,11 @@ class Stok_User extends Controller
         }
         $data['title'] = 'Home Stok';
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('user/template/header', $data);
-        $this->view('user/template/navbar');
-        $this->view('user/template/sidebar');
+        $this->view('user/template/navbar', $data);
+        $this->view('user/template/sidebar', $data);
         $this->view('user/stok/index', $data);
         $this->view('admin/template/footer');
     }

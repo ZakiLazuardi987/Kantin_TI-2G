@@ -5,10 +5,11 @@ class History_User extends Controller {
     {
         //$data['title'] = 'Home Stok';
         //$data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
 
         $this->view('user/template/header');
-        $this->view('user/template/navbar');
-        $this->view('user/template/sidebar');
+        $this->view('user/template/navbar', $data);
+        $this->view('user/template/sidebar', $data);
         $this->view('user/historyPenjualan/index');
         $this->view('admin/template/footer');
         

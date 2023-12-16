@@ -33,7 +33,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <input type="date" id="tanggal" class="form-control" style="width: 250px">
+                                    <input type="date" id="tanggal" class="form-control" style="width: 350px">
 
                                     </div>
                                 </td>
