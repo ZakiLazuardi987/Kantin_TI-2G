@@ -1,19 +1,19 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Home</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Home</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6 d-flex justify-content-end align-items-center">
                     <ol class="breadcrumb ml-4 mr-3">
                         <li class="breadcrumb-item active"><i class="fa fa-shopping-cart"></i> Transaksi User</li>
                     </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
 
 
     <!-- /.content-header -->
@@ -33,7 +33,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <input type="date" id="tanggal" class="form-control" style="width: 350px">
+                                    <input type="date" id="tanggal" class="form-control" style="width: 250px">
 
                                     </div>
                                 </td>
@@ -87,20 +87,29 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 mt-2 mb-2">
-                <div class="box box-widget">
-                    <div class="box-body">
-                        <div align="right">
-                            <h4><strong>Total Pembayaran</strong></h4>
-                            <h3><span id="total" style="font-size: 40pt; color: #1A2A46;">Rp 10.000</span></h3>
+                <div class="col-lg-4 mt-2 mb-2">
+                    <div class="box box-widget">
+                        <div class="box-body">
+                            <div align="right">
+                                <h4><strong>Total Pembayaran</strong></h4>
+                                <h3><span id="total" style="font-size: 40pt; color: #1A2A46;">
+                                        <?php
+                                        $total = 0;
+                                        foreach ($data['keranjang'] as $item) {
+                                            $total += $item['qty'] * $item['harga'];
+                                        }
+                                        echo 'Rp. ' . $total;
+                                        ?>
+                                    </span>
+                                </h3>
 
+                            </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
-            <div class="col-lg-12 mt-3 mb-2">
+                <div class="col-lg-12 mt-3 mb-2">
                     <div class="box box-widget">
                         <div class="box-body table-responsive">
                             <table class="table table-bordered">
@@ -114,18 +123,30 @@
                                     </tr>
                                 </thead>
                                 <tbody id="cart-table" style="background: white">
-                                    <tr>
-                                        
-                                    </tr>                                    
+                                    <?php foreach ($data['keranjang'] as $item) : ?>
+                                        <tr>
+                                            <td><?= $item['nama_produk'] ?></td>
+                                            <td><?= $item['qty'] ?></td>
+                                            <td><?= $item['harga'] ?></td>
+                                            <td><?= $item['qty'] * $item['harga'] ?></td>
+                                            <form action="/Kantin_TI-2G/Home_User/deleteCart" method="post">
+                                                <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
+                                                <td><button type="submit" class="btn btn-danger btn-sm">Hapus</button></td>
+                                            </form>
+                                        </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
-        </div>
-        
-        <!-- <div class ="row mt-3" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+            </div>
+            <div class="float-right">
+                <button type="button" id="add-cart" class="btn" data-toggle="modal" data-target="#exampleModal" onclick="bayar(<?= $total ?>)" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                    <i class="fa fa-credit-card"> Bayar</i>
+                </button>
+            </div>
+            <!-- <div class ="row mt-3" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
                 <div class="col-lg-12 mt-2 mb-2">
                     <div class="box box-widget">
                         <div class="box-body table-responsive">
@@ -152,63 +173,40 @@
             </div> -->
 
         </div>
-        
-      </div>
+
+    </div>
     <!-- /.content -->
 </div>
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 <!-- Modal -->
 <script>
-    function tambahProdukKeList() {
-        // Mendapatkan nilai produk yang dipilih dan kuantitasnya
-        const selectedProduct = document.getElementById('select2').value;
-        const quantity = document.getElementById('qty').value;
-
-        // Mendapatkan tabel untuk menambahkan baris baru
-        const cartTable = document.getElementById('cart-table');
-
-        // Membuat baris baru dengan nilai yang dipilih
-        const newRow = `
-            <tr>
-                <td>${selectedProduct}</td>
-                <td>${quantity}</td>
-                <!-- Menambahkan kolom lain sesuai kebutuhan -->
-                <td>harga</td>
-                <td>sub</td>
-                <td>
-                    <button type="button" class="btn btn-secondary" onclick="hapusItemDariList(this)">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
-
-        // Menambahkan baris baru ke dalam tabel
-        cartTable.innerHTML += newRow;
-    }
-
-    function hapusItemDariList(button) {
-        // Hapus baris yang sesuai saat tombol hapus ditekan
-        const row = button.closest('tr');
-        row.remove();
-    }
-
-
-    // In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('#select2').select2();
-});
-
-    function bayar(){
+    function bayar(totalPembayaran) {
+        if (totalPembayaran == 0) {
+            alert('Keranjang masih kosong!');
+            // reload page
+            location.reload();
+            return;
+        }
         $('.modal-title').html('Pembayaran');
-        let url = '<?=BASEURL?>/Home_User/formBayar';
-        $.post(url, function(data, success){
-            $('.modal-body').html(data);
+        let url = '<?= BASEURL ?>/Home_User/formBayar';
+
+        const formData = new FormData();
+        formData.append('totalPembayaran', totalPembayaran);
+        // bawah id user
+        formData.append('tgl_order', today);
+        formData.append('id_akun', 11);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                $('.modal-body').html(data);
+            }
         });
         // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #0595F7">Reset</a>');
     }
-
-    
     // Mendapatkan elemen input tanggal
     const inputTanggal = document.getElementById('tanggal');
 
@@ -217,6 +215,4 @@ $(document).ready(function() {
 
     // Mengatur nilai input tanggal menjadi tanggal hari ini
     inputTanggal.value = today;
-
 </script>
-

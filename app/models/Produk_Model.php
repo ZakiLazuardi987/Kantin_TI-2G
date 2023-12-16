@@ -24,14 +24,10 @@ class Produk_Model
         return $this->db->rowCount();
     }
 
-    public function getProductByName(){
-        $this->db->query("SELECT nama_produk FROM produk");
-        return $this->db->resultSet();
-    }
-
     public function getAllProducts()
     {
-        $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
+        // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
+        $this->db->query("SELECT * FROM getallproduk ORDER BY id_produk DESC");
         return $this->db->resultSet();
     }
 
@@ -39,12 +35,6 @@ class Produk_Model
     {
         $this->db->query("SELECT * FROM kategori");
         return $this->db->resultSet();
-    }
-
-    public function getHargaProduk(){
-        $this->db->query("SELECT harga, nama_produk FROM produk");
-        return $this->db->resultSet();
-        $harga = "harga";
     }
 
     public function getProductById($id_produk)
