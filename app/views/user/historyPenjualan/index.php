@@ -7,12 +7,15 @@
                     <h1 class="m-0">Data History Penjualan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-      <ol class="breadcrumb ml-2 mr-3">
-                    <li><input class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
-                </ol>
-      <ol class="breadcrumb ml-2 mr-3">
-                    <li><button type="button" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
-                </ol>
+                <form method="post" action="<?= BASEURL ?>/History_User/index">
+                    <ol class="breadcrumb ml-2 mr-3">
+                        <li><input name="tanggal" class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
+                    </ol>
+                    <ol class="breadcrumb ml-2 mr-3">
+                        <li><button type="submit" name="filter" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
+                    </ol>
+                </form>
+
                 <!-- <ol class="breadcrumb ml-1">
                     <li class="breadcrumb-item active"><a href="<?= BASEURL?>/Home_User">Home</a></li>
                 </ol> -->
@@ -85,6 +88,4 @@
         });
         // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #A52222">Reset</a>');
     }
-
-  
 </script>
