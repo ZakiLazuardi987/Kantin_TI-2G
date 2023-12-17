@@ -26,13 +26,12 @@
             </div>
         </div>
         <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post" onsubmit="return validatePayment()">
-            <?php foreach($data['keranjang'] as $item) { ?>
-                <input type="hidden" name="id_keranjang" value="<?= $item['id_keranjang'] ?>">
-                <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
-                <input type="hidden" name="tgl_order" value="<?= $item['tgl_order'] ?>">
-                <input type="hidden" name="qty" value="<?= $item['qty'] ?>">
-           <?php } ?>
-           <input type="hidden" name="total_pembayaran" id="total_pembayaran">
+        <?php foreach($data['keranjang'] as $item) { ?>
+    <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][id_produk]" value="<?= $item['id_produk'] ?>">
+    <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][tgl_order]" value="<?= $item['tgl_order'] ?>">
+    <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][qty]" value="<?= $item['qty'] ?>">
+<?php } ?>
+<input type="hidden" name="total_pembayaran" id="total_pembayaran">
             
             <button type="submit" name="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
         </form>
