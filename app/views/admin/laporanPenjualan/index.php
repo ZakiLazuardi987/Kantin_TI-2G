@@ -8,10 +8,10 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb ml-2 mr-3">
-                    <li><input class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
+                    <li><input id="tanggalFilter" class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
                 </ol>
       <ol class="breadcrumb ml-2 mr-3">
-                    <li><button type="button" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
+                    <li><button id="filterBtn" type="button" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
                 </ol>
                     <!-- <ol class="breadcrumb ml-4 mr-3">
                         <li class="breadcrumb-item active">Admin</li>
@@ -49,23 +49,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php foreach ($data['laporanPenjualan'] as $laporan) : ?>
                             <tr>
-                                <td>23-12-2023</td>
-                                <td>5</td>
-                                <td>15</td>
-                                <td>20000</td>
-                                <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto;
-          padding: 5px 6px;
-            font-size: 12px;">
-                                        Lihat Detail
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                        
+                                        <td><?= $laporan['tgl_order']; ?></td>
+                                        <td><?= $laporan['total_transaksi']; ?></td>
+                                        <td><?= $laporan['total_produk_terjual']; ?></td>
+                                        <td><?= $laporan['total_penjualan']; ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                                Lihat Detail
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                     </tbody>
+                    
                 </table>
             </div>
         </div>
