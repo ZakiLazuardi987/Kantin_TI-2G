@@ -117,15 +117,20 @@ class Transaksi_Model
     }
 
     public function getDataByDate($tanggalFilter)
-{
-    $query = "SELECT tgl_order, COUNT(*) as total_transaksi, SUM(total_qty) as total_produk_terjual, SUM(total_bayar) as total_penjualan
-              FROM transaksi
-              WHERE tgl_order = :tanggalFilter
-              GROUP BY tgl_order";
+    {
+        $query = "SELECT tgl_order, COUNT(*) as total_transaksi, SUM(total_qty) as total_produk_terjual, SUM(total_bayar) as total_penjualan
+                  FROM transaksi
+                  WHERE tgl_order = :tanggalFilter
+                GROUP BY tgl_order";
 
-    $this->db->query($query);
-    $this->db->bind(':tanggalFilter', $tanggalFilter);
-}
+        $this->db->query($query);
+        $this->db->bind(':tanggalFilter', $tanggalFilter);
+    }
 
-
+    public function getHistoryByDate($tanggalFilter)
+    {
+        $this->db->query("SELECT * FROM transaksi WHERE tgl_order = :tanggalFilter ORDER BY id_transaksi DESC");
+        $this->db->bind(':tanggalFilter', $tanggalFilter);
+        return $this->db->resultSet();
+    }
 }
