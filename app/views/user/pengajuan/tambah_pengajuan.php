@@ -6,6 +6,9 @@
       <div class="row">
       <div class="modal-body">
                     <form action="<?= BASEURL?>/Pengajuan_User/prosesTambah" method="POST" enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="status_pengajuan" value="on process">
+                    
                     <div class="form-group">
                 <label for="kategori">Pilih Kategori:</label>
                 <select name="id_kategori" id="id_kategori" class="form-control" required>
