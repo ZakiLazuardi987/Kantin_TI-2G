@@ -51,12 +51,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                    <?php foreach ($data['data'] as $item) : ?>
                             <tr>
-                                <td>1</td>
-                                <td>23-12-2023</td>
-                                <td>2</td>
-                                <td>6000</td>
+                                <td><?= $item['id_transaksi'] ?></td>
+                                <td><?= $item['tgl_order'] ?></td>
+                                <td><?= $item['total_qty'] ?></td>
+                                <td><?= $item['total_bayar'] ?></td>
                                 <td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
                                         Lihat Detail
@@ -64,7 +64,7 @@
                                     
                                 </td>
                             </tr>
-                        
+                            <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

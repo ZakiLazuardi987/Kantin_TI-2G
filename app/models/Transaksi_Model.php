@@ -69,4 +69,41 @@ class Transaksi_Model
         $this->db->bind('id_akun', $id_akun);
         $this->db->execute();
     }
+
+    public function transaksi($data) {
+        // Menginisialisasi totalQty
+        $totalQty = 0;
+    
+        // Menghitung total qty dari setiap keranjang
+        foreach ($data['keranjang'] as $item) {
+            $qty = $item['qty'];
+            $totalQty += $qty;
+        }
+        echo $totalQty;
+    
+        // Mendapatkan total pembayaran dari input
+        $totalPembayaran = $data['total_pembayaran'];
+    
+        // Mendapatkan tanggal order dari data keranjang (misalnya diambil dari salah satu item keranjang)
+        $tglOrder = $data['keranjang'][0]['tgl_order'];
+    
+        // Menyiapkan query untuk memasukkan data transaksi ke tabel transaksi
+        $query = "INSERT INTO transaksi (tgl_order, total_qty, total_bayar) VALUES (:tgl_order, :total_qty, :total_bayar)";
+    
+        // Menjalankan query dengan mengikat nilai dari variabel-variabel yang telah disiapkan sebelumnya
+        $this->db->query($query);
+        $this->db->bind('tgl_order', $tglOrder);
+        $this->db->bind('total_qty', $totalQty);
+        $this->db->bind('total_bayar', $totalPembayaran);
+        $this->db->execute();
+    
+        return $totalQty;
+    }
+    
+    public function getAllTransaction()
+    {
+        // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
+        $this->db->query("SELECT * FROM transaksi ORDER BY id_transaksi DESC");
+        return $this->db->resultSet();
+    }
 }

@@ -24,19 +24,32 @@ class Home_User extends Controller
     {
         // $data['title'] = 'Tambah Produk';
         //$data['kategori'] = $this->model('Produk_Model')->getAllCategories();
-        $this->view('user/home/form_bayar');
+        $data['keranjang'] = $this->model('Keranjang_Model')->getAllKeranjang();
+        $this->view('user/home/form_bayar', $data);
     }
 
     public function addToCart()
+    
     {
-        // $produk = [
-        //     $tgl_order = $_POST['tanggal']; 
-        //     $id_produk = $_POST['id_produk']; 
-        //     $qty = $_POST['qty']; 
-        // ];
-
-        $this->model('Keranjang_Model')->addToCart($_POST);
-        header('Location: ' . BASEURL . '/Home_User');
+        //var_dump($_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Mengumpulkan data dari formulir
+            
+    
+            $produk = [
+                'id_produk' => $_POST['id_produk'],
+                'tgl_order' => $_POST['tgl_order'],
+                'qty' => $_POST['qty']
+            ];
+    
+                if ($this->model('Keranjang_Model')->addToCart($produk)> 0) {
+                    
+                    header('Location: ' . BASEURL . '/Home_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                    
+                }
+            
+         
+        }
     }
 
     public function deleteCart(): void
@@ -53,4 +66,33 @@ class Home_User extends Controller
         $this->model('Transaksi_Model')->bayar($id_akun, $tgl_order);
         header('Location: ' . BASEURL . '/Home_User');
     }
+
+    public function prosesTransaksi() {
+        // Dummy data, bisa diganti dengan data dari inputan pengguna
+        
+        $data = [
+            'keranjang' => [
+                [
+                    'id_keranjang' => $_POST['id_keranjang'],
+                    'id_produk' => $_POST['id_produk'],
+                    'tgl_order' => $_POST['tgl_order'],
+                    'qty' => $_POST['qty']
+                ]
+            ],
+            'total_pembayaran' => $_POST['total_pembayaran']
+        ];
+        
+
+        // Memanggil model dan fungsi transaksi untuk menyimpan data
+        $model = $this->model('Transaksi_Model'); // Ganti dengan nama model yang sesuai
+        $rowCount = $model->transaksi($data);
+
+        // Memberikan respons berdasarkan hasil transaksi
+        if ($rowCount > 0) {
+            header('Location: ' . BASEURL . '/Home_User');
+        
+        }
+    }
 }
+
+

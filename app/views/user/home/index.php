@@ -25,6 +25,7 @@
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
+                    <form action="<?= BASEURL?>/Home_User/addToCart" method="post">
                         <table width="100%">
                         <tr>
                         <!-- <input type="hidden" id="id_akun" value="<?= $_data['id_akun']?>"> -->
@@ -34,7 +35,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <input type="date" id="tanggal" class="form-control" style="width: 250px">
+                                    <input type="date" id="tgl_order" name="tgl_order" class="form-control" style="width: 250px">
 
                                     </div>
                                 </td>
@@ -46,7 +47,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <select class="form-control" id="select2" name="state" required>
+                                    <select class="form-control" id="id_produk" name="id_produk" required>
                                         <option></option>
                                         <?php
                                         foreach($data['data'] as $nama_produk){
@@ -64,7 +65,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="qty" value="1" min="1" class="form-control">
+                                        <input type="number" id="qty" value="1" min="1" name="qty" class="form-control">
 
                                     </div>
                                 </td>
@@ -72,7 +73,7 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <button onclick="tambahProdukKeList()" type="button" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
+                                    <button type="submit" name="submit" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
                                         <i class="fa fa-plus"> Tambah</i>
 
                                     </button>
@@ -83,7 +84,9 @@
                                 </td>
                             
                             </tr>
+                                   
                         </table>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -93,16 +96,17 @@
                         <div class="box-body">
                             <div align="right">
                                 <h4><strong>Total Pembayaran</strong></h4>
-                                <h3><span id="total" data-total="<?= $total ?>" style="font-size: 40pt; color: #1A2A46;">
+                                
                                         <?php
                                         $total = 0;
                                         foreach ($data['keranjang'] as $item) {
                                             $total += $item['qty'] * $item['harga'];
-                                        }
-                                        echo 'Rp. ' . $total;
-                                        ?>
-                                    </span>
-                                </h3>
+                                        }?>
+                                        <h3>
+                                        <span id="total" data-total="<?= $total ?>" style="font-size: 40pt; color: #1A2A46;">
+                                            <?php echo 'Rp. ' . $total; ?>
+                                        </span>
+                                    </h3>
 
                             </div>
                         </div>
@@ -130,7 +134,7 @@
                                             <td><?= $item['qty'] ?></td>
                                             <td><?= $item['harga'] ?></td>
                                             <td><?= $item['qty'] * $item['harga'] ?></td>
-                                            <form action="/Kantin_TI-2G/Home_User/deleteCart" method="post">
+                                            <form action="<?= BASEURL?>/Home_User/deleteCart" method="post">
                                                 <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
                                                 <td><button type="submit" class="btn btn-success" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">Hapus</button></td>
                                             </form>
@@ -179,7 +183,7 @@
 <script>
     // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    $('#select2').select2();
+    $('#id_produk').select2();
 });
 
     function bayar() {
@@ -191,31 +195,31 @@ $(document).ready(function() {
     }
 
 
-    function tambahProdukKeList() {
-    let tgl_order = document.getElementById('tanggal').value;
-    let id_produk = document.getElementById('select2').value;
-    let qty = document.getElementById('qty').value;
+//     function tambahProdukKeList() {
+//     let tgl_order = document.getElementById('tanggal').value;
+//     let id_produk = document.getElementById('select2').value;
+//     let qty = document.getElementById('qty').value;
     
-    $.ajax({
-        url: '<?= BASEURL ?>/Home_User/addToCart', // Ganti dengan URL yang benar
-        method: 'POST',
-        data: {
-            tgl_order: tgl_order,
-            id_produk: id_produk,
-            qty: qty
-        },
-        success: function(response) {
-        // Pastikan respons hanya berisi data yang ingin Anda tambahkan ke tabel produk
-        // Misalnya, respons hanya berisi baris baru yang akan ditambahkan ke tabel
-        // Kemudian, tambahkan baris baru ini ke tabel tanpa memuat ulang seluruh halaman
-        $('#cart-table tbody').append(response); // Gunakan append untuk menambahkan baris baru ke tabel
-    }
-    });
-}
+//     // $.ajax({
+//         url: '<?= BASEURL ?>/Home_User/addToCart', // Ganti dengan URL yang benar
+//         method: 'POST',
+//         data: {
+//             tgl_order: tgl_order,
+//             id_produk: id_produk,
+//             qty: qty
+//         },
+//         success: function(response) {
+//         // Pastikan respons hanya berisi data yang ingin Anda tambahkan ke tabel produk
+//         // Misalnya, respons hanya berisi baris baru yang akan ditambahkan ke tabel
+//         // Kemudian, tambahkan baris baru ini ke tabel tanpa memuat ulang seluruh halaman
+//         $('#cart-table tbody').append(response); // Gunakan append untuk menambahkan baris baru ke tabel
+//     }
+//     // });
+// }
 
 
     // Mendapatkan elemen input tanggal
-    const inputTanggal = document.getElementById('tanggal');
+    const inputTanggal = document.getElementById('tgl_order');
 
     // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
     const today = new Date().toISOString().split('T')[0];

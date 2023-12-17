@@ -25,10 +25,16 @@
                 </div>
             </div>
         </div>
-        <form action="/Kantin_TI-2G/Home_User/bayar" method="post" onsubmit="return validatePayment()">
-            <input type="hidden" name="id_produk" value="<?= $data['keranjang']['id_produk'] ?>">
-            <input type="hidden" name="tgl_order" value="<?= $_POST['tgl_order'] ?>">
-            <button type="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
+        <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post" onsubmit="return validatePayment()">
+            <?php foreach($data['keranjang'] as $item) { ?>
+                <input type="hidden" name="id_keranjang" value="<?= $item['id_keranjang'] ?>">
+                <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
+                <input type="hidden" name="tgl_order" value="<?= $item['tgl_order'] ?>">
+                <input type="hidden" name="qty" value="<?= $item['qty'] ?>">
+           <?php } ?>
+           <input type="hidden" name="total_pembayaran" id="total_pembayaran">
+            
+            <button type="submit" name="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
         </form>
     </div>
 </div>
@@ -37,54 +43,55 @@
 <script>
     // Function to calculate change
     function hitungKembalian() {
-        const totalElement = document.getElementById('total');
-        const total = parseFloat(totalElement.getAttribute('data-total')); // Mendapatkan nilai total dan mengonversi ke tipe data numerik
-        const cashElement = document.getElementById('cashAmount');
-        const cash = parseFloat(cashElement.value);
-        const kembalian = cash - total;
-        if (kembalian < 0) {
-            alert('Jumlah nominal yang dimasukkan kurang.');
-            return;
-        }
-        document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
+    const totalElement = document.getElementById('total');
+    const totalData = totalElement.dataset.total;
+    const total = parseFloat(totalData);
+
+    const cashInput = document.getElementById('cashAmount').value;
+    const cash = parseFloat(cashInput);
+
+    console.log('Nilai cash:', cash); // Cetak nilai cash ke konsol
+    console.log('Nilai total:', total); // Cetak nilai total ke konsol
+
+    const kembalian = cash - total;
+
+    if (kembalian < 0) {
+        alert('Jumlah nominal yang dimasukkan kurang.');
+        return;
     }
 
-    // Mengatur perilaku checkbox
-    // document.getElementById('cashCheck').addEventListener('change', function() {
-    //     const cashInput = document.getElementById('cashInput');
-    //     if (this.checked) {
-    //         cashInput.style.display = 'block';
-    //         document.getElementById('qrishCheck').disabled = true;
-    //     } else {
-    //         cashInput.style.display = 'none';
-    //         document.getElementById('qrishCheck').disabled = false;
-    //     }
-    // });
+    document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
+}
+ 
+function validatePayment() {
+    let cashAmount = document.getElementById('cashAmount').value;
+    let totalPembayaran = document.getElementById('total').getAttribute('data-total');
 
-    // document.getElementById('qrishCheck').addEventListener('change', function() {
-    //     if (this.checked) {
-    //         const total = 17000; // Ganti dengan total pembayaran yang sebenarnya
-    //         document.getElementById('cashAmount').value = total;
-    //         document.getElementById('cashCheck').disabled = true;
-    //     } else {
-    //         document.getElementById('cashCheck').disabled = false;
-    //     }
-    // });
+    document.getElementById('total_pembayaran').value = totalPembayaran;
 
-    function validatePayment() {
-        // Ambil nilai dari input jumlah nominal
-        let cashAmount = document.getElementById('cashAmount').value;
-
-        // Periksa apakah nilai jumlah nominal kosong atau tidak
-        if (cashAmount === '') {
-            alert('Mohon masukkan jumlah nominal untuk menyelesaikan transaksi.');
-            return false; // Hentikan transaksi jika jumlah nominal kosong
-        }
-
-        // Lanjutkan proses transaksi jika jumlah nominal diisi
-        // Tambahkan proses transaksi lainnya di sini (jika ada)
-
-        // Jika semua syarat terpenuhi, kembalikan true untuk melanjutkan transaksi
-        return true;
+    if (cashAmount === '') {
+        alert('Mohon masukkan jumlah nominal untuk menyelesaikan transaksi.');
+        return false;
     }
+
+    // Reset data tabel ke default
+    resetTable();
+    // Reset nilai total pembayaran
+    resetTotal();
+
+    alert('Terimakasih!! Proses Transaksi Sudah Selesai.');
+
+    return true;
+}
+
+function resetTable() {
+    const cartTable = document.getElementById('cart-table');
+    cartTable.innerHTML = ''; // Mengosongkan isi tabel
+}
+
+function resetTotal() {
+    const totalElement = document.getElementById('total');
+    totalElement.innerText = 'Rp. 0'; // Set nilai total ke nol
+}
+
 </script>
