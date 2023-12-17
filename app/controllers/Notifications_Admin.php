@@ -67,7 +67,7 @@ class Notifications_Admin extends Controller {
             
             // Check if the status is "ACC" and call the method to insert data into the database
             if ($_POST['status_pengajuan'] == 'ACC') {
-                $this->insertDataPengajuan($data['id_pengajuan']);
+                $this->insertDataPengajuan();
             }
         } else {
             // Failed to update status
@@ -80,8 +80,9 @@ class Notifications_Admin extends Controller {
 
 
     // Add a new function to insert data into the database
-    private function insertDataPengajuan($idPengajuan)
+    private function insertDataPengajuan()
     {
+        $idPengajuan = $_POST['id_pengajuan'];
         // Logic to insert data into the database
         $dataPengajuan = $this->model('Pengajuan_Model')->getPengajuanById($idPengajuan);
 
