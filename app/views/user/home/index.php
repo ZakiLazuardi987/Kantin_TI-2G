@@ -27,7 +27,8 @@
                     <div class="box-body">
                         <table width="100%">
                         <tr>
-                                
+                        <!-- <input type="hidden" id="id_akun" value="<?= $_data['id_akun']?>"> -->
+
                                 <td style="vertical-align: top;">
                                 <label for="barcode">Tanggal</label>
                                 </td>
@@ -48,8 +49,8 @@
                                     <select class="form-control" id="select2" name="state" required>
                                         <option></option>
                                         <?php
-                                        foreach($data['nama_produk'] as $nama_produk){
-                                            echo "<option value='" . $nama_produk['nama_produk'] . "'>" . $nama_produk['nama_produk'] . "</option>";
+                                        foreach($data['data'] as $nama_produk){
+                                            echo "<option value='" . $nama_produk['id_produk'] . "'>" . $nama_produk['nama_produk'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -87,12 +88,12 @@
                 </div>
             </div>
 
-                <div class="col-lg-4 mt-2 mb-2">
+                <div class="col-lg-8 mt-2 mb-2">
                     <div class="box box-widget">
                         <div class="box-body">
                             <div align="right">
                                 <h4><strong>Total Pembayaran</strong></h4>
-                                <h3><span id="total" style="font-size: 40pt; color: #1A2A46;">
+                                <h3><span id="total" data-total="<?= $total ?>" style="font-size: 40pt; color: #1A2A46;">
                                         <?php
                                         $total = 0;
                                         foreach ($data['keranjang'] as $item) {
@@ -131,7 +132,7 @@
                                             <td><?= $item['qty'] * $item['harga'] ?></td>
                                             <form action="/Kantin_TI-2G/Home_User/deleteCart" method="post">
                                                 <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
-                                                <td><button type="submit" class="btn btn-danger btn-sm">Hapus</button></td>
+                                                <td><button type="submit" class="btn btn-success" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">Hapus</button></td>
                                             </form>
                                         </tr>
                                     <?php endforeach ?>
@@ -141,11 +142,7 @@
                     </div>
                 </div>
             </div>
-            <div class="float-right">
-                <button type="button" id="add-cart" class="btn" data-toggle="modal" data-target="#exampleModal" onclick="bayar(<?= $total ?>)" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
-                    <i class="fa fa-credit-card"> Bayar</i>
-                </button>
-            </div>
+            
             <!-- <div class ="row mt-3" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
                 <div class="col-lg-12 mt-2 mb-2">
                     <div class="box box-widget">
@@ -180,33 +177,43 @@
 <!-- /.content-wrapper -->
 <!-- Modal -->
 <script>
-    function bayar(totalPembayaran) {
-        if (totalPembayaran == 0) {
-            alert('Keranjang masih kosong!');
-            // reload page
-            location.reload();
-            return;
-        }
-        $('.modal-title').html('Pembayaran');
-        let url = '<?= BASEURL ?>/Home_User/formBayar';
+    // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('#select2').select2();
+});
 
-        const formData = new FormData();
-        formData.append('totalPembayaran', totalPembayaran);
-        // bawah id user
-        formData.append('tgl_order', today);
-        formData.append('id_akun', 11);
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                $('.modal-body').html(data);
-            }
+    function bayar() {
+        $('.modal-title').html('Pembayaran');
+        let url = 'Home_User/formBayar';
+        $.post(url, function(data, success){
+            $('.modal-body').html(data);
         });
-        // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #0595F7">Reset</a>');
     }
+
+
+    function tambahProdukKeList() {
+    let tgl_order = document.getElementById('tanggal').value;
+    let id_produk = document.getElementById('select2').value;
+    let qty = document.getElementById('qty').value;
+    
+    $.ajax({
+        url: '<?= BASEURL ?>/Home_User/addToCart', // Ganti dengan URL yang benar
+        method: 'POST',
+        data: {
+            tgl_order: tgl_order,
+            id_produk: id_produk,
+            qty: qty
+        },
+        success: function(response) {
+        // Pastikan respons hanya berisi data yang ingin Anda tambahkan ke tabel produk
+        // Misalnya, respons hanya berisi baris baru yang akan ditambahkan ke tabel
+        // Kemudian, tambahkan baris baru ini ke tabel tanpa memuat ulang seluruh halaman
+        $('#cart-table tbody').append(response); // Gunakan append untuk menambahkan baris baru ke tabel
+    }
+    });
+}
+
+
     // Mendapatkan elemen input tanggal
     const inputTanggal = document.getElementById('tanggal');
 

@@ -7,9 +7,11 @@ class Home_User extends Controller
         $data['title'] = 'Home User';
         $data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
-        $data['nama_produk'] = $this->model('Produk_Model')->getProductByName();
-        $data['harga'] = $this->model('Produk_Model')->getHargaProduk();
-
+        $data['nama_produk'] = $this->model('Transaksi_Model')->getProductByName();
+        $data['harga'] = $this->model('Transaksi_Model')->getHargaProduk();
+        $data['keranjang'] = $this->model('Keranjang_Model')->getAllKeranjang();
+        $data['nama_user'] = $_SESSION['username'] ?? '';
+        //$data['id_akun'] = $_SESSION['id_akun'] ?? '';
 
         $this->view('user/template/header', $data);
         $this->view('user/template/navbar', $data);
@@ -27,6 +29,12 @@ class Home_User extends Controller
 
     public function addToCart()
     {
+        // $produk = [
+        //     $tgl_order = $_POST['tanggal']; 
+        //     $id_produk = $_POST['id_produk']; 
+        //     $qty = $_POST['qty']; 
+        // ];
+
         $this->model('Keranjang_Model')->addToCart($_POST);
         header('Location: ' . BASEURL . '/Home_User');
     }

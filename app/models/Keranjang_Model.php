@@ -11,7 +11,8 @@ class Keranjang_Model
     public function addToCart(array $produk): void
     {
         // ambil id akun dari session
-        $id_akun = 11;
+        //$id_akun = $produk['id_akun'];
+        $tgl_order = $produk['tgl_order'];
         $id_produk = $produk['id_produk'];
         $qty = $produk['qty'];
         // check if product already in cart
@@ -28,9 +29,10 @@ class Keranjang_Model
             return;
         }
         // insert new product to cart
-        $this->db->query("INSERT INTO keranjang (id_akun, id_produk, qty) VALUES (:id_akun, :id_produk, :qty)");
+        $this->db->query("INSERT INTO keranjang (id_produk, tgl_order, qty) VALUES (:id_produk, :tgl_order, :qty)");
         $this->db->bind('id_produk', $id_produk);
-        $this->db->bind('id_akun', $id_akun);
+        //$this->db->bind('id_akun', $id_akun);
+        $this->db->bind('tgl_order', $tgl_order);
         $this->db->bind('qty', $qty);
         $this->db->execute();
     }

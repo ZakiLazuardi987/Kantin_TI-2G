@@ -10,7 +10,7 @@
                     <!-- <div class="card-header" style="background: #F6E8C1;"><strong>METODE PEMBAYARAN</strong></div> -->
                     <div class="card-body">
                         <label for="cashAmount" class="mr-2">Jumlah Nominal:</label>
-                        <input type="number" class="form-control" id="cashAmount">
+                        <input type="text" class="form-control" id="cashAmount">
 
                         <div class="d-flex justify-content-between lh-sm">
                             <div>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <form action="/Kantin_TI-2G/Home_User/bayar" method="post" onsubmit="return validatePayment()">
-            <input type="hidden" name="id_akun" value="<?= $_POST['id_akun'] ?>">
+            <input type="hidden" name="id_produk" value="<?= $data['keranjang']['id_produk'] ?>">
             <input type="hidden" name="tgl_order" value="<?= $_POST['tgl_order'] ?>">
             <button type="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
         </form>
@@ -37,8 +37,10 @@
 <script>
     // Function to calculate change
     function hitungKembalian() {
-        const total = <?= $_POST['totalPembayaran'] ?>; // Ganti dengan total pembayaran yang sebenarnya
-        const cash = document.getElementById('cashAmount').value;
+        const totalElement = document.getElementById('total');
+        const total = parseFloat(totalElement.getAttribute('data-total')); // Mendapatkan nilai total dan mengonversi ke tipe data numerik
+        const cashElement = document.getElementById('cashAmount');
+        const cash = parseFloat(cashElement.value);
         const kembalian = cash - total;
         if (kembalian < 0) {
             alert('Jumlah nominal yang dimasukkan kurang.');

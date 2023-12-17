@@ -27,7 +27,7 @@ class Produk_Model
     public function getAllProducts()
     {
         // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
-        $this->db->query("SELECT * FROM getallproduk ORDER BY id_produk DESC");
+        $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
         return $this->db->resultSet();
     }
 
