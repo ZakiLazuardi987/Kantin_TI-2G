@@ -71,34 +71,43 @@ class Transaksi_Model
     }
 
     public function transaksi($data) {
-        // Menginisialisasi totalQty
-        $totalQty = 0;
-    
-        // Menghitung total qty dari setiap keranjang
+        // Iterasi untuk mendapatkan tanggal order dari setiap data keranjang
+        $tglOrder = null;
         foreach ($data['keranjang'] as $item) {
-            $qty = $item['qty'];
-            $totalQty += $qty;
+            $tglOrder = $item['tgl_order'];
+            break; // Mengambil hanya satu nilai, bisa disesuaikan jika Anda butuh data lainnya
         }
-        echo $totalQty;
     
-        // Mendapatkan total pembayaran dari input
-        $totalPembayaran = $data['total_pembayaran'];
+        // Pastikan $tglOrder tidak null sebelum digunakan
+        if ($tglOrder !== null) {
+            // Menginisialisasi total qty dan total pembayaran
+            $totalQty = 0;
+            $totalPembayaran = $data['total_pembayaran'];
     
-        // Mendapatkan tanggal order dari data keranjang (misalnya diambil dari salah satu item keranjang)
-        $tglOrder = $data['keranjang'][0]['tgl_order'];
+            // Menyiapkan query untuk memasukkan data transaksi ke tabel transaksi
+            $query = "INSERT INTO transaksi (tgl_order, total_qty, total_bayar) VALUES (:tgl_order, :total_qty, :total_bayar)";
     
-        // Menyiapkan query untuk memasukkan data transaksi ke tabel transaksi
-        $query = "INSERT INTO transaksi (tgl_order, total_qty, total_bayar) VALUES (:tgl_order, :total_qty, :total_bayar)";
+            // Menjalankan query dengan mengikat nilai dari variabel-variabel yang telah disiapkan sebelumnya
+            $this->db->query($query);
+            $this->db->bind('tgl_order', $tglOrder);
     
-        // Menjalankan query dengan mengikat nilai dari variabel-variabel yang telah disiapkan sebelumnya
-        $this->db->query($query);
-        $this->db->bind('tgl_order', $tglOrder);
-        $this->db->bind('total_qty', $totalQty);
-        $this->db->bind('total_bayar', $totalPembayaran);
-        $this->db->execute();
+            // Menghitung total qty dari setiap keranjang
+            foreach ($data['keranjang'] as $item) {
+                $qty = $item['qty'];
+                $totalQty += $qty;
+            }
+            $this->db->bind('total_qty', $totalQty);
+            $this->db->bind('total_bayar', $totalPembayaran);
+            $this->db->execute();
     
-        return $totalQty;
+            return $this->db->rowCount(); // Mengembalikan total qty sebagai contoh
+        } else {
+            // Lakukan tindakan jika tglOrder null, misalnya kembalikan pesan error atau tindakan lainnya
+            return 0;
+        }
     }
+    
+    
     
     public function getAllTransaction()
     {
