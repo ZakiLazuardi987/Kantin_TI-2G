@@ -65,76 +65,82 @@
 <!-- Modal -->
 
 <script>
-    function updateStatus(idPengajuan, newStatus) {
-        var button = document.querySelector('.statusButton[data-id="' + idPengajuan + '"]');
-        var buttonText = button.innerText;
+//     function updateStatus(idPengajuan, newStatus) {
+//     var button = document.querySelector('.statusButton[data-id="' + idPengajuan + '"]');
+//     var buttonText = button.innerText;
 
-        // Change the button text and send an AJAX request to update the status on the server
-        if (newStatus === "ACC") {
-            button.innerText = "TOLAK";
-            button.style.background = "#8B929C";
-            // AJAX request to update the status to "ACC" in the database
-            updateDatabaseStatus(idPengajuan, newStatus);
-        } else {
-            button.innerText = "ACC";
-            button.style.background = "#1A2A46";
-            // AJAX request to update the status to "TOLAK" in the database
-            updateDatabaseStatus(idPengajuan, newStatus);
-        }
-    }
+//     // Change the button text and send an AJAX request to update the status on the server
+//     if (newStatus === "ACC") {
+//         button.innerText = "TOLAK";
+//         button.style.background = "#8B929C";
+//         // AJAX request to update the status to "ACC" in the database
+//         updateDatabaseStatus(idPengajuan, newStatus);
+//     } else {
+//         button.innerText = "ACC";
+//         button.style.background = "#1A2A46";
+//         // AJAX request to update the status to "TOLAK" in the database
+//         updateDatabaseStatus(idPengajuan, newStatus);
+//     }
+// }
 
-    function updateDatabaseStatus(idPengajuan, newStatus) {
-        // Make an AJAX request to update the status in the database
-        $.ajax({
-            url: 'Notifications_Admin.php',
-            type: 'POST',
-            data: {
-                id_pengajuan: idPengajuan,
-                status_pengajuan: newStatus
-            },
-            success: function(response) {
-                // Handle the response if needed
-                console.log(response);
+// function updateDatabaseStatus(idPengajuan, newStatus) {
+//     // Make an AJAX request to update the status in the database
+//     $.ajax({
+//         url: 'Notifications_Admin.php',
+//         type: 'POST',
+//         data: {
+//             id_pengajuan: idPengajuan,
+//             status_pengajuan: newStatus
+//         },
+//         success: function(response) {
+//             // Handle the response if needed
+//             console.log(response);
 
-                // Add a check for "ACC" status and call the insertDataPengajuan function
-                if (newStatus === "ACC") {
-                    insertDataPengajuan(idPengajuan);
-                }
-            },
-            error: function(error) {
-                console.error("Error updating status:", error);
-            }
-        });
-    }
-    
-    function insertDataPengajuan(idPengajuan) {
-        // Make an AJAX request to insert data into the database
-        $.ajax({
-            url: 'Notifications_Admin.php', // Update with your actual script
-            type: 'POST',
-            data: {
-                id_pengajuan: idPengajuan
-            },
-            success: function(response) {
-                // Handle  the response if needed
-                console.log(response);
-            },
-            error: function(error) {
-                console.error("Error inserting data:", error);
-            }
-        });
-    }
+//             // Update the Action column text to "Disetujui"
+//             updateActionColumn(idPengajuan);
+//         },
+//         error: function(error) {
+//             console.error("Error updating status:", error);
+//         }
+//     });
+// }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        // Add event listener for the status buttons
-        document.querySelectorAll('.statusButton').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var idPengajuan = this.getAttribute('data-id');
-                var newStatus = this.innerText === 'ACC' ? 'Tolak' : 'ACC';
-                updateStatus(idPengajuan, newStatus);
-            });
-        });
-    });
+// function insertDataPengajuan(idPengajuan) {
+//     // Make an AJAX request to insert data into the database
+//     $.ajax({
+//         url: 'Notifications_Admin/insertDataPengajuan', // Update with your actual script
+//         type: 'POST',
+//         data: {
+//             id_pengajuan: idPengajuan
+//         },
+//         success: function(response) {
+//             // Handle the response if needed
+//             console.log(response);
+//             // Update the Action column text to "Disetujui"
+//             updateActionColumn(idPengajuan);
+//         },
+//         error: function(error) {
+//             console.error("Error inserting data:", error);
+//         }
+//     });
+// }
+
+// function updateActionColumn(idPengajuan) {
+//     // Update the Action column text to "Disetujui" in the table
+//     var actionColumn = document.querySelector('td[data-id="' + idPengajuan + '"]');
+//     actionColumn.innerHTML = "Disetujui";
+// }
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Add event listener for the status buttons
+//     document.querySelectorAll('.statusButton').forEach(function(button) {
+//         button.addEventListener('click', function() {
+//             var idPengajuan = this.getAttribute('data-id');
+//             var newStatus = this.innerText === 'ACC' ? 'Tolak' : 'ACC';
+//             updateStatus(idPengajuan, newStatus);
+//         });
+//     });
+// });
 
 </script>
 
