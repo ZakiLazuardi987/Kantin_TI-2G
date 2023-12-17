@@ -95,10 +95,15 @@
     function tambahdata() {
         $('.modal-title').html('Pengajuan');
         let url = '<?=BASEURL?>/Pengajuan_User/formTambah';
-        $.post(url, function (data, success) {
+        
+        // Set the initial value for "status_pengajuan" to 'on process'
+        let initialData = { status_pengajuan: 'On Process' };
+
+        $.post(url, initialData, function (data, success) {
             $('.modal-body').html(data);
         });
     }
+
 
     function ubahdata(x) {
         $('.modal-title').html('Ubah Data Pengajuan');
