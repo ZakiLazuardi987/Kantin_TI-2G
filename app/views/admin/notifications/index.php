@@ -47,7 +47,7 @@
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                    <button class="statusButton btn btn-success me-2" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">ACC</button>
+                                    <button class="statusButton btn btn-success me-2" onclick="insertFromPengajuan() data-id="<?php echo $pengajuan['id_pengajuan']; ?>">ACC</button>
                                     <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
                                 </td>
                             </tr>

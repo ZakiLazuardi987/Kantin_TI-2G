@@ -98,4 +98,9 @@ class Produk_Model
 
         return $this->db->resultSet();
     }
+
+    public function insertFromPengajuan(){
+        $this->db->query("INSERT INTO produk (id_kategori, nama_produk, harga, stok, gambar_produk) SELECT id_kategori, nama_produk, harga, stok, gambar_produk FROM pengajuan");
+        return $this->db->resultSet();
+    }
 }

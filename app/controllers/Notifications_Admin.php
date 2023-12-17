@@ -6,6 +6,7 @@ class Notifications_Admin extends Controller {
         $data['title'] = 'Notifications Admin';
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
         $data['nama_user'] = $_SESSION['username'] ?? '';
+        $data['insert'] = $this->model('Produk_Model')->insertFromPengajuan();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar', $data);
