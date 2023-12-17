@@ -57,10 +57,10 @@
                             foreach ($data['data'] as $item) :
                         ?>
                             <tr>
-                                <td><?= $item['tgl_order'] ?></td>
-                                <td><?= $item['total_transaksi'] ?></td>
-                                <td><?= $item['total_produk_terjual'] ?></td>
-                                <td><?= $item['total_penjualan'] ?></td>
+                                <td><?= $item['Tanggal'] ?></td>
+                                <td><?= $item['Jumlah Transaksi'] ?></td>
+                                <td><?= $item['Total Produk Terjual'] ?></td>
+                                <td><?= $item['Total Penjualan'] ?></td>
                                 <td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
                                         Lihat Detail

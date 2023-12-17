@@ -9,13 +9,14 @@ class Laporan_Admin extends Controller {
         $this->view('admin/template/navbar', $data);
         $this->view('admin/template/sidebar', $data);
 
+        // Get all transactions by default
+        $data['data'] = $this->model('Laporan_Model')->getAllReport();
+
         // Check if a date filter is provided
         if (isset($_POST['filter'])) {
             $tanggalFilter = $_POST['tanggal'];
-            $data['data'] = $this->model('Transaksi_Model')->getLaporanByDate($tanggalFilter);
-        } else {
-            // If no filter, get all transactions
-            $data['data'] = $this->model('Transaksi_Model')->getAllTransaction();
+            // If a filter is applied, get filtered transactions
+            $data['data'] = $this->model('Laporan_Model')->getLaporanData($tanggalFilter);
         }
 
         $this->view('admin/laporanPenjualan/index', $data);
