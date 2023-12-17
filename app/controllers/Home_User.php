@@ -68,31 +68,27 @@ class Home_User extends Controller
     }
 
     public function prosesTransaksi() {
+        var_dump($_POST);
         // Dummy data, bisa diganti dengan data dari inputan pengguna
-        
+        $keranjang = $_POST['keranjang']; // Mengambil seluruh data keranjang dari form
+        $totalPembayaran = $_POST['total_pembayaran']; // Mengambil total pembayaran dari form
+    
+        // Menyiapkan data untuk transaksi
         $data = [
-            'keranjang' => [
-                [
-                    'id_keranjang' => $_POST['id_keranjang'],
-                    'id_produk' => $_POST['id_produk'],
-                    'tgl_order' => $_POST['tgl_order'],
-                    'qty' => $_POST['qty']
-                ]
-            ],
-            'total_pembayaran' => $_POST['total_pembayaran']
+            'keranjang' => $keranjang,
+            'total_pembayaran' => $totalPembayaran
         ];
-        
-
+    
         // Memanggil model dan fungsi transaksi untuk menyimpan data
         $model = $this->model('Transaksi_Model'); // Ganti dengan nama model yang sesuai
         $rowCount = $model->transaksi($data);
-
+    
         // Memberikan respons berdasarkan hasil transaksi
         if ($rowCount > 0) {
             header('Location: ' . BASEURL . '/Home_User');
-        
         }
     }
+    
 }
 
 
