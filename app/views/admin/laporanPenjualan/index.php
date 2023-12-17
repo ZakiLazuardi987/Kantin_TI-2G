@@ -7,12 +7,14 @@
                     <h1 class="m-0">Data Laporan Penjualan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <ol class="breadcrumb ml-2 mr-3">
-                    <li><input id="tanggalFilter" class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
-                </ol>
-      <ol class="breadcrumb ml-2 mr-3">
-                    <li><button id="filterBtn" type="button" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
-                </ol>
+                <form method="post" action="<?= BASEURL ?>/Laporan_Admin/index">
+                    <ol class="breadcrumb ml-2 mr-3">
+                        <li><input name="tanggal" class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal"></li>
+                    </ol>
+                    <ol class="breadcrumb ml-2 mr-3">
+                        <li><button type="submit" name="filter" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button></li>
+                    </ol>
+                </form>
                     <!-- <ol class="breadcrumb ml-4 mr-3">
                         <li class="breadcrumb-item active">Admin</li>
                     </ol> -->
@@ -49,21 +51,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data['laporanPenjualan'] as $laporan) : ?>
+                        <?php
+                        // Check if 'laporan' key exists and is not null
+                        if (isset($data['data']) && is_array($data['laporan'])) {
+                            foreach ($data['data'] as $item) :
+                        ?>
                             <tr>
-                                        <td><?= $laporan['tgl_order']; ?></td>
-                                        <td><?= $laporan['total_transaksi']; ?></td>
-                                        <td><?= $laporan['total_produk_terjual']; ?></td>
-                                        <td><?= $laporan['total_penjualan']; ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                                Lihat Detail
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                <td><?= $item['tgl_order'] ?></td>
+                                <td><?= $item['total_transaksi'] ?></td>
+                                <td><?= $item['total_produk_terjual'] ?></td>
+                                <td><?= $item['total_penjualan'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                        Lihat Detail
+                                    </button>
+                                    
+                                </td>
+                            </tr>
+                            <?php
+                                endforeach;
+                            } else {
+                                // Handle the case when 'laporan' key is not set or is null
+                                echo '<tr><td colspan="5">No data available</td></tr>';
+                            }
+                            ?>
                     </tbody>
-                    
                 </table>
             </div>
         </div>
