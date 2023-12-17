@@ -45,9 +45,9 @@
                                 <td><?php echo $pengajuan['nama_kategori']; ?></td>
                                 <td><?php echo $pengajuan['nama_produk']; ?></td>
                                 <td><?php echo $pengajuan['harga']; ?></td>
-                                <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
+                                <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                    <button class="statusButton btn btn-success me-2" onclick="insertFromPengajuan() data-id="<?php echo $pengajuan['id_pengajuan']; ?>">ACC</button>
+                                    <button class="statusButton btn btn-success me-2" onclick="insertFromPengajuan(<?php echo $pengajuan['id_pengajuan']; ?>)">ACC</button>
                                     <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
                                 </td>
                             </tr>
@@ -65,6 +65,30 @@
 <!-- Modal -->
 
 <script>
+function insertFromPengajuan(idPengajuan) {
+    // Panggil AJAX request atau fungsi lain yang sesuai dengan kebutuhan Anda
+    $.ajax({
+        url: 'Notifications_Admin/updateStatus',
+        type: 'POST',
+        data: {
+            id_pengajuan: idPengajuan,
+            status_pengajuan: 'ACC'
+        },
+        success: function(response) {
+            // Handle the response if needed
+            console.log(response);
+
+            // Refresh the page or update the table as needed
+            // You may want to reload the page or update the table to reflect the changes
+            location.reload(); // This will reload the current page
+        },
+        error: function(error) {
+            console.error("Error updating status:", error);
+        }
+    });
+}
+
+    
 //     function updateStatus(idPengajuan, newStatus) {
 //     var button = document.querySelector('.statusButton[data-id="' + idPengajuan + '"]');
 //     var buttonText = button.innerText;
