@@ -6,7 +6,7 @@ class Notifications_Admin extends Controller {
         $data['title'] = 'Notifications Admin';
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
         $data['nama_user'] = $_SESSION['username'] ?? '';
-        $data['insert'] = $this->model('Produk_Model')->insertFromPengajuan();
+        // $data['insert'] = $this->model('Produk_Model')->insertFromPengajuan();
 
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar', $data);
@@ -46,7 +46,8 @@ class Notifications_Admin extends Controller {
     }
     
     public function updateStatus()
-    {
+{
+    try {
         // Logic to handle status update
         $pengajuanModel = $this->model('Pengajuan_Model');
     
@@ -72,7 +73,11 @@ class Notifications_Admin extends Controller {
             // Failed to update status
             echo "Gagal memperbarui status pengajuan!";
         }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
     }
+}
+
 
     // Add a new function to insert data into the database
     private function insertDataPengajuan($idPengajuan)
