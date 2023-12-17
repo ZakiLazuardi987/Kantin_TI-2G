@@ -51,9 +51,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        // Check if 'laporan' key exists and is not null
-                        if (isset($data['data']) && is_array($data['laporan'])) {
+                    <?php
+                        // Check if 'data' key exists and is not null
+                        if (isset($data['data']) && is_array($data['data'])) {
                             foreach ($data['data'] as $item) :
                         ?>
                             <tr>
@@ -65,16 +65,15 @@
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
                                         Lihat Detail
                                     </button>
-                                    
                                 </td>
                             </tr>
-                            <?php
-                                endforeach;
-                            } else {
-                                // Handle the case when 'laporan' key is not set or is null
-                                echo '<tr><td colspan="5">No data available</td></tr>';
-                            }
-                            ?>
+                        <?php
+                            endforeach;
+                        } else {
+                            // Handle the case when 'data' key is not set or is null
+                            echo '<tr><td colspan="5">No data available</td></tr>';
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>
