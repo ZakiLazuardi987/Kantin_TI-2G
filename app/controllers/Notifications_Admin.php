@@ -45,38 +45,44 @@ class Notifications_Admin extends Controller {
         }
     }
     
-    public function updateStatus()
-{
-    try {
-        // Logic to handle status update
-        $pengajuanModel = $this->model('Pengajuan_Model');
-    
-        // Retrieve necessary data from POST or other sources
-        $data = [
-            'id_pengajuan' => $_POST['id_pengajuan'],
-            'status_pengajuan' => $_POST['status_pengajuan'],
-        ];
-    
-        // Call the update method in Pengajuan_Model
-        $result = $pengajuanModel->updateStatus($data);
-    
-        // Handle the update result (display a message, redirect, or send a JSON response, etc.)
-        if ($result) {
-            // Status updated successfully
-            echo "Status pengajuan berhasil diperbarui!";
-            
-            // Check if the status is "ACC" and call the method to insert data into the database
-            if ($_POST['status_pengajuan'] == 'ACC') {
-                $this->insertDataPengajuan();
-            }
-        } else {
-            // Failed to update status
-            echo "Gagal memperbarui status pengajuan!";
-        }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+    public function addFromPengajuan(){
+        $idPengajuan = $_POST['id_pengajuan']; // Pastikan Anda mengambil ID pengajuan dari data yang dikirimkan melalui POST
+        $this->model('Produk_Model')->insertFromPengajuan($idPengajuan);
     }
-}
+    
+
+    public function updateStatus()
+    {
+        try {
+            // Logic to handle status update
+            $pengajuanModel = $this->model('Pengajuan_Model');
+        
+            // Retrieve necessary data from POST or other sources
+            $data = [
+                'id_pengajuan' => $_POST['id_pengajuan'],
+                'status_pengajuan' => $_POST['status_pengajuan'],
+            ];
+        
+            // Call the update method in Pengajuan_Model
+            $result = $pengajuanModel->updateStatus($data);
+        
+            // Handle the update result (display a message, redirect, or send a JSON response, etc.)
+            if ($result) {
+                // Status updated successfully
+                echo "Status pengajuan berhasil diperbarui!";
+                
+                // Check if the status is "ACC" and call the method to insert data into the database
+                if ($_POST['status_pengajuan'] == 'ACC') {
+                    $this->insertDataPengajuan();
+                }
+            } else {
+                // Failed to update status
+                echo "Gagal memperbarui status pengajuan!";
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 
 
     // Add a new function to insert data into the database

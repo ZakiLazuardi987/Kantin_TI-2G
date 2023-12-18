@@ -42,14 +42,14 @@
                     </thead>
                     <tbody>
                         <?php foreach ($data['dataPengajuan'] as $pengajuan) : ?>
-                            <tr>
+                            <tr class= "ini">
                                 <td><?php echo $pengajuan['id_pengajuan']; ?></td>
                                 <td><?php echo $pengajuan['nama_kategori']; ?></td>
                                 <td><?php echo $pengajuan['nama_produk']; ?></td>
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                <button class="statusButton btn btn-success me-2" onclick="insertFromPengajuan()">ACC</button>                                    
+                                <button class="statusButton btn btn-success me-2" onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')">ACC</button>                                    
                                 <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
                                 </td>
                             </tr>
@@ -64,24 +64,31 @@
 </div>
 <!-- /.content-wrapper -->
 <script>
-function insertFromPengajuan(idPengajuan) {
-    // Panggil AJAX request untuk insert data pengajuan ke dalam tabel produk
-    $.ajax({
-        url: 'Notifications_Admin/insertDataPengajuan',
-        type: 'POST',
-        data: {
-            id_pengajuan: idPengajuan
-        },
-        success: function(response) {
-            // Handle the response if needed
-            console.log(response);
-            // Refresh the page or update the table as needed
-            location.reload(); // This will reload the current page
-        },
-        error: function(error) {
-            console.error("Error inserting data:", error);
-            // Handle the error as needed
-        }
-    });
-}
+    function addPengajuanToProduk(x) {
+        let url = '<?=BASEURL?>/Notifications_Admin/addFromPengajuan';
+        $.post(url, {id_pengajuan: x}, function (dataPengajuan, success) {
+            alert("Data berhasil ditambahkan");
+        });
+    }
+
+// function insertFromPengajuan(idPengajuan) {
+//     // Panggil AJAX request untuk insert data pengajuan ke dalam tabel produk
+//     $.ajax({
+//         url: 'Notifications_Admin/insertDataPengajuan',
+//         type: 'POST',
+//         data: {
+//             id_pengajuan: idPengajuan
+//         },
+//         success: function(response) {
+//             // Handle the response if needed
+//             console.log(response);
+//             // Refresh the page or update the table as needed
+//             location.reload(); // This will reload the current page
+//         },
+//         error: function(error) {
+//             console.error("Error inserting data:", error);
+//             // Handle the error as needed
+//         }
+//     });
+// }
 </script>

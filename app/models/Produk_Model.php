@@ -99,8 +99,12 @@ class Produk_Model
         return $this->db->resultSet();
     }
 
-    public function insertFromPengajuan(){
-        $this->db->query("INSERT INTO produk (id_kategori, nama_produk, harga, stok, gambar_produk) SELECT id_kategori, nama_produk, harga, stok, gambar_produk FROM pengajuan");
-        return $this->db->resultSet();
+    public function insertFromPengajuan($idPengajuan){
+        $this->db->query("INSERT INTO produk (id_kategori, nama_produk, harga, stok, gambar_produk) 
+                          SELECT id_kategori, nama_produk, harga, stok, gambar_produk 
+                          FROM pengajuan 
+                          WHERE id_pengajuan = :idPengajuan");
+        $this->db->bind('idPengajuan', $idPengajuan);
+        return $this->db->execute(); // Eksekusi query tanpa mengembalikan hasil (execute() digunakan karena ini adalah operasi INSERT)
     }
 }
