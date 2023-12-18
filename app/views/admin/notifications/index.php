@@ -47,7 +47,11 @@
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                <button class="statusButton btn btn-success me-2" onclick="insertFromPengajuan()">ACC</button>                                    <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
+                                    <form method="post">
+                                        <input type="hidden" name="pengajuanId" value="<?php echo $pengajuan['id_pengajuan']; ?>">
+                                        <button type="submit" name="accButton" class="statusButton btn btn-success me-2">ACC</button>
+                                    </form>
+                                    <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -60,25 +64,18 @@
 
 </div>
 <!-- /.content-wrapper -->
-<script>
-function insertFromPengajuan(idPengajuan) {
-    // Panggil AJAX request untuk insert data pengajuan ke dalam tabel produk
-    $.ajax({
-        url: 'Notifications_Admin/insertDataPengajuan',
-        type: 'POST',
-        data: {
-            id_pengajuan: idPengajuan
-        },
-        success: function(response) {
-            // Handle the response if needed
-            console.log(response);
-            // Refresh the page or update the table as needed
-            location.reload(); // This will reload the current page
-        },
-        error: function(error) {
-            console.error("Error inserting data:", error);
-            // Handle the error as needed
-        }
-    });
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accButton'])) {
+    // Get the pengajuan data from the database
+    $id_pengajuan = $_POST['id_pengajuan'];
+    $pengajuan = getPengajuanById($id_pengajuan);
+
+    // Insert the pengajuan data into the produk table in the database
+    $result = insertDataPengajuan($pengajuan['nama_produk'], $pengajuan['harga'], $pengajuan['gambar_produk']);
+
+    // Display an alert if the operation is successful
+    if ($result) {
+        echo '<script>alert("Data pengajuan berhasil di-ACC dan ditambahkan ke dalam tabel produk!");</script>';
+    }
 }
-</script>
+?> 
