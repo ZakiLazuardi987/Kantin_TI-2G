@@ -62,13 +62,13 @@
     document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
 }
 
-$(document).ready(function() {
-    $('#selesai').on('click', function() {
-        console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
-        $('#total').remove(); // Menghapus elemen dengan ID 'total'
-        $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
-    });
-});
+// $(document).ready(function() {
+//     $('#selesai').on('click', function() {
+//         console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
+//         $('#total').remove(); // Menghapus elemen dengan ID 'total'
+//         $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
+//     });
+// });
 
 function validatePayment() {
     let cashAmount = document.getElementById('cashAmount').value;

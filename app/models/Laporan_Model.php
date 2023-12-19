@@ -40,7 +40,7 @@ class Laporan_Model
         $this->db->query($query);
         $this->db->bind(':tanggal', $tanggal);
     
-        return $this->db->single();
+        return $this->db->rowCount();
     }
     
 }

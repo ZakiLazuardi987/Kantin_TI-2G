@@ -84,13 +84,16 @@
 <!-- Modal -->
 
 <script>
-    function detail(tanggal) {
+    function detail(x) {
+        
         $('.modal-title').html('Detail Laporan Penjualan');
 
         // Assuming you have a route in your controller to handle fetching details based on the date
-        let url = '<?=BASEURL?>/Laporan_Admin/detail?tanggal=' + tanggal;
-
-        $.post(url, function(data, success) {
+        let url = '<?=BASEURL?>/Laporan_Admin/detail'
+        $.post(url,
+        {
+        tanggal : x
+        }, function(data, success) {
             $('.modal-body').html(data);
         });
     }
