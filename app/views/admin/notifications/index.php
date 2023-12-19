@@ -28,7 +28,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">
-                <div class="col-lg-12 mt-2 mb-2">
+                <div class="col-lg-12 mt-2">
                 <div class="box box-widget">
                     <div class="box-body">
                     <table class="table">
