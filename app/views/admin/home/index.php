@@ -10,7 +10,6 @@ $totalProducts = $dashboardModel->getTotalProducts();
 $totalStock = $dashboardModel->getTotalStock();
 $lastSales = $dashboardModel->getLastSales();
 $todayTransactions = $dashboardModel->getTodayTransactions();
-$topProducts = $dashboardModel->getTopProducts();
 ?>
 
 <!-- Content Wrapper. Contains page content -->

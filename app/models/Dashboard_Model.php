@@ -36,11 +36,4 @@ class Dashboard_Model
         $this->db->query($query);
         return $this->db->single();
     }
-
-    public function getTopProducts()
-    {
-        $query = "SELECT * FROM produk ORDER BY stok DESC LIMIT 5";
-        $this->db->query($query);
-        return $this->db->resultSet();
-    }
 }
