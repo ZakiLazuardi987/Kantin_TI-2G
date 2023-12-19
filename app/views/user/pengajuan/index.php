@@ -63,7 +63,7 @@
                                     <td><?php echo $pengajuan['nama_kategori']; ?></td>
                                     <td><?php echo $pengajuan['nama_produk']; ?></td>
                                     <td><?php echo $pengajuan['harga']; ?></td>
-                                    <td><img style="width: 50px;" src="<?= BASEURL?>/img/produk/<?php echo $pengajuan['gambar_produk']; ?>"></td>
+                                    <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                     <td><?php echo $pengajuan['status_pengajuan']; ?></td>
                                     <td>
                                     
