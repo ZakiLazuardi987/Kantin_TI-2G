@@ -119,11 +119,6 @@ class Home_User extends Controller
             header('Location: ' . BASEURL . '/Home_User');
         }
     }
-
-    public function resetAjaYa(){
-        $this->model('Keranjang_Model')->resetView();
-    }
-    
 }
 
 

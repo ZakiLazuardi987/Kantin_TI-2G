@@ -79,9 +79,4 @@ class Keranjang_Model
         $this->db->bind('id_produk', $id_produk);
         $this->db->execute();
     }
-
-    public function resetView(){
-        $this->db->query("DELETE FROM keranjang");
-        $this->db->execute();
-    }
 }
