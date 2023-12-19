@@ -28,6 +28,30 @@ class Home_User extends Controller
         $this->view('user/home/form_bayar', $data);
     }
 
+    public function addToTable()
+    
+    {
+        //var_dump($_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Mengumpulkan data dari formulir
+            
+    
+            $produk = [
+                'id_produk' => $_POST['id_produk'],
+                'tgl_order' => $_POST['tgl_order'],
+                'qty' => $_POST['qty']
+            ];
+    
+                if ($this->model('Keranjang_Model')->addToCart($produk)> 0) {
+                    
+                    header('Location: ' . BASEURL . '/Home_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                    
+                }
+            
+         
+        }
+    }
+
     public function addToCart()
     
     {

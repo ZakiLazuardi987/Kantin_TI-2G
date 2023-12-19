@@ -25,7 +25,7 @@
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
-                    <form action="<?= BASEURL?>/Home_User/addToCart" method="post">
+                    <form action="<?= BASEURL?>/Home_User/addToTable" method="post">
                         <table width="100%">
                         <tr>
                         <!-- <input type="hidden" id="id_akun" value="<?= $_data['id_akun']?>"> -->
@@ -75,10 +75,6 @@
                                 <td>
                                     <button type="submit" name="submit" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
                                         <i class="fa fa-plus"> Tambah</i>
-
-                                    </button>
-                                    <button type="button" id="add-cart" class="btn" data-toggle="modal" data-target="#exampleModal" onclick="bayar()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
-                                        <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
                                 </td>
@@ -145,33 +141,61 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- <div class ="row mt-3" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
-                <div class="col-lg-12 mt-2 mb-2">
-                    <div class="box box-widget">
-                        <div class="box-body table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead style="background: #333f57">
-                                    <tr>
-                                        <th id="tabel-trans">Nama Produk</th>
-                                        <th id="tabel-trans">Qty</th>
-                                        <th id="tabel-trans">Harga</th>
-                                        <th id="tabel-trans">Subtotal</th>
-                                        <th id="tabel-trans">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cart-table" style="background: white">
-                                    <tr>
-                                        <td colspan="9" class="text-center">Tidak ada item</td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
+                <div class="col-sm-12 mt-2 mb-2 d-flex justify-content-end align-items-center">
+                <div class="box box-widget">
+                    <div class="box-body">
+                        <div align="right">
+                        <h3><strong>Pembayaran</strong></h3>
                         </div>
+                        <table width="100%">
+                        <tr>
+                        
+
+                                <td style="vertical-align: top;">
+                                <div align="right">
+                                <label for="cashAmount">Jumlah Nominal</label>
+                                    </div>
+                                </td>
+                        <tr>
+                                <td>
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" id="cashAmount" required>
+                                    </div>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                    <div style="display: flex; justify-content: flex-start;">
+                                <span><button class="btn btn-primary btn-sm mt-2" style="background: #333f57; padding: 5px 6px; font-size: 12px; color: white;" onclick="hitungKembalian()">Hitung Kembalian</button></span>
+                                <p id="kembalian"></p>
+                                    </div>
+                                </td>
+                        </tr>
+                        <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post">
+                    <?php foreach($data['keranjang'] as $item) { ?>
+                        <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][id_produk]" value="<?= $item['id_produk'] ?>">
+                        <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][tgl_order]" value="<?= $item['tgl_order'] ?>">
+                        <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][qty]" value="<?= $item['qty'] ?>">
+                    <?php } ?>
+                    <input type="hidden" name="total_pembayaran" id="total_pembayaran"> 
+                        <tr>
+                                <td>
+                                <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                        <i class="fa fa-credit-card"> Bayar</i>
+
+                                    </button>
+                                </td>
+                            </tr>
+                            </form>
+                        </table>
+                  
                     </div>
                 </div>
-            </div> -->
+            </div>
+            </div>
+            
+
 
         </div>
 
@@ -186,36 +210,72 @@ $(document).ready(function() {
     $('#id_produk').select2();
 });
 
-    function bayar() {
-        $('.modal-title').html('Pembayaran');
-        let url = 'Home_User/formBayar';
-        $.post(url, function(data, success){
-            $('.modal-body').html(data);
-        });
+// Function to calculate change
+function hitungKembalian() {
+    const totalElement = document.getElementById('total');
+    const totalData = totalElement.dataset.total;
+    const total = parseFloat(totalData);
+
+    const cashInput = document.getElementById('cashAmount').value;
+    const cash = parseFloat(cashInput);
+
+    console.log('Nilai cash:', cash); // Cetak nilai cash ke konsol
+    console.log('Nilai total:', total); // Cetak nilai total ke konsol
+
+    const kembalian = cash - total;
+
+    if (kembalian < 0) {
+        alert('Jumlah nominal yang dimasukkan kurang.');
+        return;
     }
 
+    document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
+}
 
-//     function tambahProdukKeList() {
-//     let tgl_order = document.getElementById('tanggal').value;
-//     let id_produk = document.getElementById('select2').value;
-//     let qty = document.getElementById('qty').value;
+$(document).ready(function() {
+    $('#selesai').on('click', function() {
+        console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
+
+        // Simpan data keranjang yang ada ke database sebelum mereset tampilan
+        $.ajax({
+            type: 'POST',
+            url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
+            data: {
+                keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
+            },
+            success: function(response) {
+                console.log('Data keranjang berhasil disimpan ke database:', response);
+                resetDOM(); // Setelah disimpan, reset tampilan DOM
+            },
+            error: function(xhr, status, error) {
+                console.error('Gagal menyimpan data ke database:', error);
+            }
+        });
+    });
+});
+
+// Mengosongkan tabel dan mereset total pembayaran
+function resetDOM() {
+    $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
+    document.getElementById('total').innerText = 'Rp. 0'; // Atur total pembayaran menjadi 0
+}
+
+function validatePayment() {
+    let cashAmount = document.getElementById('cashAmount').value;
+    let totalPembayaran = document.getElementById('total').getAttribute('data-total');
+
+    document.getElementById('total_pembayaran').value = totalPembayaran;
+
+    if (cashAmount === '') {
+        alert('Mohon masukkan jumlah nominal untuk menyelesaikan transaksi.');
+        return false;
+    }
+
+    alert('Terimakasih!! Proses Transaksi Sudah Selesai.');
+
+    return true;
     
-//     // $.ajax({
-//         url: '<?= BASEURL ?>/Home_User/addToCart', // Ganti dengan URL yang benar
-//         method: 'POST',
-//         data: {
-//             tgl_order: tgl_order,
-//             id_produk: id_produk,
-//             qty: qty
-//         },
-//         success: function(response) {
-//         // Pastikan respons hanya berisi data yang ingin Anda tambahkan ke tabel produk
-//         // Misalnya, respons hanya berisi baris baru yang akan ditambahkan ke tabel
-//         // Kemudian, tambahkan baris baru ini ke tabel tanpa memuat ulang seluruh halaman
-//         $('#cart-table tbody').append(response); // Gunakan append untuk menambahkan baris baru ke tabel
-//     }
-//     // });
-// }
+}
 
 
     // Mendapatkan elemen input tanggal
