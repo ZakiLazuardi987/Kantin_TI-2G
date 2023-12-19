@@ -21,10 +21,11 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row mb-3" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+        <div class="row mb-5" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
+                    
                     <form action="<?= BASEURL?>/Home_User/addToTable" method="post">
                         <table width="100%">
                         <tr>
@@ -47,7 +48,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <select class="form-control" id="id_produk" name="id_produk" required>
+                                    <select class="form-control" id="id_produk" name="id_produk" required onchange="validateStock()">
                                         <option></option>
                                         <?php
                                         foreach($data['data'] as $nama_produk){
@@ -66,6 +67,8 @@
                                 <td>
                                     <div class="form-group">
                                         <input type="number" id="qty" value="1" min="1" name="qty" class="form-control">
+                                        
+
 
                                     </div>
                                 </td>
@@ -73,20 +76,22 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <button type="submit" name="submit" id="add-cart" class="btn" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
+                                    <button type="submit" name="submit" id="add-cart" class="btn mb-3" style="padding: 5px 7px; font-size: 12px; background: #1A2A46; color: white">
                                         <i class="fa fa-plus"> Tambah</i>
 
                                     </button>
                                 </td>
                             
                             </tr>
-                                   
+                            
                         </table>
                         </form>
+                       
                     </div>
                 </div>
             </div>
 
+            
                 <div class="col-lg-8 mt-2 mb-2">
                     <div class="box box-widget">
                         <div class="box-body">
@@ -150,21 +155,21 @@
                         <tr>
                         
 
-                                <td style="vertical-align: top;">
-                                <label for="cashAmount">Jumlah Nominal</label>
+                        <td style="vertical-align: top;">
+                                <label for="cashAmount">Nominal</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
                                     <input type="text" class="form-control" id="cashAmount" required>
                                     </div>
                                 </td>
-                        <tr>
                                 <td>
-                                <span><button class="btn btn-primary btn-sm mt-2" style="background: #333f57; padding: 5px 6px; font-size: 12px; color: white;" onclick="hitungKembalian()">Hitung Kembalian</button></span>
+                                <button class="btn" style="background: #333f57; padding: 5px 7px; font-size: 15px; color: white;" onclick="hitungKembalian()">Kembalian</button>
                                 <p id="kembalian"></p>
                                         
                                 </td>
-                        </tr>
+                                <td></td>
+                
                         <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post">
                     <?php foreach($data['keranjang'] as $item) { ?>
                         <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][id_produk]" value="<?= $item['id_produk'] ?>">
@@ -173,8 +178,9 @@
                     <?php } ?>
                     <input type="hidden" name="total_pembayaran" id="total_pembayaran"> 
                         <tr>
+                            <td></td>
                                 <td>
-                                <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                <button type="submit" name="submit" id="selesai" class="btn" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
@@ -202,6 +208,23 @@
 $(document).ready(function() {
     $('#id_produk').select2();
 });
+
+// Fungsi untuk validasi stok
+function validateStock() {
+    // Mendapatkan nilai qty yang diinputkan
+    let inputQty = parseInt(document.getElementById('qty').value);
+
+    // Mendapatkan nilai stok produk terpilih dari opsi select
+    let selectedProductIndex = document.getElementById('id_produk').selectedIndex;
+    let selectedProductStock = <?= json_encode($data['data']) ?>[selectedProductIndex]['stok']; // Mengganti 'stok' dengan kunci yang benar di dalam $data['data']
+
+    // Memeriksa apakah qty yang dimasukkan melebihi stok yang tersedia
+    if (inputQty > selectedProductStock) {
+        alert('Stok produk tidak mencukupi. Mohon masukkan jumlah yang lebih kecil.');
+        document.getElementById('qty').value = selectedProductStock; // Mengatur nilai qty menjadi stok yang tersedia
+    }
+}
+
 
 // Function to calculate change
 function hitungKembalian() {
@@ -238,6 +261,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 console.log('Data keranjang berhasil disimpan ke database:', response);
+                validatePayment();
                 resetDOM(); // Setelah disimpan, reset tampilan DOM
                 resetOK();
             },
