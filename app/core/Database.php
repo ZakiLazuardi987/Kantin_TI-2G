@@ -77,7 +77,6 @@ class Database
     {
         return $this->stmt->rowCount();
     }
-
     // start transaction
     public function beginTransaction()
     {

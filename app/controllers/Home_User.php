@@ -91,27 +91,36 @@ class Home_User extends Controller
         header('Location: ' . BASEURL . '/Home_User');
     }
 
-    public function prosesTransaksi() {
-        var_dump($_POST);
+    public function prosesTransaksi()
+    {
         // Dummy data, bisa diganti dengan data dari inputan pengguna
         $keranjang = $_POST['keranjang']; // Mengambil seluruh data keranjang dari form
         $totalPembayaran = $_POST['total_pembayaran']; // Mengambil total pembayaran dari form
-    
+
         // Menyiapkan data untuk transaksi
         $data = [
             'keranjang' => $keranjang,
             'total_pembayaran' => $totalPembayaran
         ];
-    
+
         // Memanggil model dan fungsi transaksi untuk menyimpan data
         $model = $this->model('Transaksi_Model'); // Ganti dengan nama model yang sesuai
         $rowCount = $model->transaksi($data);
-    
-        // Memberikan respons berdasarkan hasil transaksi
+
+        // Mengurangi stok produk setelah transaksi berhasil
         if ($rowCount > 0) {
+            foreach ($keranjang as $item) {
+                $id_produk = $item['id_produk'];
+                $qty = $item['qty'];
+                
+                // Mengurangi stok produk
+                $this->model('Produk_Model')->updateStokProduk($id_produk, $qty);
+            }
+
             header('Location: ' . BASEURL . '/Home_User');
         }
     }
+
     
 }
 
