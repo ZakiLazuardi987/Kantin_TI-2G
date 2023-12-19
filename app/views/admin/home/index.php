@@ -1,3 +1,18 @@
+<?php
+// Include model
+require_once 'app/models/Dashboard_Model.php';
+
+// Create model instance
+$dashboardModel = new Dashboard_Model();
+
+// Get data from the model
+$totalProducts = $dashboardModel->getTotalProducts();
+$totalStock = $dashboardModel->getTotalStock();
+$lastSales = $dashboardModel->getLastSales();
+$todayTransactions = $dashboardModel->getTodayTransactions();
+$topProducts = $dashboardModel->getTopProducts();
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,7 +46,7 @@
                                 <span class="info-box-text"><strong>Produk</strong></span>
                                 <span class="info-box-number">
                                 
-                                <small>Total Produk sebanyak 10 produk.</small>
+                                <small>Total Produk sebanyak <?= $totalProducts['jumlah_produk']; ?> produk.</small>
                                 </span>
                             </div>
                                 <!-- /.info-box-content -->
@@ -46,7 +61,7 @@
                                 <span class="info-box-text"><strong>Stok</strong></span>
                                 <span class="info-box-number">
                                 
-                                <small>Total Stok Keseluruhan sebanyak 150 item.</small>
+                                <small>Total Stok Keseluruhan sebanyak <?= $totalStock['jumlah_stok']; ?> item.</small>
                                 </span>
                             </div>
                                 <!-- /.info-box-content -->
@@ -61,7 +76,7 @@
                                 <span class="info-box-text"><strong>Penjualan</strong></span>
                                 <span class="info-box-number">
         
-                                <small>Total Penjualan terakhir sebesar Rp. 200.000.</small>
+                                <small>Total Penjualan terakhir sebesar Rp. <?= number_format($lastSales['total_bayar'], 2); ?>.</small>
                                 </span>
                             </div>
                                 <!-- /.info-box-content -->
@@ -77,7 +92,7 @@
                                 <span class="info-box-text"><strong>Transaksi</strong></span>
                                 <span class="info-box-number">
                                 
-                                <small>Total Transaksi hari ini sebanyak 10 transaksi.</small>
+                                <small>Total Transaksi hari ini sebanyak <?= $todayTransactions['jumlah_transaksi']; ?> transaksi.</small>
                                 </span>
                             </div>
                                 <!-- /.info-box-content -->
