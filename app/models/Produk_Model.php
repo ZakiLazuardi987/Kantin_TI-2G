@@ -131,4 +131,36 @@ class Produk_Model
         $this->db->bind('idPengajuan', $idPengajuan);
         return $this->db->execute(); // Eksekusi query tanpa mengembalikan hasil (execute() digunakan karena ini adalah operasi INSERT)
     }
+
+    public function updateStokProduk($id_produk, $qty)
+    {
+        // Ambil stok produk saat ini
+        $currentStok = $this->getStokProdukById($id_produk);
+
+        // Kurangi stok produk dengan jumlah yang dibeli
+        $newStok = $currentStok - $qty;
+
+        // Update stok produk dalam database
+        $query = "UPDATE produk SET stok = :stok WHERE id_produk = :id_produk";
+        $this->db->query($query);
+        $this->db->bind(':stok', $newStok);
+        $this->db->bind(':id_produk', $id_produk);
+
+        // Eksekusi query
+        return $this->db->execute();
+    }
+
+    // Fungsi untuk mendapatkan stok produk berdasarkan id_produk
+    public function getStokProdukById($id_produk)
+    {
+        $query = "SELECT stok FROM produk WHERE id_produk = :id_produk";
+        $this->db->query($query);
+        $this->db->bind(':id_produk', $id_produk);
+
+        // Eksekusi query dan ambil hasilnya
+        $result = $this->db->single();
+
+        // Kembalikan stok produk
+        return $result['stok'];
+    }
 }
