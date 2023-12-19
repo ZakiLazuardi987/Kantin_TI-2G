@@ -40,6 +40,7 @@ class Pengajuan_User extends Controller
                 'nama_produk' => $_POST['nama_produk'],
                 'harga' => $_POST['harga'],
                 'gambar_produk' => $gambar_produk,
+                'status_pengajuan' => $_POST['status_pengajuan']
             ];
 
             if ($this->model('Pengajuan_Model')->add($data) > 0) {

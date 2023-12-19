@@ -132,6 +132,18 @@ class Produk_Model
         return $this->db->execute(); // Eksekusi query tanpa mengembalikan hasil (execute() digunakan karena ini adalah operasi INSERT)
     }
 
+    public function accPengajuan($idPengajuan) {
+        $this->db->query("UPDATE pengajuan SET status_pengajuan = 'Disetujui' WHERE id_pengajuan = :idPengajuan");
+        $this->db->bind('idPengajuan', $idPengajuan);
+        return $this->db->execute();        
+    }
+
+    public function tolakPengajuan($idPengajuan) {
+        $this->db->query("UPDATE pengajuan SET status_pengajuan = 'Ditolak' WHERE id_pengajuan = :idPengajuan");
+        $this->db->bind('idPengajuan', $idPengajuan);
+        return $this->db->execute();
+    }
+
     public function updateStokProduk($id_produk, $qty)
     {
         // Ambil stok produk saat ini

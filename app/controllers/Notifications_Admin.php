@@ -49,6 +49,16 @@ class Notifications_Admin extends Controller {
         $idPengajuan = $_POST['id_pengajuan']; // Pastikan Anda mengambil ID pengajuan dari data yang dikirimkan melalui POST
         $this->model('Produk_Model')->insertFromPengajuan($idPengajuan);
     }
+
+    public function acc(){
+        $idPengajuan = $_POST['id_pengajuan']; // Pastikan Anda mengambil ID pengajuan dari data yang dikirimkan melalui POST
+        $this->model('Produk_Model')->accPengajuan($idPengajuan);
+    }
+
+    public function tolak(){
+        $idPengajuan = $_POST['id_pengajuan']; // Pastikan Anda mengambil ID pengajuan dari data yang dikirimkan melalui POST
+        $this->model('Produk_Model')->tolakPengajuan($idPengajuan);
+    }
     
 
     public function updateStatus()

@@ -87,8 +87,8 @@
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                 <td>
-                                <button class="statusButton btn btn-success me-2" onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')">ACC</button>                                    
-                                <button class="statusButton btn btn-danger" data-id="<?php echo $pengajuan['id_pengajuan']; ?>">TOLAK</button>
+                                				<button class="statusButton btn btn-success me-2" onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')"> ACC</button>                                    
+                                <button class="statusButton btn btn-danger" onclick="rejectPengajuan('<?php echo $pengajuan['id_pengajuan']; ?>')"> TOLAK</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -105,7 +105,21 @@
     function addPengajuanToProduk(x) {
         let url = '<?=BASEURL?>/Notifications_Admin/addFromPengajuan';
         $.post(url, {id_pengajuan: x}, function (dataPengajuan, success) {
+            accPengajuan(x);
+        });
+    }
+
+    function accPengajuan(x){
+        let url = '<?=BASEURL?>/Notifications_Admin/acc';
+        $.post(url, {id_pengajuan: x}, function (dataPengajuan, success) {
             alert("Data berhasil ditambahkan");
+        });
+    }
+
+    function rejectPengajuan(x){
+        let url = '<?=BASEURL?>/Notifications_Admin/tolak';
+        $.post(url, {id_pengajuan: x}, function (dataPengajuan, success){
+            alert("Data berhasil ditolak");
         });
     }
 
