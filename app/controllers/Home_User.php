@@ -19,7 +19,6 @@ class Home_User extends Controller
         $this->view('user/home/index', $data);
         $this->view('admin/template/footer');
     }
-
     public function formBayar()
     {
         // $data['title'] = 'Tambah Produk';

@@ -239,6 +239,7 @@ $(document).ready(function() {
             success: function(response) {
                 console.log('Data keranjang berhasil disimpan ke database:', response);
                 resetDOM(); // Setelah disimpan, reset tampilan DOM
+                resetOK();
             },
             error: function(xhr, status, error) {
                 console.error('Gagal menyimpan data ke database:', error);
@@ -247,6 +248,11 @@ $(document).ready(function() {
     });
 });
 
+function resetOK(){
+    let url = '<?=BASEURL?>/Home_User/resetAjaYa';
+        $.post(url, function (success) {
+    });
+}
 // Mengosongkan tabel dan mereset total pembayaran
 function resetDOM() {
     $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
