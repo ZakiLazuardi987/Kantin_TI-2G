@@ -93,8 +93,30 @@ class Transaksi_Model
     
             // Menghitung total qty dari setiap keranjang
             foreach ($data['keranjang'] as $item) {
+                $id_produk = $item['id_produk'];
                 $qty = $item['qty'];
                 $totalQty += $qty;
+
+                // $updateQuery = "UPDATE produk SET stok = stok - :qty WHERE id_produk = :id_produk";
+
+                // // Bind parameter dan execute query
+                // $this->db->query($updateQuery);
+                // $this->db->bind(':id_produk', $id_produk);
+                // $this->db->bind(':qty', $qty);
+                // $this->db->execute();
+
+            // $this->db->query("SELECT * FROM keranjang WHERE id_produk = :id_produk");
+            // $this->db->bind(':id_produk', $id_produk);
+            // $this->db->execute();
+            // $result = $this->db->single();
+
+            // if ($result) {
+            //     $stokSekarang = $result['qty'] - $qty;
+            //     $this->db->query("UPDATE produk SET stok = :stokSekarang WHERE id_produk = :id_produk");
+            //     $this->db->bind(':id_produk', $id_produk);
+            //     $this->db->bind(':stokSekarang', $stokSekarang);
+            //     $this->db->execute();
+            // }
             }
             $this->db->bind('total_qty', $totalQty);
             $this->db->bind('total_bayar', $totalPembayaran);

@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <!-- Tabel -->
             <div class="container">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead style="background: #F6E8C1">
                         <tr>
                             <th>ID</th>

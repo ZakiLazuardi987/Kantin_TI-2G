@@ -31,9 +31,9 @@
     <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][tgl_order]" value="<?= $item['tgl_order'] ?>">
     <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][qty]" value="<?= $item['qty'] ?>">
 <?php } ?>
-<input type="hidden" name="total_pembayaran" id="total_pembayaran">
+<input type="hidden" name="total_pembayaran" id="total_pembayaran"> 
             
-            <button type="submit" name="submit" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
+            <button type="submit" name="submit" id="selesai" class="btn btn-warning d-block mx-auto mb-3" style="font-size: 12px; padding: 7px 9px; background: #F9CC41;"><strong>TRANSAKSI SELESAI</strong></button>
         </form>
     </div>
 </div>
@@ -61,7 +61,15 @@
 
     document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
 }
- 
+
+$(document).ready(function() {
+    $('#selesai').on('click', function() {
+        console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
+        $('#total').remove(); // Menghapus elemen dengan ID 'total'
+        $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
+    });
+});
+
 function validatePayment() {
     let cashAmount = document.getElementById('cashAmount').value;
     let totalPembayaran = document.getElementById('total').getAttribute('data-total');
@@ -73,24 +81,18 @@ function validatePayment() {
         return false;
     }
 
-    // Reset data tabel ke default
-    resetTable();
-    // Reset nilai total pembayaran
-    resetTotal();
-
     alert('Terimakasih!! Proses Transaksi Sudah Selesai.');
 
     return true;
+    
 }
 
-function resetTable() {
-    const cartTable = document.getElementById('cart-table');
-    cartTable.innerHTML = ''; // Mengosongkan isi tabel
-}
 
-function resetTotal() {
-    const totalElement = document.getElementById('total');
-    totalElement.innerText = 'Rp. 0'; // Set nilai total ke nol
-}
+
+
+
+
+
+
 
 </script>

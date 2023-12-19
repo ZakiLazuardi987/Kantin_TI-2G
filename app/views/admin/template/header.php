@@ -91,6 +91,15 @@
         }
         
 
+        .stok-habis {
+            filter: grayscale(100%);
+            /* atau */
+            /* opacity: 0.5; */
+            /* atau */
+            /* Ubah properti lain sesuai keinginan Anda */
+        }
+
+
         .btn-success {
           margin-left: 15px;
           padding: 10px 10px; /* Ubah padding tombol */

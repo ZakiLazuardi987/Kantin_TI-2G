@@ -31,6 +31,30 @@ class Produk_Model
         return $this->db->resultSet();
     }
 
+
+    public function getAllProductsNotStock()
+    {
+        // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
+        $this->db->query("SELECT * FROM produk WHERE stok > 0 ORDER BY id_produk DESC");
+        return $this->db->resultSet();
+    }
+
+    public function getBestSellingProducts()
+{
+    $query = "
+    SELECT p.*, COALESCE(SUM(k.qty), 0) AS total_penjualan
+    FROM produk p
+    LEFT JOIN keranjang k ON p.id_produk = k.id_produk
+    GROUP BY p.id_produk
+    ORDER BY total_penjualan DESC
+    LIMIT 5
+    ";
+
+    $this->db->query($query);
+    return $this->db->resultSet();
+}
+
+
     public function getAllCategories()
     {
         $this->db->query("SELECT * FROM kategori");

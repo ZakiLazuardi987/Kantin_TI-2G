@@ -43,7 +43,7 @@
 
             <!-- Tabel -->
             <div class="container mb-2">
-                <table id="example" class="table table-bordered">
+                <table id="example" class="table">
                     <thead style="background: #F6E8C1">
                         <tr>
                             <th>ID</th>

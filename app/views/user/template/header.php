@@ -87,6 +87,15 @@
         .card-spacing:hover {
           transform: scale(1.05); /* Increasing size on hover */
         }
+
+        .stok-habis {
+            filter: grayscale(100%);
+            /* atau */
+            /* opacity: 0.5; */
+            /* atau */
+            /* Ubah properti lain sesuai keinginan Anda */
+        }
+
         
         .btn-success {
           margin-left: 15px;

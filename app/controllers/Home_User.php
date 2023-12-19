@@ -5,7 +5,7 @@ class Home_User extends Controller
     public function index()
     {
         $data['title'] = 'Home User';
-        $data['data'] = $this->model('Produk_Model')->getAllProducts();
+        $data['data'] = $this->model('Produk_Model')->getAllProductsNotStock();
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
         $data['nama_produk'] = $this->model('Transaksi_Model')->getProductByName();
         $data['harga'] = $this->model('Transaksi_Model')->getHargaProduk();

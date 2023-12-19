@@ -26,6 +26,7 @@ class Pegawai_Admin extends Controller
         $this->view('admin/pegawai/tambah_pegawai', $data);
     }
 
+    
     public function prosesTambah()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -124,6 +125,13 @@ class Pegawai_Admin extends Controller
             exit;
         }
     }
+
+    public function formHapus()
+    {
+        $this->view('admin/produk/hapus_produk');
+    }
+
+    
     public function prosesHapus($id_user)
     {
         

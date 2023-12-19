@@ -7,6 +7,8 @@ class Home_Admin extends Controller {
         //$data['data'] = $this->model('Produk_Model')->getAllProducts();
         $data['nama_user'] = $_SESSION['username'] ?? '';
 
+        $data['dataTop'] = $this->model('Produk_Model')->getBestSellingProducts();
+
         $this->view('admin/template/header', $data);
         $this->view('admin/template/navbar', $data);
         $this->view('admin/template/sidebar', $data);
