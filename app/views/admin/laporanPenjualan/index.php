@@ -62,7 +62,7 @@
                                 <td><?= $item['Total Produk Terjual'] ?></td>
                                 <td><?= $item['Total Penjualan'] ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail('<?= $item['Tanggal'] ?>')" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
                                         Lihat Detail
                                     </button>
                                 </td>
@@ -86,12 +86,15 @@
 <!-- Modal -->
 
 <script>
-    function detail(){
+    function detail(tanggal) {
         $('.modal-title').html('Detail Laporan Penjualan');
-        let url = '<?=BASEURL?>/Laporan_Admin/detail';
-        $.post(url, function(data, success){
+
+        // Assuming you have a route in your controller to handle fetching details based on the date
+        let url = '<?=BASEURL?>/Laporan_Admin/detail?tanggal=' + tanggal;
+
+        $.post(url, function(data, success) {
             $('.modal-body').html(data);
         });
-        // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #A52222">Reset</a>');
     }
 </script>
+

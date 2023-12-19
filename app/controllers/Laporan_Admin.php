@@ -19,14 +19,32 @@ class Laporan_Admin extends Controller {
             $data['data'] = $this->model('Laporan_Model')->getLaporanData($tanggalFilter);
         }
 
+        // Fetch transaction details for the first transaction (assuming there is at least one transaction)
+        if (!empty($data['data'])) {
+            $firstTransaction = $data['data'][0];
+            $transactionDetails = $this->model('Laporan_Model')->getTransactionDetails($firstTransaction['Tanggal']);
+
+            // Pass the transaction details to the view
+            $data['transactionDetails'] = $transactionDetails;
+        }
+
         $this->view('admin/laporanPenjualan/index', $data);
         $this->view('admin/template/footer');
     }
 
-    public function detail(){
-        // $data['title'] = 'Tambah Produk';
-        //$data['kategori'] = $this->model('Produk_Model')->getAllCategories();
-        $this->view('admin/laporanPenjualan/detail_laporan');
+    public function detail()
+    {
+        $tanggal = $_GET['tanggal'] ?? null;
+    
+        if ($tanggal) {
+            $transactionDetails = $this->model('Laporan_Model')->getTransactionDetails($tanggal);
+            $data['transaksi'] = $transactionDetails;
+        } else {
+            $data['transaksi'] = null; // Handle the case when no date is provided
+        }
+    
+        $this->view('admin/laporanPenjualan/detail_laporan', $data);
     }
+    
 }
 ?>

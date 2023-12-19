@@ -33,5 +33,15 @@ class Laporan_Model
 
         return $this->db->resultSet();
     }
+
+    public function getTransactionDetails($tanggal)
+    {
+        $query = "SELECT id_transaksi, total_qty, total_bayar FROM transaksi WHERE tgl_order = :tanggal LIMIT 1";
+        $this->db->query($query);
+        $this->db->bind(':tanggal', $tanggal);
+    
+        return $this->db->single();
+    }
+    
 }
 ?>
