@@ -120,6 +120,9 @@ class Home_User extends Controller
         }
     }
 
+    public function resetAjaYa(){
+        $this->model('Keranjang_Model')->resetView();
+    }
     
 }
 
