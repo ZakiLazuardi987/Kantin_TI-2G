@@ -142,34 +142,27 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 mt-2 mb-2 d-flex justify-content-end align-items-center">
+                <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
-                        <div align="right">
                         <h3><strong>Pembayaran</strong></h3>
-                        </div>
                         <table width="100%">
                         <tr>
                         
 
                                 <td style="vertical-align: top;">
-                                <div align="right">
                                 <label for="cashAmount">Jumlah Nominal</label>
-                                    </div>
                                 </td>
-                        <tr>
                                 <td>
                                     <div class="form-group">
                                     <input type="text" class="form-control" id="cashAmount" required>
                                     </div>
                                 </td>
-                        </tr>
                         <tr>
                                 <td>
-                                    <div style="display: flex; justify-content: flex-start;">
                                 <span><button class="btn btn-primary btn-sm mt-2" style="background: #333f57; padding: 5px 6px; font-size: 12px; color: white;" onclick="hitungKembalian()">Hitung Kembalian</button></span>
                                 <p id="kembalian"></p>
-                                    </div>
+                                        
                                 </td>
                         </tr>
                         <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post">
@@ -189,7 +182,7 @@
                             </tr>
                             </form>
                         </table>
-                  
+                    
                     </div>
                 </div>
             </div>
