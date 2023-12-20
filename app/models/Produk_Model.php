@@ -41,11 +41,10 @@ class Produk_Model
 
     public function getBestSellingProducts()
 {
-    $query = "
-    SELECT p.*, COALESCE(SUM(k.qty), 0) AS total_penjualan
-    FROM produk p
-    LEFT JOIN keranjang k ON p.id_produk = k.id_produk
-    GROUP BY p.id_produk
+    $query = "SELECT p.nama_produk, p.harga, p.gambar_produk, COUNT(k.id_produk) AS total_penjualan
+    FROM keranjang k
+    JOIN produk p ON k.id_produk = p.id_produk
+    GROUP BY p.nama_produk, p.harga, p.gambar_produk
     ORDER BY total_penjualan DESC
     LIMIT 5
     ";
