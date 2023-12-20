@@ -55,7 +55,7 @@
                             <th>Harga</th>
                             <th>Gambar</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     
@@ -68,7 +68,7 @@
                                     <td><?php echo $pengajuan['harga']; ?></td>
                                     <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
                                     <td><?php echo $pengajuan['status_pengajuan']; ?></td>
-                                    <td>
+                                    <!-- <td>
                                     
                                         <button type="button" class="btn btn-primary" style="background: #1A2A46;" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Edit
@@ -76,7 +76,7 @@
                                         <button type="button" class="btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" data-toggle="modal" data-target="#exampleModal" onclick="hapusdata(<?= $pengajuan['id_pengajuan']; ?>)">
                                             Hapus
                                         </button>
-                                    </td>
+                                    </td> -->
                                 </tr>
                         
                         <?php } ?>
@@ -110,24 +110,24 @@
     }
 
 
-    function ubahdata(x) {
-        $('.modal-title').html('Ubah Data Pengajuan');
-        let url = '<?=BASEURL?>/Pengajuan_User/formUbah';
-        $.post(url, {
-            id_pengajuan: x
-        }, function (data, success) {
-            $('.modal-body').html(data);
-        });
-    }
+    // function ubahdata(x) {
+    //     $('.modal-title').html('Ubah Data Pengajuan');
+    //     let url = '<?=BASEURL?>/Pengajuan_User/formUbah';
+    //     $.post(url, {
+    //         id_pengajuan: x
+    //     }, function (data, success) {
+    //         $('.modal-body').html(data);
+    //     });
+    // }
 
-    function hapusdata(x) {
-        $('.modal-title').html('Hapus Data Pengajuan');
-        let url = '<?= BASEURL?>/Pengajuan_User/formHapus';
-        $.post(url, {
-            id_pengajuan: x
-        }, function (data, success) {
-            $('.modal-body').html(data);
-            $('#hapusForm').attr('action', '<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x);
-        });
-    }
+    // function hapusdata(x) {
+    //     $('.modal-title').html('Hapus Data Pengajuan');
+    //     let url = '<?= BASEURL?>/Pengajuan_User/formHapus';
+    //     $.post(url, {
+    //         id_pengajuan: x
+    //     }, function (data, success) {
+    //         $('.modal-body').html(data);
+    //         $('#hapusForm').attr('action', '<?= BASEURL?>/Pengajuan_User/prosesHapus/' + x);
+    //     });
+    // }
 </script>
