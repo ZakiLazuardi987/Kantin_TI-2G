@@ -180,7 +180,7 @@
                         <tr>
                             <td></td>
                                 <td>
-                                <button type="submit" name="submit" id="selesai" onclick="validatePayment()" class="btn" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                <button type="submit" name="submit" id="selesai" class="btn" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
@@ -248,35 +248,29 @@ function hitungKembalian() {
     document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
 }
 
-$(document).ready(function() {
-    $('#selesai').on('click', function() {
-        console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
+// $(document).ready(function() {
+//     $('#selesai').on('click', function() {
+//         console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
 
-        // Simpan data keranjang yang ada ke database sebelum mereset tampilan
-        $.ajax({
-            type: 'POST',
-            url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
-            data: {
-                keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
-            },
-            success: function(response) {
-                console.log('Data keranjang berhasil disimpan ke database:', response);
-                //validatePayment();
-                resetDOM(); // Setelah disimpan, reset tampilan DOM
-                //resetOK();
-            },
-            error: function(xhr, status, error) {
-                console.error('Gagal menyimpan data ke database:', error);
-            }
-        });
-    });
-});
-
-function resetOK(){
-    let url = '<?=BASEURL?>/Home_User/resetAjaYa';
-        $.post(url, function (success) {
-    });
-}
+//         // Simpan data keranjang yang ada ke database sebelum mereset tampilan
+//         $.ajax({
+//             type: 'POST',
+//             url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
+//             data: {
+//                 keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
+//             },
+//             success: function(response) {
+//                 console.log('Data keranjang berhasil disimpan ke database:', response);
+//                 //validatePayment();
+//                 resetDOM(); // Setelah disimpan, reset tampilan DOM
+//                 resetOK();
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error('Gagal menyimpan data ke database:', error);
+//             }
+//         });
+//     });
+// });
 // Mengosongkan tabel dan mereset total pembayaran
 function resetDOM() {
     $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
