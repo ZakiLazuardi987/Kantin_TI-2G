@@ -1,21 +1,17 @@
 <div class="content">
   <div class="container-fluid">
     <div class="modal-body">    
-    <div class="row">
-      <!-- <div class="modal-body"> -->
-        <!-- <div class="col-md-6"> -->
+      <div class="row">
         <div class="card mx-auto" style="width: 400px; height: auto;">
           <ul class="list-group list-group-flush">
-          
+          <?php foreach ($data['detail'] as $item) { ?>
             <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h6 class="my-0"><strong>Tanggal Transaksi</strong></h6>
-              <?php foreach ($data['id'] as $item) { ?>
-                <?php } ?>
               <small class="text-body-secondary">Id: <?= $item['id_transaksi']?></small>
               
             </div>
-            <span class="text-body-secondary"><h6><?= $tgl?></h6></span>
+            <span class="text-body-secondary"><h6><?= $item['tgl_order']?></h6></span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -28,7 +24,6 @@
 
             
             </li>
-            <?php foreach ($data['detail'] as $item) { ?>
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0"><?= $item['nama_produk']?></h6>
@@ -40,7 +35,7 @@
 
             
             </li>
-            <?php } ?>
+            
 
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -67,16 +62,10 @@
             
             </li>
 
-            
+            <?php } ?>
           </ul>
         </div>
-        <!-- </div> -->
-
-        
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-  
-
-

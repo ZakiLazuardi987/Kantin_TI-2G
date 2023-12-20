@@ -310,18 +310,29 @@ function validatePayment() {
     }
 
     alert('Terimakasih!! Proses Transaksi Sudah Selesai.');
-
+    localStorage.removeItem('selectedDate'); // Reset nilai saved data menjadi kosong
     return true;
     
 }
-
-
     // Mendapatkan elemen input tanggal
     const inputTanggal = document.getElementById('tgl_order');
 
-    // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
+    // Cek apakah ada nilai tanggal yang disimpan di local storage
+    const savedDate = localStorage.getItem('selectedDate');
 
-    // Mengatur nilai input tanggal menjadi tanggal hari ini
-    inputTanggal.value = today;
+    // Jika ada, atur nilai input tanggal sesuai dengan yang disimpan
+    if (savedDate) {
+        inputTanggal.value = savedDate;
+    } else {
+        // Jika tidak ada, atur nilai input tanggal menjadi tanggal hari ini
+        const today = new Date().toISOString().split('T')[0];
+        inputTanggal.value = '';
+    }
+
+    // Event listener untuk menyimpan tanggal saat nilai diubah
+    inputTanggal.addEventListener('change', function() {
+    // Simpan tanggal yang dipilih di local storage
+    localStorage.setItem('selectedDate', inputTanggal.value);
+});
+
 </script>

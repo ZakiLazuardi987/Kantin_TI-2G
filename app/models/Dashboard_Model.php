@@ -36,4 +36,10 @@ class Dashboard_Model
         $this->db->query($query);
         return $this->db->single();
     }
+
+    public function getNotif(){
+        $query = "SELECT COUNT(id_pengajuan) AS jumlah_notif FROM pengajuan WHERE status_pengajuan = 'On Process'";
+        $this->db->query($query);
+        return $this->db->single(); // Menggunakan single() karena hanya satu nilai yang diharapkan
+    }
 }
