@@ -25,7 +25,7 @@ class Dashboard_Model
 
     public function getLastSales()
     {
-        $query = "SELECT total_bayar FROM transaksi ORDER BY id_transaksi DESC LIMIT 1";
+        $query = "SELECT total_sales FROM total";
         $this->db->query($query);
         return $this->db->single();
     }
