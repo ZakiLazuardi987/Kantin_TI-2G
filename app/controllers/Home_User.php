@@ -84,22 +84,31 @@ class Home_User extends Controller
             'kembalian' => $kembalian
         ];
 
-        // Memanggil model dan fungsi transaksi untuk menyimpan data
-        $model = $this->model('Transaksi_Model'); // Ganti dengan nama model yang sesuai
-        $rowCount = $model->transaksi($data);
+        // Periksa apakah jumlah nominal ada atau tidak kosong
+        if (!empty($cashAmount)) {
+            $model = $this->model('Transaksi_Model'); // Ganti dengan nama model yang sesuai
+            $rowCount = $model->transaksi($data);
 
         // Mengurangi stok produk setelah transaksi berhasil
-        if ($rowCount > 0) {
-            foreach ($keranjang as $item) {
-                $id_produk = $item['id_produk'];
-                $qty = $item['qty'];
-                
-                // Mengurangi stok produk
-                $this->model('Produk_Model')->updateStokProduk($id_produk, $qty);
-            }
+            if ($rowCount > 0) {
+                foreach ($keranjang as $item) {
+                    $id_produk = $item['id_produk'];
+                    $qty = $item['qty'];
+                    
+                    // Mengurangi stok produk
+                    $this->model('Produk_Model')->updateStokProduk($id_produk, $qty);
+                }
 
-            header('Location: ' . BASEURL . '/Home_User');
+                header('Location: ' . BASEURL . '/Home_User');
+            } 
+        } else{
+            Flasher::setFlash('jumlah nominal', 'tidak diinputkan', 'danger');
+            header('Location: ' . BASEURL . '/Home_User'); // Ganti dengan alamat tujuan jika gagal mengunggah gambar
+            exit;
         }
+
+        // Memanggil model dan fungsi transaksi untuk menyimpan data
+        
     }
     
 }

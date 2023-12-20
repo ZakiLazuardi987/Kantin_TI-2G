@@ -21,6 +21,11 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+      <div class="row mb-2">
+            <div class="col-lg-6">
+              <?php Flasher::flash(); ?>
+            </div>
+      </div>
         <div class="row mb-5" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
@@ -293,7 +298,7 @@ function hitungKembalian() {
 function validatePayment() {
     let cashAmount = document.getElementById('cashAmount').value;
     let totalPembayaran = document.getElementById('total').getAttribute('data-total');
-    let kembalian = hitungKembalian();;
+    let kembalian = hitungKembalian();
 
     document.getElementById('total_pembayaran').value = totalPembayaran;
     document.getElementById('cashAmountInput').value = cashAmount;
