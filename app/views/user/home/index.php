@@ -180,7 +180,7 @@
                         <tr>
                             <td></td>
                                 <td>
-                                <button type="submit" name="submit" id="selesai" class="btn" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
