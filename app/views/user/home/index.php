@@ -252,7 +252,6 @@ $(document).ready(function() {
     $('#selesai').on('click', function() {
         console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
 
-<<<<<<< HEAD
         // Simpan data keranjang yang ada ke database sebelum mereset tampilan
         $.ajax({
             type: 'POST',
@@ -278,27 +277,6 @@ function reset(){
     });
 }
 
-=======
-//         // Simpan data keranjang yang ada ke database sebelum mereset tampilan
-//         $.ajax({
-//             type: 'POST',
-//             url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
-//             data: {
-//                 keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
-//             },
-//             success: function(response) {
-//                 console.log('Data keranjang berhasil disimpan ke database:', response);
-//                 //validatePayment();
-//                 resetDOM(); // Setelah disimpan, reset tampilan DOM
-//                 resetOK();
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error('Gagal menyimpan data ke database:', error);
-//             }
-//         });
-//     });
-// });
->>>>>>> 110e55dbbf0aa206542a89fa97b511887514ba37
 // Mengosongkan tabel dan mereset total pembayaran
 function resetDOM() {
     $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
