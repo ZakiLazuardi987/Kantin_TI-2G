@@ -158,6 +158,32 @@ class Transaksi_Model
     {
         $this->db->query("SELECT * FROM transaksi WHERE tgl_order = :tanggalFilter ORDER BY id_transaksi DESC");
         $this->db->bind(':tanggalFilter', $tanggalFilter);
-        return $this->db->resultSet();
+        $result = $this->db->resultSet();
+    
+        // Check if the result set is empty, fetch all transactions
+        if (empty($result)) {
+            $this->db->query("SELECT * FROM transaksi ORDER BY id_transaksi DESC");
+            return $this->db->resultSet();
+        }
+    
+        return $result;
     }
+
+    public function getLaporanHistoryByDate($tanggalFilter)
+    {
+        $this->db->query("SELECT * FROM transaksi WHERE tgl_order = :tanggalFilter ORDER BY id_transaksi DESC");
+        $this->db->bind(':tanggalFilter', $tanggalFilter);
+        $result = $this->db->resultSet();
+    
+        // Check if the result set is empty for the specific date
+        if (empty($result)) {
+            // If empty, redirect to Laporan_Admin.php
+            header("Location: " . BASEURL . "/Laporan_Admin");
+            exit();
+        }
+    
+        return $result;
+    }
+    
+    
 }

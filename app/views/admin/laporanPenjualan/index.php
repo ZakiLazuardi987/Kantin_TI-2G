@@ -7,7 +7,7 @@
                     <h1 class="m-0">Data Laporan Penjualan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <form method="post" action="<?= BASEURL ?>/History_User">
+                <form method="post" action="<?= BASEURL ?>/History_Admin">
                         <div class="input-group">
                             <input name="tanggal" class="form-control me-2" type="date" placeholder="Tanggal" aria-label="Tanggal">
                             <button type="submit" name="filter" class="btn btn-primary" style="margin-left: 2px; margin: auto; padding: 5px 6px; font-size: 12px;"><strong>Filter</strong></button>
@@ -36,7 +36,6 @@
                             <th>Jumlah Transaksi</th>
                             <th>Total Produk Terjual</th>
                             <th>Total Penjualan</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,11 +49,6 @@
                                 <td><?= $item['Jumlah Transaksi'] ?></td>
                                 <td><?= $item['Total Produk Terjual'] ?></td>
                                 <td><?= $item['Total Penjualan'] ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail('<?= $item['Tanggal'] ?>')" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
-                                        Lihat Detail
-                                    </button>
-                                </td>
                             </tr>
                         <?php
                             endforeach;
@@ -79,20 +73,4 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal -->
-
-<script>
-    function detail(x) {
-        
-        $('.modal-title').html('Detail Laporan Penjualan');
-
-        // Assuming you have a route in your controller to handle fetching details based on the date
-        let url = '<?=BASEURL?>/Laporan_Admin/detail'
-        $.post(url,
-        {
-        tanggal : x
-        }, function(data, success) {
-            $('.modal-body').html(data);
-        });
-    }
-</script>
 

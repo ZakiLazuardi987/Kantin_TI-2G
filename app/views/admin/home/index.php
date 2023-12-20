@@ -75,7 +75,7 @@ $todayTransactions = $dashboardModel->getTodayTransactions();
                                 <span class="info-box-text"><strong>Penjualan</strong></span>
                                 <span class="info-box-number">
         
-                                <small>Total Penjualan terakhir sebesar Rp. <?= number_format($lastSales['total_bayar'], 2); ?>.</small>
+                                <small>Total Penjualan terakhir sebesar Rp. <?= number_format($lastSales['total_sales'], 2); ?>.</small>
                                 </span>
                             </div>
                                 <!-- /.info-box-content -->
