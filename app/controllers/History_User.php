@@ -23,10 +23,11 @@ class History_User extends Controller {
 
     public function detail(){
         // $data['title'] = 'Tambah Produk';
-    //$data['kategori'] = $this->model('Produk_Model')->getAllCategories();
+        $id_transaksi = $_POST['id_transaksi'];
+    $data['detail'] = $this->model('History_Model')->getHistoryById($id_transaksi);
 
     
-    $this->view('user/historyPenjualan/detail_history');
+    $this->view('user/historyPenjualan/detail_history', $data);
     }
     
     

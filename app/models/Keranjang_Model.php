@@ -10,20 +10,20 @@ class Keranjang_Model
 
     public function addToCart($data)
 {
-    $this->db->query("SELECT * FROM keranjang WHERE id_produk = :id_produk");
-    $this->db->bind('id_produk', $data['id_produk']); // Menggunakan $data['id_produk']
-    $this->db->execute();
-    $result = $this->db->single();
+    // $this->db->query("SELECT * FROM keranjang WHERE id_produk = :id_produk");
+    // $this->db->bind('id_produk', $data['id_produk']); // Menggunakan $data['id_produk']
+    // $this->db->execute();
+    // $result = $this->db->single();
 
-    if ($result) {
-        // Mengambil nilai qty yang ada dan menambahkan dengan qty yang baru
-        $qty = $result['qty'] + $data['qty']; // Menambahkan qty yang baru
-        $this->db->query("UPDATE keranjang SET qty = :qty WHERE id_produk = :id_produk");
-        $this->db->bind('id_produk', $data['id_produk']);
-        $this->db->bind('qty', $qty);
-        $this->db->execute();
-        return $this->db->rowCount();
-    }
+    // if ($result) {
+    //     // Mengambil nilai qty yang ada dan menambahkan dengan qty yang baru
+    //     $qty = $result['qty'] + $data['qty']; // Menambahkan qty yang baru
+    //     $this->db->query("UPDATE keranjang SET qty = :qty WHERE id_produk = :id_produk");
+    //     $this->db->bind('id_produk', $data['id_produk']);
+    //     $this->db->bind('qty', $qty);
+    //     $this->db->execute();
+    //     return $this->db->rowCount();
+    // }
 
     $query = "INSERT INTO keranjang (id_produk, tgl_order, qty) VALUES (:id_produk, :tgl_order, :qty)";
     $this->db->query($query);
@@ -69,14 +69,18 @@ class Keranjang_Model
     public function getAllKeranjang(): array
     {
         // query inner join with products table
-        $this->db->query("SELECT * FROM keranjang INNER JOIN produk ON keranjang.id_produk = produk.id_produk");
+        $this->db->query("SELECT * FROM keranjang INNER JOIN produk ON keranjang.id_produk = produk.id_produk WHERE NOT EXISTS (
+            SELECT d.id_keranjang
+            FROM detail_transaksi d
+            WHERE d.id_keranjang = keranjang.id_keranjang
+        );");
         return $this->db->resultSet();
     }
 
-    public function deleteCart(string $id_produk): void
+    public function deleteCart(string $id_keranjang): void
     {
-        $this->db->query("DELETE FROM keranjang WHERE id_produk = :id_produk");
-        $this->db->bind('id_produk', $id_produk);
+        $this->db->query("DELETE FROM keranjang WHERE id_keranjang = :id_keranjang");
+        $this->db->bind('id_keranjang', $id_keranjang);
         $this->db->execute();
     }
 

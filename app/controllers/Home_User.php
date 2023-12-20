@@ -27,34 +27,11 @@ class Home_User extends Controller
         $this->view('user/home/form_bayar', $data);
     }
 
-    public function addToTable()
-    
-    {
-        //var_dump($_POST);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Mengumpulkan data dari formulir
-            
-    
-            $produk = [
-                'id_produk' => $_POST['id_produk'],
-                'tgl_order' => $_POST['tgl_order'],
-                'qty' => $_POST['qty']
-            ];
-    
-                if ($this->model('Keranjang_Model')->addToCart($produk)> 0) {
-                    
-                    header('Location: ' . BASEURL . '/Home_User'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
-                    
-                }
-            
-         
-        }
-    }
 
     public function addToCart()
     
     {
-        //var_dump($_POST);
+        var_dump($_POST);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Mengumpulkan data dari formulir
             
@@ -77,8 +54,8 @@ class Home_User extends Controller
 
     public function deleteCart(): void
     {
-        $id_produk = $_POST['id_produk'];
-        $this->model('Keranjang_Model')->deleteCart($id_produk);
+        $id_keranjang = $_POST['id_keranjang'];
+        $this->model('Keranjang_Model')->deleteCart($id_keranjang);
         header('Location: ' . BASEURL . '/Home_User');
     }
 
@@ -92,14 +69,19 @@ class Home_User extends Controller
 
     public function prosesTransaksi()
     {
+        var_dump($_POST);
         // Dummy data, bisa diganti dengan data dari inputan pengguna
         $keranjang = $_POST['keranjang']; // Mengambil seluruh data keranjang dari form
         $totalPembayaran = $_POST['total_pembayaran']; // Mengambil total pembayaran dari form
+        $cashAmount = $_POST['cashAmount'];
+        $kembalian = $_POST['kembalian'];
 
         // Menyiapkan data untuk transaksi
         $data = [
             'keranjang' => $keranjang,
-            'total_pembayaran' => $totalPembayaran
+            'total_pembayaran' => $totalPembayaran,
+            'cashAmount' => $cashAmount,
+            'kembalian' => $kembalian
         ];
 
         // Memanggil model dan fungsi transaksi untuk menyimpan data
@@ -119,9 +101,7 @@ class Home_User extends Controller
             header('Location: ' . BASEURL . '/Home_User');
         }
     }
-    public function reset(){
-        $this->model('Keranjang_Model')->resetView();
-    }
+    
 }
 
 

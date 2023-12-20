@@ -26,7 +26,7 @@
                 <div class="box box-widget">
                     <div class="box-body">
                     
-                    <form action="<?= BASEURL?>/Home_User/addToTable" method="post">
+                    <form action="<?= BASEURL?>/Home_User/addToCart" method="post">
                         <table width="100%">
                         <tr>
                         <!-- <input type="hidden" id="id_akun" value="<?= $_data['id_akun']?>"> -->
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group input-group">
-                                    <select class="form-control" id="id_produk" name="id_produk" required onchange="validateStock()">
+                                    <select class="form-control" id="id_produk" name="id_produk" required>
                                         <option></option>
                                         <?php
                                         foreach($data['data'] as $nama_produk){
@@ -136,7 +136,7 @@
                                             <td><?= $item['harga'] ?></td>
                                             <td><?= $item['qty'] * $item['harga'] ?></td>
                                             <form action="<?= BASEURL?>/Home_User/deleteCart" method="post">
-                                                <input type="hidden" name="id_produk" value="<?= $item['id_produk'] ?>">
+                                                <input type="hidden" name="id_keranjang" value="<?= $item['id_keranjang'] ?>">
                                                 <td><button type="submit" class="btn btn-success" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">Hapus</button></td>
                                             </form>
                                         </tr>
@@ -158,6 +158,8 @@
                         <td style="vertical-align: top;">
                                 <label for="cashAmount">Nominal</label>
                                 </td>
+                                    </tr>
+                                    <tr>
                                 <td>
                                     <div class="form-group">
                                     <input type="text" class="form-control" id="cashAmount" required>
@@ -168,17 +170,20 @@
                                 <p id="kembalian"></p>
                                         
                                 </td>
-                                <td></td>
+                                    </tr>
                 
                         <form action="<?= BASEURL?>/Home_User/prosesTransaksi" method="post">
                     <?php foreach($data['keranjang'] as $item) { ?>
+                        <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][id_keranjang]" value="<?= $item['id_keranjang'] ?>"> <!-- Menambahkan input id_keranjang -->
                         <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][id_produk]" value="<?= $item['id_produk'] ?>">
                         <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][tgl_order]" value="<?= $item['tgl_order'] ?>">
                         <input type="hidden" name="keranjang[<?= $item['id_keranjang'] ?>][qty]" value="<?= $item['qty'] ?>">
                     <?php } ?>
                     <input type="hidden" name="total_pembayaran" id="total_pembayaran"> 
+                    <input type="hidden" name="cashAmount" id="cashAmountInput">
+                    <input type="hidden" name="kembalian" id="kembalian">
                         <tr>
-                            <td></td>
+                            
                                 <td>
                                 <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
@@ -209,24 +214,25 @@ $(document).ready(function() {
     $('#id_produk').select2();
 });
 
-// Fungsi untuk validasi stok
-function validateStock() {
-    // Mendapatkan nilai qty yang diinputkan
-    let inputQty = parseInt(document.getElementById('qty').value);
+// // Fungsi untuk validasi stok
+// function validateStock() {
+//     // Mendapatkan nilai qty yang diinputkan
+//     let inputQty = parseInt(document.getElementById('qty').value);
 
-    // Mendapatkan nilai stok produk terpilih dari opsi select
-    let selectedProductIndex = document.getElementById('id_produk').selectedIndex;
-    let selectedProductStock = <?= json_encode($data['data']) ?>[selectedProductIndex]['stok']; // Mengganti 'stok' dengan kunci yang benar di dalam $data['data']
+//     // Mendapatkan nilai stok produk terpilih dari opsi select
+//     let selectedProductIndex = document.getElementById('id_produk').selectedIndex;
+//     let selectedProductStock = <?= json_encode($data['data']) ?>[selectedProductIndex]['stok']; // Mengganti 'stok' dengan kunci yang benar di dalam $data['data']
 
-    // Memeriksa apakah qty yang dimasukkan melebihi stok yang tersedia
-    if (inputQty > selectedProductStock) {
-        alert('Stok produk tidak mencukupi. Mohon masukkan jumlah yang lebih kecil.');
-        document.getElementById('qty').value = selectedProductStock; // Mengatur nilai qty menjadi stok yang tersedia
-    }
-}
+//     // Memeriksa apakah qty yang dimasukkan melebihi stok yang tersedia
+//     if (inputQty > selectedProductStock) {
+//         alert('Stok produk tidak mencukupi. Mohon masukkan jumlah yang lebih kecil.');
+//         document.getElementById('qty').value = selectedProductStock; // Mengatur nilai qty menjadi stok yang tersedia
+//     }
+// }
 
 
 // Function to calculate change
+
 function hitungKembalian() {
     const totalElement = document.getElementById('total');
     const totalData = totalElement.dataset.total;
@@ -246,48 +252,52 @@ function hitungKembalian() {
     }
 
     document.getElementById('kembalian').innerText = `Rp ${kembalian}`;
+    return kembalian;
 }
 
-$(document).ready(function() {
-    $('#selesai').on('click', function() {
-        console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
+// $(document).ready(function() {
+//     $('#selesai').on('click', function() {
+//         console.log("Tombol 'Selesai' diklik"); // Pastikan fungsi dijalankan
 
-        // Simpan data keranjang yang ada ke database sebelum mereset tampilan
-        $.ajax({
-            type: 'POST',
-            url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
-            data: {
-                keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
-            },
-            success: function(response) {
-                console.log('Data keranjang berhasil disimpan ke database:', response);
-                validatePayment();
-                resetDOM(); // Setelah disimpan, reset tampilan DOM
-            },
-            error: function(xhr, status, error) {
-                console.error('Gagal menyimpan data ke database:', error);
-            }
-        });
-    });
-});
+//         // Simpan data keranjang yang ada ke database sebelum mereset tampilan
+//         $.ajax({
+//             type: 'POST',
+//             url: '<?= BASEURL?>/Home_User/addToCart', // Ganti dengan URL yang sesuai
+//             data: {
+//                 keranjang: <?php echo json_encode($data['keranjang']); ?> // Kirim data keranjang ke server
+//             },
+//             success: function(response) {
+//                 console.log('Data keranjang berhasil disimpan ke database:', response);
+//                 //validatePayment();
+//                 resetDOM(); // Setelah disimpan, reset tampilan DOM
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error('Gagal menyimpan data ke database:', error);
+//             }
+//         });
+//     });
+// });
 
-function reset(){
-    let url = '<?=BASEURL?>/Home_User/reset';
-        $.post(url, function (success) {
-    });
-}
+// function reset(){
+//     let url = '<?=BASEURL?>/Home_User/reset';
+//         $.post(url, function (success) {
+//     });
+// }
 
-// Mengosongkan tabel dan mereset total pembayaran
-function resetDOM() {
-    $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
-    document.getElementById('total').innerText = 'Rp. 0'; // Atur total pembayaran menjadi 0
-}
+// // Mengosongkan tabel dan mereset total pembayaran
+// function resetDOM() {
+//     $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel
+//     document.getElementById('total').innerText = 'Rp. 0'; // Atur total pembayaran menjadi 0
+// }
 
 function validatePayment() {
     let cashAmount = document.getElementById('cashAmount').value;
     let totalPembayaran = document.getElementById('total').getAttribute('data-total');
+    let kembalian = hitungKembalian();;
 
     document.getElementById('total_pembayaran').value = totalPembayaran;
+    document.getElementById('cashAmountInput').value = cashAmount;
+    document.getElementById('kembalian').value = kembalian;
 
     if (cashAmount === '') {
         alert('Mohon masukkan jumlah nominal untuk menyelesaikan transaksi.');

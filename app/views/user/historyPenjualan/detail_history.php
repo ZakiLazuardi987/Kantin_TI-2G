@@ -6,13 +6,14 @@
         <!-- <div class="col-md-6"> -->
         <div class="card mx-auto" style="width: 400px; height: auto;">
           <ul class="list-group list-group-flush">
+          <?php foreach ($data['detail'] as $item) { ?>
             <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h6 class="my-0"><strong>Tanggal Transaksi</strong></h6>
-              <small class="text-body-secondary">Id: 1</small>
+              <small class="text-body-secondary">Id: <?= $item['id_transaksi']?></small>
               
             </div>
-            <span class="text-body-secondary"><h6>23-12-2023</h6></span>
+            <span class="text-body-secondary"><h6><?= $item['tgl_order']?></h6></span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -27,68 +28,23 @@
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">risol mayo</h6>
-              <small class="text-body-secondary" style="text-align: center;">2</small>
+              <h6 class="my-0"><?= $item['nama_produk']?></h6>
+              <small class="text-body-secondary" style="text-align: center;"><?= $item['qty']?></small>
               
             </div>
             
-            <span class="text-body-secondary">Rp 6.000</span>
+            <span class="text-body-secondary"><?= $item['subtotal']?></span>
 
             
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Pop Mie Bakso</h6>
-              <small class="text-body-secondary" style="text-align: center;">2</small>
-              
-            </div>
             
-            <span class="text-body-secondary">Rp 7.000</span>
-
-            
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Pop Mie Bakso</h6>
-              <small class="text-body-secondary" style="text-align: center;">2</small>
-              
-            </div>
-            
-            <span class="text-body-secondary">Rp 7.000</span>
-
-            
-            </li>
-
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Pop Mie Bakso</h6>
-              <small class="text-body-secondary" style="text-align: center;">2</small>
-              
-            </div>
-            
-            <span class="text-body-secondary">Rp 7.000</span>
-
-            
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Pop Mie Bakso</h6>
-              <small class="text-body-secondary" style="text-align: center;">2</small>
-              
-            </div>
-            
-            <span class="text-body-secondary">Rp 7.000</span>
-
-            
-            </li>
 
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0"><strong>Total Qty</strong></h6>
               
             </div>
-            <span class="text-body-secondary"><h6><strong>7</strong></h6></span>
+            <span class="text-body-secondary"><h6><strong><?= $item['total_qty']?></strong></h6></span>
             
             </li>
 
@@ -100,15 +56,15 @@
               
             </div>
             <div>
-              <span class="text-body-secondary mb-2"><h6><strong>Rp. 13000</strong></h6></span>
-              <span class="text-body-secondary mb-2"><h6><strong>Rp. 15000</strong></h6></span>
-              <span class="text-body-secondary"><h6><strong>Rp. 2000</strong></h6></span>
+              <span class="text-body-secondary mb-2"><h6><strong><?= $item['total_bayar']?></strong></h6></span>
+              <span class="text-body-secondary mb-2"><h6><strong><?= $item['nominal_bayar']?></strong></h6></span>
+              <span class="text-body-secondary"><h6><strong><?= $item['kembalian']?></strong></h6></span>
             </div>
             
             
             </li>
 
-            
+            <?php } ?>
           </ul>
         </div>
         <!-- </div> -->

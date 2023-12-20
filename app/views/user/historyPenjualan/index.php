@@ -53,7 +53,7 @@
                                 <td><?= $item['total_qty'] ?></td>
                                 <td><?= $item['total_bayar'] ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail()" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" onclick="detail(<?= $item['id_transaksi']?>)" style="background: #1A2A46; margin: auto; padding: 5px 6px; font-size: 12px;">
                                         Lihat Detail
                                     </button>
                                     
@@ -76,12 +76,15 @@
 <!-- Modal -->
 
 <script>
-    function detail(){
-        $('.modal-title').html('Detail History Penjualan');
-        let url = '<?=BASEURL?>/History_User/detail';
-        $.post(url, function(data, success){
-            $('.modal-body').html(data);
-        });
-        // $('.tombol').html('<a href="#" class="btn btn-secondary" style="background: #A52222">Reset</a>');
-    }
+    function detail(x){
+    $('.modal-title').html('Detail History Penjualan');
+    let url = '<?=BASEURL?>/History_User/detail';
+    $.post(url,
+    {
+      id_transaksi : x
+    }, function(data, success){
+      $('.modal-body').html(data);
+    });
+  }
+
 </script>
