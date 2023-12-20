@@ -39,16 +39,20 @@
                 <span class="text-body-secondary"><h6><strong><?= $data['detail'][0]['total_qty']?></strong></h6></span>
               </li>
               <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
-                <div>
-                  <h6 class="my-0 mb-2"><strong>Total Bayar</strong></h6>
-                  <h6 class="my-0 mb-2"><strong>Cash</strong></h6>
-                  <h6 class="my-0"><strong>Kembalian</strong></h6>
-                </div>
-                <div>
-                  <span class="text-body-secondary mb-2"><h6><strong><?= $data['detail'][0]['total_bayar']?></strong></h6></span>
-                  <span class="text-body-secondary mb-2"><h6><strong><?= $data['detail'][0]['nominal_bayar']?></strong></h6></span>
-                  <span class="text-body-secondary"><h6><strong><?= $data['detail'][0]['kembalian']?></strong></h6></span>
-                </div>
+              <div>
+                <h6 class="my-0 mb-2"><strong>Total Bayar</strong></h6>
+                <h6 class="my-0 mb-2"><strong>Cash</strong></h6>
+                <h6 class="my-0"><strong>Kembalian</strong></h6>
+              </div>
+              <div>
+                <span class="text-body-secondary mb-2"><h6><strong><?= $data['detail'][0]['total_bayar']?></strong></h6></span>
+                <span class="text-body-secondary mb-2"><h6><strong><?= $data['detail'][0]['nominal_bayar']?></strong></h6></span>
+                <?php
+                  // Calculate kembalian by subtracting nominal_bayar from total_bayar
+                  $kembalian = $data['detail'][0]['nominal_bayar'] - $data['detail'][0]['total_bayar'];
+                ?>
+                <span class="text-body-secondary"><h6><strong><?= $kembalian ?></strong></h6></span>
+              </div>
               </li>
             <?php } ?>
           </ul>
