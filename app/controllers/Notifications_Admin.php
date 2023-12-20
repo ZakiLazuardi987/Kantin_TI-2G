@@ -44,6 +44,10 @@ class Notifications_Admin extends Controller {
             echo "Gagal menambahkan produk!";
         }
     }
+
+    public function notif(){
+        $this->model('Dashboard_Model')->getNotif();
+    }
     
     public function addFromPengajuan(){
         $idPengajuan = $_POST['id_pengajuan']; // Pastikan Anda mengambil ID pengajuan dari data yang dikirimkan melalui POST

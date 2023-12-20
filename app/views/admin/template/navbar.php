@@ -26,7 +26,12 @@
         </li>
         <li class="nav-item mr-2">
           <a class="navbar-brand" href="<?=BASEURL?>/Notifications_Admin" style="color: white">
-          <i class="nav-icon far fa-bell"><span class="badge badge-warning navbar-badge mr-2">15</span></i>
+              <i class="nav-icon far fa-bell">
+              <?php $notif = $this->model('Dashboard_Model')->getNotif(); ?>
+                <span class="badge badge-warning navbar-badge mr-2">
+                <?php echo $notif['jumlah_notif']; ?> <!-- Perbaikan di sini -->
+                </span>
+              </i>
           </a>
       </li>
     </ul>
