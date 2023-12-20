@@ -74,14 +74,14 @@ class Home_User extends Controller
         $keranjang = $_POST['keranjang']; // Mengambil seluruh data keranjang dari form
         $totalPembayaran = $_POST['total_pembayaran']; // Mengambil total pembayaran dari form
         $cashAmount = $_POST['cashAmount'];
-        $kembalian = $_POST['kembalian'];
+        // $kembalian = $_POST['kembalian'];
 
         // Menyiapkan data untuk transaksi
         $data = [
             'keranjang' => $keranjang,
             'total_pembayaran' => $totalPembayaran,
-            'cashAmount' => $cashAmount,
-            'kembalian' => $kembalian
+            'cashAmount' => $cashAmount
+            // 'kembalian' => $kembalian
         ];
 
         // Periksa apakah jumlah nominal ada atau tidak kosong

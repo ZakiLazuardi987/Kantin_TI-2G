@@ -26,7 +26,7 @@
               <?php Flasher::flash(); ?>
             </div>
       </div>
-        <div class="row mb-5" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">
+        <div class="row mb-5 ml-2 mr-2 mt-2" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 1.0);">
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
@@ -186,11 +186,11 @@
                     <?php } ?>
                     <input type="hidden" name="total_pembayaran" id="total_pembayaran"> 
                     <input type="hidden" name="cashAmount" id="cashAmountInput">
-                    <input type="hidden" name="kembalian" id="kembalian">
+                    <!-- <input type="hidden" name="kembalian" id="kembalian"> -->
                         <tr>
                             
                                 <td>
-                                <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 5px 7px; font-size: 12px; background: #F9CC41">
+                                <button type="submit" name="submit" id="selesai" class="btn" onclick="validatePayment()" style="padding: 8px 10px; font-size: 15px; background: #F9CC41">
                                         <i class="fa fa-credit-card"> Bayar</i>
 
                                     </button>
@@ -298,11 +298,11 @@ function hitungKembalian() {
 function validatePayment() {
     let cashAmount = document.getElementById('cashAmount').value;
     let totalPembayaran = document.getElementById('total').getAttribute('data-total');
-    let kembalian = hitungKembalian();
+    // let kembalian = hitungKembalian();
 
     document.getElementById('total_pembayaran').value = totalPembayaran;
     document.getElementById('cashAmountInput').value = cashAmount;
-    document.getElementById('kembalian').value = kembalian;
+    // document.getElementById('kembalian').value = kembalian;
 
     if (cashAmount === '') {
         alert('Mohon masukkan jumlah nominal untuk menyelesaikan transaksi.');

@@ -74,9 +74,9 @@ class Transaksi_Model
 
         if (!empty($lastInsertedID)) {
         $cashAmount = $data['cashAmount'];
-        $kembalian = $data['kembalian'];
+        // $kembalian = $data['kembalian'];
 
-            $query = "INSERT INTO detail_transaksi (id_transaksi, id_keranjang, nominal_bayar, kembalian) VALUES (:id_transaksi, :id_keranjang, :nominal_bayar, :kembalian)";
+            $query = "INSERT INTO detail_transaksi (id_transaksi, id_keranjang, nominal_bayar) VALUES (:id_transaksi, :id_keranjang, :nominal_bayar)";
             $this->db->query($query);
             
             
@@ -88,7 +88,6 @@ class Transaksi_Model
                 $this->db->bind('id_transaksi', $lastInsertedID);
                 $this->db->bind('id_keranjang', $id);
                 $this->db->bind('nominal_bayar', $cashAmount);
-                $this->db->bind('kembalian', $kembalian);
                 var_dump($query);
                 $this->db->execute();
             

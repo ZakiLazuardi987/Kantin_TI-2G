@@ -27,7 +27,7 @@ class Produk_Model
     public function getAllProducts()
     {
         // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
-        $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
+        $this->db->query("SELECT * FROM produk WHERE status_produk = 'aktif' ORDER BY id_produk DESC");
         return $this->db->resultSet();
     }
 
@@ -35,7 +35,7 @@ class Produk_Model
     public function getAllProductsNotStock()
     {
         // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
-        $this->db->query("SELECT * FROM produk WHERE stok > 0 ORDER BY id_produk DESC");
+        $this->db->query("SELECT * FROM produk WHERE stok > 0 AND status_produk = 'aktif' ORDER BY id_produk DESC");
         return $this->db->resultSet();
     }
 
@@ -74,7 +74,7 @@ class Produk_Model
 
     public function getProductByCategory($id_kategori)
     {
-        $query = "SELECT * FROM produk WHERE id_kategori = :id_kategori";
+        $query = "SELECT * FROM produk WHERE id_kategori = :id_kategori AND status_produk = 'aktif'";
 
         $this->db->query($query);
         $this->db->bind('id_kategori', $id_kategori);
@@ -102,7 +102,10 @@ class Produk_Model
 
     public function delete($id_produk)
     {
-        $query = "DELETE FROM produk WHERE id_produk =:id_produk";
+        $query = "UPDATE produk
+        SET status_produk = 'non aktif'
+        WHERE id_produk = :id_produk
+        ";
 
         $this->db->query($query);
         $this->db->bind('id_produk', $id_produk);
@@ -114,7 +117,7 @@ class Produk_Model
     public function dataSearching()
     {
         $keyword = $_POST['search'];
-        $query = "SELECT * FROM produk WHERE nama_produk LIKE :keyword";
+        $query = "SELECT * FROM produk WHERE nama_produk LIKE :keyword AND status_produk = 'aktif'";
 
         $this->db->query($query);
         $this->db->bind('keyword', "%$keyword%");

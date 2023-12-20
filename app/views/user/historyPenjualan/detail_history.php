@@ -5,6 +5,7 @@
         <div class="card mx-auto" style="width: 400px; height: auto;">
           <ul class="list-group list-group-flush">
           <?php foreach ($data['detail'] as $item) { ?>
+            <?php } ?>
             <li class="list-group-item d-flex justify-content-between lh-sm" style="background: #F6E8C1;">
             <div>
               <h6 class="my-0"><strong>Tanggal Transaksi</strong></h6>
@@ -24,6 +25,7 @@
 
             
             </li>
+            <?php foreach ($data['detail'] as $item) { ?>
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0"><?= $item['nama_produk']?></h6>
@@ -35,7 +37,7 @@
 
             
             </li>
-            
+            <?php } ?>
 
             <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -62,7 +64,6 @@
             
             </li>
 
-            <?php } ?>
           </ul>
         </div>
       </div>

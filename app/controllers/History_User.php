@@ -24,9 +24,7 @@ class History_User extends Controller {
     public function detail(){
         // $data['title'] = 'Tambah Produk';
     $id_transaksi = $_POST['id_transaksi'];
-    $data['detail'] = $this->model('History_Model')->getHistory($id_transaksi);
-    $data['id'] = $this->model('History_Model')->getHistoryById($id_transaksi);
-    $data['tgl'] = $this->model('History_Model')->getHistoryById($id_transaksi);
+    $data['detail'] = $this->model('History_Model')->getHistoryById($id_transaksi);
     
     $this->view('user/historyPenjualan/detail_history', $data);
     }

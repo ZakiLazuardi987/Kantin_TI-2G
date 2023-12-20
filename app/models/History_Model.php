@@ -9,16 +9,18 @@ class History_Model
         $this->db = new Database; // Assuming you have a Database class to handle database connections
     }
 
-    public function getHistory($id_transaksi)
+    public function getHistoryById($id_transaksi)
     {
-        $query = "SELECT 
+        $query = "SELECT
+        t.id_transaksi,
+        t.tgl_order,
         p.nama_produk,
         k.qty,
         k.qty * p.harga AS subtotal,
         t.total_qty,
         t.total_bayar,
         d.nominal_bayar,
-        d.kembalian
+        d.nominal_bayar - t.total_bayar AS kembalian
     FROM detail_transaksi d
     JOIN transaksi t ON t.id_transaksi = d.id_transaksi
     JOIN keranjang k ON k.id_keranjang = d.id_keranjang
@@ -34,22 +36,6 @@ class History_Model
         return $this->db->resultSet();
     }
 
-    public function getHistoryById($id_transaksi)
-    {
-        $query = "SELECT 
-        t.id_transaksi,
-        t.tgl_order
-    FROM detail_transaksi d
-    JOIN transaksi t ON t.id_transaksi = d.id_transaksi
-    WHERE t.id_transaksi = :id_transaksi;
-    ";
-
-        $this->db->query($query);
-        $this->db->bind(':id_transaksi', $id_transaksi);
-
-        $this->db->execute();
-
-        return $this->db->resultSet();
-    }
+   
 }
 ?>
