@@ -270,6 +270,13 @@ $(document).ready(function() {
         });
     });
 });
+
+function reset(){
+    let url = '<?=BASEURL?>/Home_User/reset';
+        $.post(url, function (success) {
+    });
+}
+
 // Mengosongkan tabel dan mereset total pembayaran
 function resetDOM() {
     $('#cart-table tbody').empty(); // Menghapus semua baris dari tabel

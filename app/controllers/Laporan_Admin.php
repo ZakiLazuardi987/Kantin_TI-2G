@@ -31,15 +31,5 @@ class Laporan_Admin extends Controller {
         $this->view('admin/laporanPenjualan/index', $data);
         $this->view('admin/template/footer');
     }
-
-    public function detail()
-    {
-        $tanggal = isset($_POST['tanggal']) ? $_POST['tanggal'] : ''; // Atau gunakan cara lain untuk menginisialisasi $tanggal
-        $data['detail'] = $this->model('Laporan_Model')->getTransactionDetails($tanggal);
-
-    
-        $this->view('admin/laporanPenjualan/detail_laporan', $data);
-    }
-    
 }
 ?>
