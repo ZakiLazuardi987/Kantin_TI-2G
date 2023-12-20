@@ -24,23 +24,14 @@
 
     <!-- Main content -->
     <div class="content">
-        <div class="container-fluid">
-            <!-- <div class="row mb-2">
-                <div class="col-sm-6">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
-                        onclick="tambahdata()">
-                        <i class="fa fa-plus mr-2"></i> Tambah Pegawai
-                    </button>
-                </div>
-            </div> -->
-
-            <!-- Tambahkan jarak antara tombol dan tabel -->
-
-            <!-- Tabel -->
-            <div class="container">
-                <table class="table table-bordered">
-                    <thead style="background: #F6E8C1">
-                        <tr>
+    <div class="container-fluid">
+            <div class="row mb-2" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 1.0);">
+                <div class="col-lg-12 mt-2">
+                <div class="box box-widget">
+                    <div class="box-body">
+                    <table class="table table-striped">
+                    <thead style="background: white">
+                    <tr>
                             <th>Tanggal</th>
                             <th>Jumlah Transaksi</th>
                             <th>Total Produk Terjual</th>
@@ -74,8 +65,14 @@
                     ?>
                     </tbody>
                 </table>
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
+    </div>
+
+            <!-- Tabel -->
+            
         <!-- /.content -->
     </div>
 </div>

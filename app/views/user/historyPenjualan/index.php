@@ -30,12 +30,13 @@
 
     <!-- Main content -->
     <div class="content">
-
-
-            <!-- Tabel -->
-            <div class="container">
-                <table class="table table-bordered">
-                    <thead style="background: #F6E8C1">
+    <div class="container-fluid">
+            <div class="row mb-2" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 1.0);">
+                <div class="col-lg-12 mt-2">
+                <div class="box box-widget">
+                    <div class="box-body">
+                    <table class="table table-striped">
+                    <thead style="background: white">
                         <tr>
                             <th>ID</th>
                             <th>Tanggal</th>
@@ -44,7 +45,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="background: white">
                     <?php foreach ($data['data'] as $item) : ?>
                             <tr>
                                 <td><?= $item['id_transaksi'] ?></td>
@@ -61,8 +62,12 @@
                             <?php endforeach ?>
                     </tbody>
                 </table>
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
+    </div>
+
         <!-- /.content -->
     </div>
 </div>

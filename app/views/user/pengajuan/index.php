@@ -42,8 +42,11 @@
             <div class="mb-4"></div>
 
             <!-- Tabel -->
-            <div class="container mb-2">
-                <table id="example" class="table">
+            <div class="row mb-2" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 1.0);">
+                <div class="col-lg-12 mt-2 mb-2">
+                <div class="box box-widget">
+                    <div class="box-body">
+                <table id="example" class="table table-bordered">
                     <thead style="background: #F6E8C1">
                         <tr>
                             <th>ID</th>
@@ -81,7 +84,9 @@
                     
                 </table>
             </div>
-
+            </div>
+            </div>
+            </div>
 
         </div>
         <!-- /.content -->

@@ -113,7 +113,7 @@ $todayTransactions = $dashboardModel->getTodayTransactions();
             <h5 class="card-title" style="text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><strong><?php echo $produk['nama_produk']; ?></strong></h5>
                 <p class="card-text" style="margin-bottom: 5px;">Rp. <?php echo $produk['harga']; ?></p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <p class="card-text">Stok: <?php echo $produk['stok']; ?></p>
+                  <p class="card-text">Terjual: <?php echo $produk['stok']; ?></p>
                   <div>
                   <!-- <a href="<?= BASEURL?>/Produk_Admin/formUbah/<?php echo $produk['id_produk']; ?>" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a> -->
                   <!-- <button type="button" class="btn btn-primary" style="background: #1A2A46;" data-toggle="modal" data-target="#exampleModal" onclick="ubahdata('<?= $produk['id_produk']; ?>')"><i class="fa fa-edit"></i></button>

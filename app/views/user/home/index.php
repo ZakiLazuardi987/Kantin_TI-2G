@@ -21,7 +21,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row mb-5" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+        <div class="row mb-5" style="background: #F6E8C1; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">
             <div class="col-lg-4 mt-2 mb-2">
                 <div class="box box-widget">
                     <div class="box-body">
