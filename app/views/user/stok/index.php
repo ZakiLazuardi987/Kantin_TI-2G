@@ -45,7 +45,7 @@
       </div>
         <div class="row" id="produkContainer">
           <?php
-          foreach($data['dataTop'] as $produk) { ?>
+          foreach($data['data'] as $produk) { ?>
           <div class="card card-spacing" style="border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
           <img src="<?= BASEURL ?>/img/produk/<?php echo $produk['gambar_produk']; ?>" class="card-img-top <?php echo ($produk['stok'] == 0) ? 'stok-habis' : ''; ?>" alt="...">
             <div class="card-body">
