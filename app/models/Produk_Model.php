@@ -31,6 +31,13 @@ class Produk_Model
         return $this->db->resultSet();
     }
 
+    public function getAllProductsTopTen()
+    {
+        // kueri left join dengan tabel keranjang dan kurangkan stok dengan qty di keranjang
+        $this->db->query("SELECT * FROM produk WHERE status_produk = 'aktif' ORDER BY id_produk DESC LIMIT 10");
+        return $this->db->resultSet();
+    }
+
 
     public function getAllProductsNotStock()
     {

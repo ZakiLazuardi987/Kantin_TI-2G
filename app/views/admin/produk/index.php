@@ -50,7 +50,7 @@
         </div>
         <div class="row" id="produkContainer">
           <?php
-          foreach($data['data'] as $produk) { ?>
+          foreach($data['dataTop'] as $produk) { ?>
           <div class="card card-spacing" style="border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
           <img src="<?= BASEURL ?>/img/produk/<?php echo $produk['gambar_produk']; ?>" class="card-img-top <?php echo ($produk['stok'] == 0) ? 'stok-habis' : ''; ?>" alt="...">
             <div class="card-body">
@@ -127,7 +127,7 @@ function setDropdownText(text) {
         produk.forEach(function(item) {
             var card = `
                 <div class="card card-spacing">
-                    <img src="<?= BASEURL?>/img/produk/${item.gambar_produk}" class="card-img-top" alt="...">
+                    <img src="<?= BASEURL?>/img/produk/${item.gambar_produk}" class="card-img-top ${item.stok === 0 ? 'stok-habis' : ''}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title" style="text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><strong>${item.nama_produk}</strong></h5>
                         <p class="card-text" style="margin-bottom: 5px;">Rp. ${item.harga}</p>

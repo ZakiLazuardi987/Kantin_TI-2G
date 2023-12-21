@@ -7,7 +7,7 @@ class Stok_User extends Controller
         if(!empty($_POST['search'])){
             $data['data'] = $this->model('Produk_Model')->dataSearching();
         } else{
-            $data['data'] = $this->model('Produk_Model')->getAllProducts();
+            $data['dataTop'] = $this->model('Produk_Model')->getAllProductsTopTen();
         }
         $data['title'] = 'Home Stok';
         $data['kategori'] = $this->model('Produk_Model')->getAllCategories();
