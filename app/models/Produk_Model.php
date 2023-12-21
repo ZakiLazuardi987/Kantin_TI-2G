@@ -86,7 +86,7 @@ class Produk_Model
 
     public function update($data)
     {
-        $query = "UPDATE produk SET id_kategori = :id_kategori, nama_produk = :nama_produk, harga = :harga, stok = 0, gambar_produk = :gambar_produk WHERE id_produk = :id_produk";
+        $query = "UPDATE produk SET id_kategori = :id_kategori, nama_produk = :nama_produk, harga = :harga, gambar_produk = :gambar_produk WHERE id_produk = :id_produk";
 
         $this->db->query($query);
         $this->db->bind('id_kategori', $data['id_kategori']);

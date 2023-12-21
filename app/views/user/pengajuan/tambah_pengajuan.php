@@ -22,11 +22,11 @@
             </div>
             <div class="form-group">
                 <label for="nama_produk">Nama Produk:</label>
-                <input type="text" name="nama_produk" id="nama_produk" class="form-control" required>
+                <input type="text" name="nama_produk" id="nama_produk" class="form-control" autocomplete="off" required>
             </div>
             <div class="form-group">
                 <label for="harga">Harga:</label>
-                <input type="text" name="harga" id="harga" class="form-control" required>
+                <input type="text" name="harga" id="harga" class="form-control" autocomplete="off" required>
             </div>
             <div class="form-group">
                 <label for="gambar_produk">Gambar Produk:</label>

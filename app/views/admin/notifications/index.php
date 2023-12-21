@@ -92,7 +92,7 @@
                     <div class="box-body">
                     <h4 align="center" style="color: #333f57; margin-bottom: 8px;"><b>History Pengajuan</b></h4>
                     
-                    <table class="table">
+                    <table id="example" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -11,7 +11,7 @@ class Laporan_Model
 
     public function getAllReport()
     {
-        $query = "SELECT * FROM laporan";
+        $query = "SELECT * FROM laporan ORDER BY tanggal DESC";
         $this->db->query($query);
 
         return $this->db->resultSet();
