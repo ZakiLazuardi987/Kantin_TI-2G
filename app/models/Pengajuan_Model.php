@@ -31,6 +31,29 @@ class Pengajuan_Model
         return $this->db->resultSet();
     }
 
+    public function getAllPengajuanAfterAcc()
+    {
+        $this->db->query("SELECT p.id_pengajuan, k.nama_kategori, p.nama_produk, p.harga, p.gambar_produk, p.status_pengajuan
+        FROM pengajuan p
+        INNER JOIN kategori k ON p.id_kategori = k.id_kategori
+        WHERE NOT EXISTS (
+            SELECT pr.nama_produk
+            FROM produk pr
+            WHERE pr.nama_produk = p.nama_produk
+        )
+        AND p.status_pengajuan != 'Ditolak'");
+        return $this->db->resultSet();
+    }
+
+    public function getAllPengajuanAfterReject()
+    {
+        $this->db->query("SELECT p.id_pengajuan, k.nama_kategori, p.nama_produk, p.harga, p.gambar_produk, p.status_pengajuan
+        FROM pengajuan p
+        INNER JOIN kategori k ON p.id_kategori = k.id_kategori
+        WHERE p.status_pengajuan = 'Disetujui'
+        ");
+        return $this->db->resultSet();
+    }
     public function getAllCategories()
     {
         $this->db->query("SELECT * FROM kategori");

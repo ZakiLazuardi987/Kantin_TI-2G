@@ -5,6 +5,10 @@ class Notifications_Admin extends Controller {
     {
         $data['title'] = 'Notifications Admin';
         $data['dataPengajuan'] = $this->model('Pengajuan_Model')->getAllPengajuan();
+
+        $data['pengajuanMasuk'] = $this->model('Pengajuan_Model')->getAllPengajuanAfterAcc();
+        
+        
         $data['nama_user'] = $_SESSION['username'] ?? '';
         // $data['insert'] = $this->model('Produk_Model')->insertFromPengajuan();
 
@@ -127,4 +131,35 @@ class Notifications_Admin extends Controller {
             echo "Gagal menginsert data pengajuan ke database!";
         }
     }
+
+    public function prosesPengajuan()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $id_pengajuan = $_POST['id_pengajuan']; 
+        if (isset($_POST['acc'])) {
+            // Proses jika tombol 'acc' diklik
+            // Ambil ID pengajuan dari form
+            $this->model('Produk_Model')->accPengajuan($id_pengajuan);
+            $this->model('Produk_Model')->insertFromPengajuan($id_pengajuan);
+            //$this->model('Pengajuan_Model')->getAllPengajuanAfterAcc();
+
+            Flasher::setFlash('berhasil', 'diacc', 'success');
+                header('Location: ' . BASEURL . '/Notifications_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
+           
+        } elseif (isset($_POST['tolak'])) {
+            // Proses jika tombol 'tolak' diklik
+            $this->model('Produk_Model')->tolakPengajuan($id_pengajuan);
+            //$this->model('Pengajuan_Model')->getAllPengajuanAfterReject();
+
+            Flasher::setFlash('berhasil', 'ditolak', 'success');
+                header('Location: ' . BASEURL . '/Notifications_Admin'); // Ganti dengan alamat tujuan setelah berhasil menambahkan data
+                exit;
+        } else {
+            // Tindakan default jika tidak ada tombol yang diklik
+            // Misalnya, tampilkan pesan kesalahan atau arahkan ke halaman lain
+        }
+    }
+}
+
 }

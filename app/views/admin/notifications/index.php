@@ -27,10 +27,17 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-lg-6">
+              <?php Flasher::flash(); ?>
+            </div>
+      </div>
             <div class="row" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">
                 <div class="col-lg-12 mt-2">
                 <div class="box box-widget">
                     <div class="box-body">
+                        
+                        <h4 align="center" style="color: #333f57; margin-bottom: 8px;"><b>Data Pengajuan Masuk</b></h4>
                     <table class="table">
                     <thead>
                         <tr>
@@ -42,6 +49,60 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    
+                    <tbody>
+                    <?php if (!empty($data['pengajuanMasuk'])) : ?>
+                        <?php foreach ($data['pengajuanMasuk'] as $pengajuan) : ?>
+                            <tr class= "ini">
+                                <td><?php echo $pengajuan['id_pengajuan']; ?></td>
+                                <td><?php echo $pengajuan['nama_kategori']; ?></td>
+                                <td><?php echo $pengajuan['nama_produk']; ?></td>
+                                <td><?php echo $pengajuan['harga']; ?></td>
+                                <td><img style="width: 100px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
+                                <td>
+                                <form action="<?= BASEURL?>/Notifications_Admin/prosesPengajuan" method="post">
+                                <input type="hidden" name="id_pengajuan" value="<?php echo $pengajuan['id_pengajuan']; ?>">
+                                <button type="submit" name="acc" class="statusButton btn btn-primary" style="background: #1A2A46;"><i class="fas fa-check"></i>ACC</button>                                    
+                                <button type="submit" name="tolak" class="statusButton btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;"><i class="fas fa-times"></i>TOLAK</button>
+                                </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <!-- Penanganan jika $data['pengajuanMasuk'] tidak terdefinisi atau tidak berupa array -->
+                            <tr>
+                                <td colspan="6" align="center">Data pengajuan tidak tersedia.</td>
+                            </tr>
+                            
+                        <?php endif; ?>
+                    </tbody>
+                        
+                </table>
+                            </div>
+                                <!-- /.info-box-content -->
+                                <!-- onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')" data-id="<?php echo $pengajuan['id_pengajuan']; ?>"-->
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="row mt-3 mb-5" style="background: white; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">
+                <div class="col-lg-12 mt-2">
+                <div class="box box-widget">
+                    <div class="box-body">
+                    <h4 align="center" style="color: #333f57; margin-bottom: 8px;"><b>History Pengajuan</b></h4>
+                    
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Kategori</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <?php foreach ($data['dataPengajuan'] as $pengajuan) : ?>
                             <tr class= "ini">
@@ -50,10 +111,11 @@
                                 <td><?php echo $pengajuan['nama_produk']; ?></td>
                                 <td><?php echo $pengajuan['harga']; ?></td>
                                 <td><img style="width: 100px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
-                                <td>
+                                <!-- <td>
                                 <button class="statusButton btn btn-primary" style="background: #1A2A46;" onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')"><i class="fas fa-check"></i>ACC</button>                                    
                                 <button class="statusButton btn btn-secondary" style="padding: 5px 7px; font-size: 12px; margin-top: 15px;" data-id="<?php echo $pengajuan['id_pengajuan']; ?>"><i class="fas fa-times"></i>TOLAK</button>
-                                </td>
+                                </td> -->
+                                <td><?php echo $pengajuan['status_pengajuan']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -64,44 +126,25 @@
                 </div>
 
             </div>
+            
+
     </div>
-            <!-- Tabel -->
-            <!-- <div class="container">
-                <table class="table">
-                    <thead style="background: #F6E8C1">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama Kategori</th>
-                            <th>Nama Produk</th>
-                            <th>Harga</th>
-                            <th>Gambar</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($data['dataPengajuan'] as $pengajuan) : ?>
-                            <tr class= "ini">
-                                <td><?php echo $pengajuan['id_pengajuan']; ?></td>
-                                <td><?php echo $pengajuan['nama_kategori']; ?></td>
-                                <td><?php echo $pengajuan['nama_produk']; ?></td>
-                                <td><?php echo $pengajuan['harga']; ?></td>
-                                <td><img style="width: 50px;" src="<?= BASEURL?>/app/img/pengajuan/<?php echo $pengajuan['gambar_produk']; ?>"></td>
-                                <td>
-                                				<button class="statusButton btn btn-success me-2" onclick="addPengajuanToProduk('<?php echo $pengajuan['id_pengajuan']; ?>')"> ACC</button>                                    
-                                <button class="statusButton btn btn-danger" onclick="rejectPengajuan('<?php echo $pengajuan['id_pengajuan']; ?>')"> TOLAK</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div> -->
-        </div>
-        <!-- /.content -->
+           
     </div>
 
 </div>
 <!-- /.content-wrapper -->
 <script>
+    function ubahdata(x){
+    let url = '<?=BASEURL?>/Notifications_Admin/prosesPengajuan';
+    $.post(url,
+    {
+      id_pengajuan : x
+    }, function(data, success){
+      $('.modal-body').html(data);
+    });
+  }
+
     function addPengajuanToProduk(x) {
         let url = '<?=BASEURL?>/Notifications_Admin/addFromPengajuan';
         $.post(url, {id_pengajuan: x}, function (dataPengajuan, success) {

@@ -24,6 +24,7 @@
                 <form action="<?= BASEURL?>/Produk_Admin" method="post" class="d-flex" role="search" id="searchForm">
                   <input class="form-control" type="text" name="search" placeholder="Search" autocomplete="off">
                   <button class="btn btn-outline-primary" type="submit" id="tombolCari">Search</button>
+
                 </form>
                 
             </div><!-- /.col -->
